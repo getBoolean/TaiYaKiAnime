@@ -31,6 +31,8 @@ dependencies:
   hive_flutter: ^1.0.0
 
   fish_redux: ^0.3.7
+  # fish_redux:
+  #   git: https://github.com/leftcoding/fish-redux
   focus_detector: ^2.0.0
   flutter_local_notifications: ^5.0.0+1
   flutter_secure_storage: ^4.1.0
@@ -62,6 +64,7 @@ dev_dependencies:
   hive_generator: ^1.0.1
   flutter_launcher_icons: "^0.9.0"
   flutter_native_splash: ^1.1.8+4
+  flutter_lints: ^1.0.4
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

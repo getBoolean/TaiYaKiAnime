@@ -4,7 +4,7 @@ import 'package:html/parser.dart';
 import '../Exceptions/API/Exceptions+API.dart';
 import '../Sources/Base.dart';
 
-import 'Base.dart';
+import 'base.dart';
 
 class StreamTape with HostsAPIRequests implements HostsBase {
   @override

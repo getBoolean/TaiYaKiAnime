@@ -66,7 +66,8 @@ Widget buildView(VideoState state, Dispatch dispatch, ViewService viewService) {
                               style: const TextStyle(
                                   fontWeight: FontWeight.w800, fontSize: 16)),
                           Text('Episode ' + state.episode!.episode.toString(),
-                              style: const TextStyle(fontWeight: FontWeight.w600)),
+                              style:
+                                  const TextStyle(fontWeight: FontWeight.w600)),
                           Padding(
                               padding: const EdgeInsets.only(top: 12),
                               child: GestureDetector(

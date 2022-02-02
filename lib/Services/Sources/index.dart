@@ -1,5 +1,5 @@
-import 'Base.dart';
-import 'Gogoanime.dart';
+import 'base.dart';
+import 'gogoanime.dart';
 
 final kTaiyakiSources = [GogoAnime()];
 

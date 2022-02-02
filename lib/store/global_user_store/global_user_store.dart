@@ -1,7 +1,7 @@
 import 'package:fish_redux/fish_redux.dart';
 
-import 'GlobalUserReducer.dart';
-import 'GlobalUserState.dart';
+import 'global_user_reducer.dart';
+import 'global_user_state.dart';
 
 class GlobalUserStore {
   static Store<GlobalUserState>? _globalStore;

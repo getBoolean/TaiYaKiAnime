@@ -1,6 +1,6 @@
 import 'package:hive/hive.dart';
 
-part 'Trackers.g.dart';
+part 'trackers.g.dart';
 
 enum ThirdPartyTrackersEnum {
   myanimelist,

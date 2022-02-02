@@ -1,7 +1,7 @@
 import 'package:fish_redux/fish_redux.dart';
 
-import 'GlobalSettingsReducer.dart';
-import 'GlobalSettingsState.dart';
+import 'global_settings_reducer.dart';
+import 'global_settings_state.dart';
 
 class GlobalSettingsStore {
   static Store<GlobalSettingsState>? _globalStore;

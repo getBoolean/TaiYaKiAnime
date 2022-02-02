@@ -11,7 +11,7 @@ import '../../Store/GlobalUserStore/GlobalUserAction.dart';
 import '../../Store/GlobalUserStore/GlobalUserStore.dart';
 import '../../Utils/strings.dart';
 import '../Exceptions/API/Exceptions+API.dart';
-import 'Base+API.dart';
+import 'base+api.dart';
 
 class _Bearer {
   final String accessToken;

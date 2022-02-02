@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'detail_database.dart';
+part of 'DetailDatabase.dart';
 
 // **************************************************************************
 // TypeAdapterGenerator

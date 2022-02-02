@@ -1,6 +1,6 @@
-import 'base.dart';
-import 'streamtape.dart';
-import 'xstream_cdn.dart';
+import 'Base.dart';
+import 'StreamTape.dart';
+import 'XstreamCDN.dart';
 
 HostsBase nameToHostsBase(String name) {
   switch (name.toLowerCase().trim()) {

@@ -2,8 +2,8 @@ import 'package:fish_redux/fish_redux.dart';
 import '../../Models/Taiyaki/Sync.dart';
 import '../../Models/Taiyaki/Trackers.dart';
 
-import 'global_user_action.dart';
-import 'global_user_state.dart';
+import 'GlobalUserAction.dart';
+import 'GlobalUserState.dart';
 
 Reducer<GlobalUserState> buildReducer() {
   return asReducer(

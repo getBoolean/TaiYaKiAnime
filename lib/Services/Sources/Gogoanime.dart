@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:html/parser.dart';
 import '../Exceptions/API/Exceptions+API.dart';
-import 'base.dart';
+import 'Base.dart';
 
 class GogoAnime implements SourceBase {
   @override

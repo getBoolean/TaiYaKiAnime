@@ -1,6 +1,6 @@
 import 'package:hive/hive.dart';
 
-part 'settings.g.dart';
+part 'Settings.g.dart';
 
 @HiveType(typeId: 7)
 class AppSettingsModel {

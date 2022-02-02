@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'trackers.dart';
+part of 'Trackers.dart';
 
 // **************************************************************************
 // TypeAdapterGenerator

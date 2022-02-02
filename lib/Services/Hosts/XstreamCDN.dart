@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import '../Sources/Base.dart';
 
-import 'base.dart';
+import 'Base.dart';
 
 class _XstreamModel {
   final String file, label;

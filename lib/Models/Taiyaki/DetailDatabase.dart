@@ -1,8 +1,8 @@
 import 'package:hive/hive.dart';
 import '../SIMKL/models.dart';
-import 'trackers.dart';
+import 'Trackers.dart';
 
-part 'detail_database.g.dart';
+part 'DetailDatabase.g.dart';
 
 @HiveType(typeId: 1)
 class DetailDatabaseModel {

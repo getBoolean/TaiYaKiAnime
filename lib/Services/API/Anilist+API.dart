@@ -12,7 +12,7 @@ import '../../Models/Taiyaki/User.dart';
 import '../../Store/GlobalUserStore/GlobalUserAction.dart';
 import '../../Store/GlobalUserStore/GlobalUserStore.dart';
 import '../Exceptions/API/Exceptions+API.dart';
-import 'base+api.dart';
+import 'Base+API.dart';
 
 class _Bearer {
   final String accessToken;

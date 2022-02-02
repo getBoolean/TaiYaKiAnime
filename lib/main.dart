@@ -1,36 +1,37 @@
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:dotenv/dotenv.dart' as DotEnv;
+import 'package:dotenv/dotenv.dart' as dot_env;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'Models/SIMKL/models.dart';
-import 'Models/Taiyaki/DetailDatabase.dart';
-import 'Models/Taiyaki/Settings.dart';
-import 'Models/Taiyaki/Trackers.dart';
-import 'Models/Taiyaki/User.dart';
-import 'Services/API/Anilist+API.dart';
-import 'Services/API/MyAnimeList+API.dart';
-import 'Services/API/SIMKL+API.dart';
-import 'Store/GlobalSettingsStore/GlobalSettingsAction.dart';
-import 'Store/GlobalSettingsStore/GlobalSettingsStore.dart';
-import 'Store/GlobalUserStore/GlobalUserAction.dart';
-import 'Store/GlobalUserStore/GlobalUserStore.dart';
-import 'Utils/strings.dart';
-import 'Views/Widgets/TaiyakiBackgroundTasks.dart';
-import 'Views/Widgets/TaiyakiNotificationHandler.dart';
-import 'Views/app.dart';
+
+import 'models/simkl/models.dart';
+import 'models/taiyaki/detail_database.dart';
+import 'models/taiyaki/settings.dart';
+import 'models/taiyaki/trackers.dart';
+import 'models/taiyaki/user.dart';
+import 'services/api/anilist_plus_api.dart';
+import 'services/api/myanimelist_plus_api.dart';
+import 'services/api/simkl_plus_api.dart';
+import 'store/global_settings_store/global_settings_action.dart';
+import 'store/global_settings_store/global_settings_store.dart';
+import 'store/global_user_store/global_user_action.dart';
+import 'store/global_user_store/global_user_store.dart';
+import 'utils/strings.dart';
+import 'views/app.dart';
+import 'views/widgets/taiyaki_background_tasks.dart';
+import 'views/widgets/taiyaki_notification_handler.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  DotEnv.load();
+  dot_env.load();
   await _initApp();
 
-  runApp(CreateApp());
+  runApp(const CreateApp());
 }
 
 Future<void> _initApp() async {
@@ -87,12 +88,12 @@ Future<void> _initApp() async {
   Hive.registerAdapter(IndividualSettingsModelAdapter());
   Hive.registerAdapter(AppSettingsModelAdapter());
 
-  await Hive.openBox<HistoryModel>(HIVE_HISTORY_BOX);
-  await Hive.openBox<DetailDatabaseModel>(HIVE_DETAIL_BOX);
+  await Hive.openBox<HistoryModel>(kHiveHistoryBox);
+  await Hive.openBox<DetailDatabaseModel>(kHiveDetailBox);
 
-  await Hive.openBox<AppSettingsModel>(HIVE_SETTINGS_BOX);
+  await Hive.openBox<AppSettingsModel>(kHiveSettingsBox);
 
-  final _settingsBox = Hive.box<AppSettingsModel>(HIVE_SETTINGS_BOX);
+  final _settingsBox = Hive.box<AppSettingsModel>(kHiveSettingsBox);
   if (_settingsBox.isNotEmpty) {
     final AppSettingsModel? _settings = _settingsBox.get('settings');
     if (_settings != null) {
@@ -102,7 +103,7 @@ Future<void> _initApp() async {
   }
 
   GlobalSettingsStore.store.observable().listen((event) async {
-    await Hive.box<AppSettingsModel>(HIVE_SETTINGS_BOX)
+    await Hive.box<AppSettingsModel>(kHiveSettingsBox)
         .put('settings', event.appSettings);
   });
 

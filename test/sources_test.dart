@@ -1,6 +1,7 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:taiyaki/Services/Sources/Base.dart';
-import 'package:taiyaki/Services/Sources/Gogoanime.dart';
+import 'package:taiyaki/services/sources/base.dart';
+import 'package:taiyaki/services/sources/gogoanime.dart';
 
 const String _searchQuery = 'Kono Subarashii Sekai ni Shukufuku wo!';
 
@@ -16,14 +17,14 @@ void main() async {
         await base.getSearchResults(_searchQuery);
     if (_searchResults.isEmpty) {
       fail(
-          'No results were returned from the search query. You could try a custom anime title, if its a new website and doesnt contain the popular anime mentioned above');
+          "No results were returned from the search query. You could try a custom anime title, if its a new website and doesn't contain the popular anime mentioned above");
     }
 
     final _isValidLink = _searchResults.isNotEmpty &&
         (_searchResults.first.link).startsWith('http');
 
     expect(_isValidLink, true);
-    print('PASSED SEARCH TEST');
+    debugPrint('PASSED SEARCH TEST');
   });
 
   test('Should return a list of all episodes', () async {
@@ -38,7 +39,7 @@ void main() async {
         episodes.first.isNotEmpty;
     expect(_isValid, true);
 
-    print('PASSED EPISODE LINKS TEST');
+    debugPrint('PASSED EPISODE LINKS TEST');
   });
 
   test('Should return at least one host on the corresponding source', () async {
@@ -51,7 +52,7 @@ void main() async {
     final _isValidHost = _hosts.first.host.isNotEmpty &&
         _hosts.first.hostLink.startsWith('http');
     expect(_isValidHost, true);
-    print(_hosts.first.hostLink);
-    print('PASSED HOSTS TEST');
+    debugPrint(_hosts.first.hostLink);
+    debugPrint('PASSED HOSTS TEST');
   });
 }

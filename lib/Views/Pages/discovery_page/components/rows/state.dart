@@ -101,7 +101,7 @@ class NextSeasonRowsConnector extends ConnOp<DiscoveryState, RowsState> {
 
     final subState = RowsState().clone();
     subState.rowTitle = 'Next Season';
-    subState.subTitle = '${_seasonCheck} $year';
+    subState.subTitle = '$_seasonCheck $year';
     subState.data = state.nextSeasonalData ?? [];
     return subState;
   }

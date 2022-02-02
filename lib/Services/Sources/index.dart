@@ -2,7 +2,7 @@ import 'package:taiyaki/Services/Sources/Gogoanime.dart';
 
 import 'Base.dart';
 
-final TAIYAKI_SOURCES = [GogoAnime()];
+final kTaiyakiSources = [GogoAnime()];
 
 SourceBase nameToSourceBase(String name) {
   switch (name) {

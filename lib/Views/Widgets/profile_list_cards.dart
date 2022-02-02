@@ -47,13 +47,13 @@ class _ProfileListCardsState extends State<ProfileListCards> {
 
   final _random = new Random();
 // Timer(const Duration(seconds: 5), _onChange);
-  String? _currentImage;
+  // String? _currentImage;
   int index = 0;
 
   @override
   void initState() {
     index = _next();
-    _currentImage = _trackerList()?.first.coverImage;
+    // _currentImage = _trackerList()?.first.coverImage;
     super.initState();
   }
 
@@ -63,13 +63,14 @@ class _ProfileListCardsState extends State<ProfileListCards> {
     return 0 + _random.nextInt(length);
   }
 
-  void _onChange() {
-    if (_trackerList() == null) return;
-    this.setState(() {
-      index = _next();
-      _currentImage = _trackerList()![_next()].coverImage;
-    });
-  }
+  // Unused
+  // void _onChange() {
+  //   if (_trackerList() == null) return;
+  //   this.setState(() {
+  //     index = _next();
+  //     _currentImage = _trackerList()![_next()].coverImage;
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -117,6 +118,7 @@ class _ProfileListCardsState extends State<ProfileListCards> {
                           children: [
                             CircleAvatar(
                               foregroundImage: widget.userModel.avatar != null
+                                  // ignore: unnecessary_cast
                                   ? (NetworkImage(widget.userModel.avatar!)
                                       as ImageProvider<Object>)
                                   : AssetImage('assets/icon.png'),

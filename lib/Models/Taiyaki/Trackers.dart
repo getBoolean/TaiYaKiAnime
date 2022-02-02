@@ -19,9 +19,9 @@ enum ThirdPartyStatus {
 @HiveType(typeId: 3)
 class ThirdPartyBundleIds {
   @HiveField(0)
-  int anilist;
+  int? anilist;
   @HiveField(1)
-  int myanimelist;
+  int? myanimelist;
   @HiveField(2)
   int? simkl;
 

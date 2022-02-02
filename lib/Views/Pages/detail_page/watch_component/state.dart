@@ -27,7 +27,7 @@ class WatchState extends ImmutableSource implements Cloneable<WatchState> {
       _lastEpisode = (databaseModel!.episodeProgress!)
           .keys
           .lastWhere((element) => element > 0);
-    ;
+    
     bool _isBlurred = (_item.episode <= ((_lastEpisode) + 1));
     if (!GlobalSettingsStore.store.getState().appSettings.blurSpoilers)
       _isBlurred = true;

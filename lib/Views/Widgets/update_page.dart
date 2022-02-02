@@ -176,7 +176,7 @@ class _UpdatePageState extends State<UpdatePage> {
                     padding: const EdgeInsets.all(16),
                   ),
                   Text(
-                      '${currentProgress} / ${widget.syncModel.episodes ?? '??'}',
+                      '$currentProgress / ${widget.syncModel.episodes ?? '??'}',
                       style: subTitle),
                   MaterialButton(
                     onPressed: () => this.setState(() {

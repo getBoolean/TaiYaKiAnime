@@ -19,7 +19,6 @@ void main() async {
           'No results were returned from the search query. You could try a custom anime title, if its a new website and doesnt contain the popular anime mentioned above');
 
     final _isValidLink = _searchResults.isNotEmpty &&
-        _searchResults.first.link is String &&
         (_searchResults.first.link).startsWith('http');
 
     expect(_isValidLink, true);
@@ -35,7 +34,6 @@ void main() async {
     expect(episodes.length, greaterThanOrEqualTo(1));
 
     final bool _isValid = episodes.isNotEmpty &&
-        episodes.first is String &&
         episodes.first.length > 0;
     expect(_isValid, true);
 
@@ -50,7 +48,6 @@ void main() async {
     final _hosts = await base.getEpisodeHosts(episodeLink);
     expect(_hosts.length, greaterThan(0));
     final _isValidHost = _hosts.first.host.length > 0 &&
-        _hosts.first.hostLink is String &&
         _hosts.first.hostLink.startsWith('http');
     expect(_isValidHost, true);
     print(_hosts.first.hostLink);

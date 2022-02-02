@@ -154,7 +154,7 @@ void _fetchTrackers(Action action, Context<DetailState> ctx) {
 
   if (GlobalUserStore.store.getState().myanimelistUser != null) {
     MyAnimeListAPI()
-        .getEntryModel(ctx.state.detailDatabaseModel!.ids.myanimelist)
+        .getEntryModel(ctx.state.detailDatabaseModel!.ids.myanimelist!)
         .then((value) =>
             ctx.dispatch(DetailActionCreator.updateMALEntryData(value)));
   }

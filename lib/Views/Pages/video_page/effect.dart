@@ -1,5 +1,4 @@
 import 'package:better_player/better_player.dart';
-import 'package:fijkplayer/fijkplayer.dart';
 import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter/material.dart' hide Action;
 import 'package:flutter/services.dart';
@@ -15,7 +14,6 @@ import 'package:taiyaki/Utils/strings.dart';
 import 'package:taiyaki/Views/Pages/video_page/page.dart';
 import 'package:taiyaki/Views/Widgets/TaiyakiControls.dart';
 import 'package:taiyaki/Views/Widgets/TaiyakiSize.dart';
-import 'package:taiyaki/Views/Widgets/bottom_navigation.dart';
 
 import 'action.dart';
 import 'state.dart';
@@ -176,12 +174,14 @@ void _saveLastWatchingModel(Action action, Context<VideoState> ctx) async {
 
 void _saveHistory(Action action, Context<VideoState> ctx) {
   final _state = ctx.state;
+  final anilistId = _state.detailDatabaseModel!.ids.anilist;
+  if (anilistId == null) return;
   final _box = Hive.box<HistoryModel>(HIVE_HISTORY_BOX);
   final HistoryModel _history = new HistoryModel(
       title: _state.detailDatabaseModel!.title,
       coverImage: _state.detailDatabaseModel!.coverImage,
       sourceName: _state.detailDatabaseModel!.sourceName!,
-      id: _state.detailDatabaseModel!.ids.anilist,
+      id: anilistId,
       lastModified: DateTime.now());
   _box.put(_history.id, _history);
 }
@@ -296,11 +296,11 @@ void _enterPage(Action action, Context<VideoState> ctx) {
     DeviceOrientation.landscapeLeft,
     DeviceOrientation.landscapeRight,
   ]);
-  SystemChrome.setEnabledSystemUIOverlays([]);
+  SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
   ctx.dispatch(VideoActionCreator.onUpdateFS());
 }
 
 void _exitPage() {
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
-  SystemChrome.setEnabledSystemUIOverlays(SystemUiOverlay.values);
+  SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: SystemUiOverlay.values);
 }

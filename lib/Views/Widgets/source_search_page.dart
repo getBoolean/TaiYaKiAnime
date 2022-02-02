@@ -98,18 +98,18 @@ class _SourceSearchPageState extends State<SourceSearchPage> {
                                         ),
                                         Expanded(
                                           child: ListView.builder(
-                                            itemCount: TAIYAKI_SOURCES.length,
+                                            itemCount: kTaiyakiSources.length,
                                             itemBuilder: (context, index) =>
                                                 SourceTiles(
                                                     onTap: () {
                                                       final _newSource =
-                                                          TAIYAKI_SOURCES[
+                                                          kTaiyakiSources[
                                                               index];
                                                       this.setState(() =>
                                                           _currentSource =
                                                               _newSource);
                                                     },
-                                                    name: TAIYAKI_SOURCES[index]
+                                                    name: kTaiyakiSources[index]
                                                         .name),
                                           ),
                                         ),

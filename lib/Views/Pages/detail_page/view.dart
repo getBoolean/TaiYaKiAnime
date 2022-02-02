@@ -10,7 +10,7 @@ import 'state.dart';
 
 Widget buildView(
     DetailState state, Dispatch dispatch, ViewService viewService) {
-  final _data = state.anilistData;
+  final _ = state.anilistData;
 
   return FocusDetector(
     onFocusGained: () {

@@ -1,5 +1,4 @@
 import 'package:fish_redux/fish_redux.dart';
-import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:taiyaki/Services/API/Anilist+API.dart';
 
 import 'action.dart';

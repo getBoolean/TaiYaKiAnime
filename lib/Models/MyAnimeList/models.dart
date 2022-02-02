@@ -13,13 +13,13 @@ class MyAnimeListUserModel {
 class MyAnimeListEntryModel {
   final String? status;
   final int? score;
-  final int num_watched_episodes;
+  final int numWatchedEpisodes;
 
   MyAnimeListEntryModel(
-      {this.status, this.score, this.num_watched_episodes = 0});
+      {this.status, this.score, this.numWatchedEpisodes = 0});
   factory MyAnimeListEntryModel.fromJson(Map<String, dynamic> json) =>
       MyAnimeListEntryModel(
-        num_watched_episodes: json['num_episodes_watched'],
+        numWatchedEpisodes: json['num_episodes_watched'],
         status: json['status'],
         score: json['score'],
       );

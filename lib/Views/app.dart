@@ -58,7 +58,6 @@ class _CreateAppState extends State<CreateApp> {
                 showUnselectedLabels: false,
               ),
               indicatorColor: accent,
-              accentColor: accent,
               toggleableActiveColor: accent,
               primaryColor: accent,
               brightness: Brightness.dark,
@@ -68,7 +67,6 @@ class _CreateAppState extends State<CreateApp> {
           : ThemeData.light().copyWith(
               indicatorColor: ThemeData.light().scaffoldBackgroundColor,
               primaryColor: accent,
-              accentColor: accent,
               toggleableActiveColor: accent,
               brightness: Brightness.light,
               cardTheme: CardTheme(

@@ -2,7 +2,6 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:taiyaki/Views/Pages/discovery_page/components/cells/action.dart';
-import 'package:taiyaki/Views/Widgets/TaiyakiSize.dart';
 import 'package:taiyaki/Views/Widgets/taiyaki_image.dart';
 
 import 'state.dart';

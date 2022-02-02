@@ -2,6 +2,7 @@
 import 'dart:async';
 
 // Project imports:
+// ignore_for_file: implementation_imports
 import 'package:better_player/src/configuration/better_player_controls_configuration.dart';
 import 'package:better_player/src/controls/better_player_clickable_widget.dart';
 import 'package:better_player/src/controls/better_player_controls_state.dart';
@@ -14,7 +15,6 @@ import 'package:better_player/src/video_player/video_player.dart';
 // Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:taiyaki/Models/SIMKL/models.dart';
-import 'package:taiyaki/Services/Hosts/Base.dart';
 
 import 'TaiyakiSize.dart';
 
@@ -55,7 +55,7 @@ class _TaiyakiControlsState extends BetterPlayerControlsState<TaiyakiControls> {
   Timer? _hideTimer;
   Timer? _initTimer;
   Timer? _showAfterExpandCollapseTimer;
-  bool _displayTapped = false;
+  // bool _displayTapped = false;
   bool _wasLoading = false;
   VideoPlayerController? _controller;
   BetterPlayerController? _betterPlayerController;
@@ -274,65 +274,67 @@ class _TaiyakiControlsState extends BetterPlayerControlsState<TaiyakiControls> {
     ]);
   }
 
-  Widget _buildPipButton() {
-    return BetterPlayerMaterialClickableWidget(
-      onTap: () {
-        betterPlayerController!.enablePictureInPicture(
-            betterPlayerController!.betterPlayerGlobalKey!);
-      },
-      child: Padding(
-        padding: const EdgeInsets.all(8),
-        child: Icon(
-          betterPlayerControlsConfiguration.pipMenuIcon,
-          color: betterPlayerControlsConfiguration.iconsColor,
-        ),
-      ),
-    );
-  }
+  // Unused
+  // Widget _buildPipButton() {
+  //   return BetterPlayerMaterialClickableWidget(
+  //     onTap: () {
+  //       betterPlayerController!.enablePictureInPicture(
+  //           betterPlayerController!.betterPlayerGlobalKey!);
+  //     },
+  //     child: Padding(
+  //       padding: const EdgeInsets.all(8),
+  //       child: Icon(
+  //         betterPlayerControlsConfiguration.pipMenuIcon,
+  //         color: betterPlayerControlsConfiguration.iconsColor,
+  //       ),
+  //     ),
+  //   );
+  // }
 
-  Widget _buildPipButtonWrapperWidget(
-      bool hideStuff, void Function() onPlayerHide) {
-    return FutureBuilder<bool>(
-      future: betterPlayerController!.isPictureInPictureSupported(),
-      builder: (context, snapshot) {
-        final bool isPipSupported = snapshot.data ?? false;
-        if (isPipSupported &&
-            _betterPlayerController!.betterPlayerGlobalKey != null) {
-          return AnimatedOpacity(
-            opacity: hideStuff ? 0.0 : 1.0,
-            duration: betterPlayerControlsConfiguration.controlsHideTime,
-            onEnd: onPlayerHide,
-            child: Container(
-              height: betterPlayerControlsConfiguration.controlBarHeight,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  _buildPipButton(),
-                ],
-              ),
-            ),
-          );
-        } else {
-          return const SizedBox();
-        }
-      },
-    );
-  }
+  // Unused
+  // Widget _buildPipButtonWrapperWidget(
+  //     bool hideStuff, void Function() onPlayerHide) {
+  //   return FutureBuilder<bool>(
+  //     future: betterPlayerController!.isPictureInPictureSupported(),
+  //     builder: (context, snapshot) {
+  //       final bool isPipSupported = snapshot.data ?? false;
+  //       if (isPipSupported &&
+  //           _betterPlayerController!.betterPlayerGlobalKey != null) {
+  //         return AnimatedOpacity(
+  //           opacity: hideStuff ? 0.0 : 1.0,
+  //           duration: betterPlayerControlsConfiguration.controlsHideTime,
+  //           onEnd: onPlayerHide,
+  //           child: Container(
+  //             height: betterPlayerControlsConfiguration.controlBarHeight,
+  //             child: Row(
+  //               mainAxisAlignment: MainAxisAlignment.end,
+  //               children: [
+  //                 _buildPipButton(),
+  //               ],
+  //             ),
+  //           ),
+  //         );
+  //       } else {
+  //         return const SizedBox();
+  //       }
+  //     },
+  //   );
+  // }
 
-  Widget _buildMoreButton() {
-    return BetterPlayerMaterialClickableWidget(
-      onTap: () {
-        onShowMoreClicked();
-      },
-      child: Padding(
-        padding: const EdgeInsets.all(8),
-        child: Icon(
-          _controlsConfiguration.overflowMenuIcon,
-          color: _controlsConfiguration.iconsColor,
-        ),
-      ),
-    );
-  }
+  // Widget _buildMoreButton() {
+  //   return BetterPlayerMaterialClickableWidget(
+  //     onTap: () {
+  //       onShowMoreClicked();
+  //     },
+  //     child: Padding(
+  //       padding: const EdgeInsets.all(8),
+  //       child: Icon(
+  //         _controlsConfiguration.overflowMenuIcon,
+  //         color: _controlsConfiguration.iconsColor,
+  //       ),
+  //     ),
+  //   );
+  // }
 
   Widget _buildBottomBar() {
     if (!betterPlayerController!.controlsEnabled) {
@@ -457,26 +459,26 @@ class _TaiyakiControlsState extends BetterPlayerControlsState<TaiyakiControls> {
     );
   }
 
-  Widget _buildHitAreaClickableButton(
-      {Widget? icon, required void Function() onClicked}) {
-    return BetterPlayerMaterialClickableWidget(
-      onTap: onClicked,
-      child: Align(
-        child: Container(
-          decoration: BoxDecoration(
-            // color: _controlsConfiguration.controlBarColor,
-            borderRadius: BorderRadius.circular(48),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.all(1),
-            child: Stack(
-              children: [icon!],
-            ),
-          ),
-        ),
-      ),
-    );
-  }
+  // Widget _buildHitAreaClickableButton(
+  //     {Widget? icon, required void Function() onClicked}) {
+  //   return BetterPlayerMaterialClickableWidget(
+  //     onTap: onClicked,
+  //     child: Align(
+  //       child: Container(
+  //         decoration: BoxDecoration(
+  //           // color: _controlsConfiguration.controlBarColor,
+  //           borderRadius: BorderRadius.circular(48),
+  //         ),
+  //         child: Padding(
+  //           padding: const EdgeInsets.all(1),
+  //           child: Stack(
+  //             children: [icon!],
+  //           ),
+  //         ),
+  //       ),
+  //     ),
+  //   );
+  // }
 
   Widget _buildSkipButton() {
     return IconButton(
@@ -518,37 +520,38 @@ class _TaiyakiControlsState extends BetterPlayerControlsState<TaiyakiControls> {
     // );
   }
 
-  Widget _buildReplayButton() {
-    final bool isFinished = isVideoFinished(_latestValue);
-    if (!isFinished) {
-      return const SizedBox();
-    }
+  // Unused
+  // Widget _buildReplayButton() {
+  //   final bool isFinished = isVideoFinished(_latestValue);
+  //   if (!isFinished) {
+  //     return const SizedBox();
+  //   }
 
-    return _buildHitAreaClickableButton(
-      icon: Icon(
-        Icons.replay,
-        size: 32,
-        color: _controlsConfiguration.iconsColor,
-      ),
-      onClicked: () {
-        if (_latestValue != null && _latestValue!.isPlaying) {
-          if (_displayTapped) {
-            setState(() {
-              _hideStuff = true;
-            });
-          } else {
-            cancelAndRestartTimer();
-          }
-        } else {
-          _onPlayPause();
+  //   return _buildHitAreaClickableButton(
+  //     icon: Icon(
+  //       Icons.replay,
+  //       size: 32,
+  //       color: _controlsConfiguration.iconsColor,
+  //     ),
+  //     onClicked: () {
+  //       if (_latestValue != null && _latestValue!.isPlaying) {
+  //         if (_displayTapped) {
+  //           setState(() {
+  //             _hideStuff = true;
+  //           });
+  //         } else {
+  //           cancelAndRestartTimer();
+  //         }
+  //       } else {
+  //         _onPlayPause();
 
-          setState(() {
-            _hideStuff = true;
-          });
-        }
-      },
-    );
-  }
+  //         setState(() {
+  //           _hideStuff = true;
+  //         });
+  //       }
+  //     },
+  //   );
+  // }
 
   Widget _buildNextVideoWidget() {
     return StreamBuilder<int?>(
@@ -617,22 +620,22 @@ class _TaiyakiControlsState extends BetterPlayerControlsState<TaiyakiControls> {
     );
   }
 
-  Widget _buildPlayPause(VideoPlayerController controller) {
-    return BetterPlayerMaterialClickableWidget(
-      onTap: _onPlayPause,
-      child: Container(
-        height: _controlsConfiguration.controlBarHeight,
-        margin: const EdgeInsets.symmetric(horizontal: 4),
-        padding: const EdgeInsets.symmetric(horizontal: 12),
-        child: Icon(
-          controller.value.isPlaying
-              ? _controlsConfiguration.pauseIcon
-              : _controlsConfiguration.playIcon,
-          color: _controlsConfiguration.iconsColor,
-        ),
-      ),
-    );
-  }
+  // Widget _buildPlayPause(VideoPlayerController controller) {
+  //   return BetterPlayerMaterialClickableWidget(
+  //     onTap: _onPlayPause,
+  //     child: Container(
+  //       height: _controlsConfiguration.controlBarHeight,
+  //       margin: const EdgeInsets.symmetric(horizontal: 4),
+  //       padding: const EdgeInsets.symmetric(horizontal: 12),
+  //       child: Icon(
+  //         controller.value.isPlaying
+  //             ? _controlsConfiguration.pauseIcon
+  //             : _controlsConfiguration.playIcon,
+  //         color: _controlsConfiguration.iconsColor,
+  //       ),
+  //     ),
+  //   );
+  // }
 
   Widget _buildPosition() {
     final position =
@@ -661,7 +664,7 @@ class _TaiyakiControlsState extends BetterPlayerControlsState<TaiyakiControls> {
 
     setState(() {
       _hideStuff = false;
-      _displayTapped = true;
+      // _displayTapped = true;
     });
   }
 

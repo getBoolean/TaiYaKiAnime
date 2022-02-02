@@ -1,7 +1,7 @@
 class AnimeListModel {
   final String title, coverImage, status;
   final int id, progress;
-  final double score;
+  final double? score;
   final int? totalEpisodes;
 
   AnimeListModel(

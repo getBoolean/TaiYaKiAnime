@@ -1,16 +1,13 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:taiyaki/Models/Taiyaki/Trackers.dart';
 import 'package:taiyaki/Services/API/Anilist+API.dart';
 import 'package:taiyaki/Services/API/MyAnimeList+API.dart';
 import 'package:taiyaki/Services/API/SIMKL+API.dart';
-import 'package:taiyaki/Store/GlobalUserStore/GlobalUserState.dart';
 import 'package:taiyaki/Store/GlobalUserStore/GlobalUserStore.dart';
 import 'package:taiyaki/Utils/misc.dart';
 import 'package:taiyaki/Views/Pages/onboarding_page/action.dart';
 
-import 'action.dart';
 import 'state.dart';
 
 Widget buildView(
@@ -132,6 +129,7 @@ class __TrackerBubblesState extends State<_TrackerBubbles> {
           children: [
             CircleAvatar(
               backgroundImage: _avatar != null
+                  // ignore: unnecessary_cast
                   ? (NetworkImage(_avatar!) as ImageProvider<Object>?)
                   : (AssetImage(_image)),
               radius: 60,

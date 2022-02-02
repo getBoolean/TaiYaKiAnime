@@ -71,7 +71,7 @@ class AnilistAPI with OauthLoginHandler implements BaseTracker {
   Future<List<AnilistNode>> getPagedData(AnilistPageFilterEnum type) async {
     final _response = await _request.post(
       '',
-      data: {'query': AnilistGraphTypes.PagedData(type)},
+      data: {'query': AnilistGraphTypes.pagedData(type)},
     );
 
     if (_response.statusCode == 200) {

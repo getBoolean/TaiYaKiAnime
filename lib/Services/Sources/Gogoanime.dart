@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:dio/src/dio.dart';
 import 'package:html/parser.dart';
 import 'package:taiyaki/Services/Exceptions/API/Exceptions+API.dart';
 import 'package:taiyaki/Services/Sources/Base.dart';

@@ -42,9 +42,9 @@ class MyAnimeListUserlistModel {
 
 class _ListStatus {
   final String status;
-  final int score, num_watched;
+  final int score, numWatched;
 
-  _ListStatus(this.status, this.score, this.num_watched);
+  _ListStatus(this.status, this.score, this.numWatched);
 
   factory _ListStatus.fromJson(Map<String, dynamic> json) =>
       _ListStatus(json['status'], json['score'], json['num_episodes_watched']);
@@ -161,7 +161,7 @@ class MyAnimeListAPI with OauthLoginHandler implements BaseTracker {
     MyAnimeListEntryModel _model =
         MyAnimeListEntryModel.fromJson(_response.data);
     return SyncModel(
-        progress: _model.num_watched_episodes,
+        progress: _model.numWatchedEpisodes,
         status: _model.status,
         score: _model.score,
         episodes: syncModel.episodes);
@@ -248,7 +248,7 @@ class MyAnimeListAPI with OauthLoginHandler implements BaseTracker {
             status: _myanimelistToNative(e.status.status),
             coverImage: e.node.image,
             id: e.node.id,
-            progress: e.status.num_watched,
+            progress: e.status.numWatched,
             score: (e.status.score).toDouble(),
             totalEpisodes: e.node.episodes))
         .toList();

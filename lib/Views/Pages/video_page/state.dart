@@ -1,5 +1,4 @@
 import 'package:better_player/better_player.dart';
-import 'package:fijkplayer/fijkplayer.dart';
 import 'package:fish_redux/fish_redux.dart';
 import 'package:taiyaki/Models/SIMKL/models.dart';
 import 'package:taiyaki/Models/Taiyaki/DetailDatabase.dart';

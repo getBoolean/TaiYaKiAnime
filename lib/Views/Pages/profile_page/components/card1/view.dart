@@ -16,6 +16,7 @@ Widget buildView(Card1State state, Dispatch dispatch, ViewService viewService) {
               offset: Offset(0, -TaiyakiSize.height * 0.06),
               child: CircleAvatar(
                   foregroundImage: state.user!.avatar != null
+                      // ignore: unnecessary_cast
                       ? (NetworkImage(state.user!.avatar!) as ImageProvider)
                       : AssetImage('assets/icon.png'),
                   radius: 50),

@@ -51,7 +51,7 @@ class SyncConnector extends ConnOp<DetailState, SyncState> {
     if (_globalState.myanimelistUser != null) {
       final _list = state.malEntryData;
       subState.malSync = SyncModel(
-        progress: _list?.num_watched_episodes,
+        progress: _list?.numWatchedEpisodes,
         score: _list?.score,
         status: _list?.status,
         episodes: state.anilistData?.episodes,
@@ -66,7 +66,7 @@ class SyncConnector extends ConnOp<DetailState, SyncState> {
         subState.simklSync = SyncModel(
           progress: _match.progress,
           episodes: _match.totalEpisodes,
-          score: _match.score.toInt(),
+          score: _match.score?.toInt(),
           status: _match.status,
         );
       } else
@@ -97,7 +97,7 @@ class SyncConnector extends ConnOp<DetailState, SyncState> {
       state.malEntryData = MyAnimeListEntryModel(
           score: mal.score,
           status: mal.status,
-          num_watched_episodes: mal.progress ?? 0);
+          numWatchedEpisodes: mal.progress ?? 0);
     }
   }
 }

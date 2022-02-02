@@ -1,6 +1,4 @@
 import 'package:fish_redux/fish_redux.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:taiyaki/Models/Anilist/typed_models.dart';
 import 'package:taiyaki/Views/Pages/search_page/state.dart';
 
 class FilterSheetState implements Cloneable<FilterSheetState> {

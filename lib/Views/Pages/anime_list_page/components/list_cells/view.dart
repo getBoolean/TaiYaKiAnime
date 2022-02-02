@@ -46,7 +46,7 @@ Widget buildView(
                                     Row(
                                       children: [
                                         Icon(Icons.star, color: Colors.orange),
-                                        Text(state.model!.score
+                                        Text(state.model!.score!
                                             .toStringAsFixed(0))
                                       ],
                                     )

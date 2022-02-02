@@ -1,7 +1,6 @@
 import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:taiyaki/Views/Pages/onboarding_page/action.dart';
-import 'package:taiyaki/Views/Widgets/TaiyakiSize.dart';
 
 import 'action.dart';
 import 'state.dart';

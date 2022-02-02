@@ -139,7 +139,7 @@ class SimklAPI with OauthLoginHandler implements BaseTracker {
         status: syncModel.status,
       ).toJson();
 
-      final _response = await _request.post('/sync/add-to-list', data: _json);
+      final _ = await _request.post('/sync/add-to-list', data: _json);
     }
 
     if (syncModel.progress != null || syncModel.progress != 0) {

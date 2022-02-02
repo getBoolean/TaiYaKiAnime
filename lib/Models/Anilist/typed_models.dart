@@ -15,7 +15,7 @@ class AnilistMediaModel {
 }
 
 class AnilistGraphTypes {
-  static String PagedData(AnilistPageFilterEnum type) {
+  static String pagedData(AnilistPageFilterEnum type) {
     String filter;
     switch (type) {
       case AnilistPageFilterEnum.popularity:

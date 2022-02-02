@@ -13,7 +13,7 @@ Widget buildView(
   final TextStyle subTitle = TextStyle(
       fontWeight: FontWeight.w700, fontSize: TaiyakiSize.height * 0.03);
 
-  Widget PaddedText(String text, {TextStyle? style, int? maxLines}) => Padding(
+  Widget paddedText(String text, {TextStyle? style, int? maxLines}) => Padding(
       padding: const EdgeInsets.fromLTRB(10.0, 12, 10.0, 0.0),
       child: Text(
         text,
@@ -103,7 +103,7 @@ Widget buildView(
           ],
         ),
       ),
-      PaddedText(
+      paddedText(
           _data.description ?? 'No synopsis for this anime has been provided',
           maxLines: state.synopsisExpanded ? null : 3),
       if (_data.genres != null)
@@ -116,7 +116,7 @@ Widget buildView(
                   ))
               .toList(),
         ),
-      PaddedText('Info', style: subTitle),
+      paddedText('Info', style: subTitle),
       Padding(
         padding: const EdgeInsets.all(8.0),
         child: Card(

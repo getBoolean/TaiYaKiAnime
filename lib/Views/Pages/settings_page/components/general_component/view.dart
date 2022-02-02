@@ -17,7 +17,7 @@ Widget buildView(
           subtitle: Text('Blur out unwatched episodes'),
           value: _settings.blurSpoilers,
           onChanged: (val) {
-            print('the value ${val}');
+            print('the value $val');
             return dispatch(SettingsActionCreator.onUpdateSetting(
                 _settings.copyWith(blurSpoilers: val)));
           },

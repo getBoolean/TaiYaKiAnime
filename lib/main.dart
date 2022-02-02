@@ -3,8 +3,8 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart' as DotEnv;
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:dotenv/dotenv.dart' as DotEnv;
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:taiyaki/Models/SIMKL/models.dart';
@@ -27,7 +27,7 @@ import 'package:taiyaki/Views/app.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  await DotEnv.load();
+  DotEnv.load();
   await _initApp();
 
   runApp(CreateApp());

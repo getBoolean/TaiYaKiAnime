@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:dotenv/dotenv.dart' show env;
 import 'package:taiyaki/Models/SIMKL/models.dart';
 import 'package:taiyaki/Models/Taiyaki/Sync.dart';
 import 'package:taiyaki/Models/Taiyaki/Trackers.dart';

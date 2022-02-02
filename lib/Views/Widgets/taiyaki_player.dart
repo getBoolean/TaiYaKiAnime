@@ -1,5 +1,4 @@
 import 'package:better_player/better_player.dart';
-import 'package:fijkplayer/fijkplayer.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:taiyaki/Models/SIMKL/models.dart';
@@ -15,9 +14,9 @@ import 'package:taiyaki/Views/Pages/video_page/page.dart';
 import 'package:taiyaki/Views/Widgets/taiyaki_image.dart';
 import 'package:wakelock/wakelock.dart';
 
-import 'TaiyakiControls.dart';
 import 'TaiyakiSize.dart';
 
+// ignore: must_be_immutable
 class TaiyakiPlayer extends StatefulWidget {
   final VoidCallback onFS;
   final bool isFullscreen, isPlaylistVisible;
@@ -51,7 +50,7 @@ class TaiyakiPlayer extends StatefulWidget {
 
 class _TaiyakiPlayerState extends State<TaiyakiPlayer>
     with SingleTickerProviderStateMixin {
-  AnimationController? _controller;
+  // AnimationController? _controller;
   // FijkPlayer? playerController;
 
   Duration? videoDuration;
@@ -68,7 +67,7 @@ class _TaiyakiPlayerState extends State<TaiyakiPlayer>
 
   @override
   void initState() {
-    _controller = AnimationController(vsync: this);
+    // _controller = AnimationController(vsync: this);
     super.initState();
     _setUpPlayer();
   }
@@ -194,9 +193,9 @@ class _TaiyakiPlayerState extends State<TaiyakiPlayer>
               (_videoArgs.episode.episode ==
                   _videoArgs.databaseModel.totalEpisodes))
             _status = 'Completed';
-
-          AnilistAPI().syncProgress(_videoArgs.databaseModel.ids.anilist,
-              _syncModel.copyWith(status: _status));
+          if (_videoArgs.databaseModel.ids.anilist != null)
+            AnilistAPI().syncProgress(_videoArgs.databaseModel.ids.anilist!,
+                _syncModel.copyWith(status: _status));
         }
         if (_state.myanimelistUser != null) {
           String _status = 'watching';
@@ -205,12 +204,13 @@ class _TaiyakiPlayerState extends State<TaiyakiPlayer>
                   _videoArgs.databaseModel.totalEpisodes))
             _status = 'completed';
 
-          MyAnimeListAPI().syncProgress(
-              _videoArgs.databaseModel.ids.myanimelist,
-              _syncModel.copyWith(status: _status));
+          if (_videoArgs.databaseModel.ids.myanimelist != null)
+            MyAnimeListAPI().syncProgress(
+                _videoArgs.databaseModel.ids.myanimelist!,
+                _syncModel.copyWith(status: _status));
         }
       }
-      ;
+      
     }
   }
 
@@ -296,16 +296,16 @@ class _TaiyakiPlayerState extends State<TaiyakiPlayer>
     // playerController?.dispose();
   }
 
-  void _onFS() {
-    widget.onFS();
-  }
+  // void _onFS() {
+  //   widget.onFS();
+  // }
 
   // void _onPlaylist() {
   //   this.setState(() => isPlaylistVisible = true);
   // }
 
   //
-  void _onSettings() => widget.onSettings();
+  // void _onSettings() => widget.onSettings();
 
   @override
   Widget build(BuildContext context) {

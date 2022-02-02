@@ -100,19 +100,21 @@ class BackgroundTasks {
           summaryText:
               'Episode $_count is ready to watch on ${episodes.sourceName}',
         );
+        if (episodes.ids.anilist != null) {
+          NotificationHandler.showNotification(
+              NotificationData(
+                  message:
+                      'Episode $_count is ready to watch on ${episodes.sourceName}',
+                  title: episodes.title,
+                  animeID: episodes.ids.anilist!),
+              _bigPictureStyleInformation,
+              attachement: IOSNotificationAttachment(bigPicture));
 
-        NotificationHandler.showNotification(
-            NotificationData(
-                message:
-                    'Episode $_count is ready to watch on ${episodes.sourceName}',
-                title: episodes.title,
-                animeID: episodes.ids.anilist),
-            _bigPictureStyleInformation,
-            attachement: IOSNotificationAttachment(bigPicture));
-
-        episodes = episodes.copyWith(episodeCount: _count, notification: true);
-        Hive.box<DetailDatabaseModel>(HIVE_DETAIL_BOX)
-            .put(episodes.ids.anilist, episodes);
+          episodes =
+              episodes.copyWith(episodeCount: _count, notification: true);
+          Hive.box<DetailDatabaseModel>(HIVE_DETAIL_BOX)
+              .put(episodes.ids.anilist, episodes);
+        }
       }
     }
 

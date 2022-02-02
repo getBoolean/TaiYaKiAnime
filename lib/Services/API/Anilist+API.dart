@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:dotenv/dotenv.dart' show env;
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:taiyaki/Models/Anilist/models.dart';
 import 'package:taiyaki/Models/Anilist/typed_models.dart';

@@ -35,7 +35,7 @@ packages:
       name: args
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.0"
+    version: "2.3.0"
   async:
     dependency: transitive
     description:
@@ -49,14 +49,14 @@ packages:
       name: auto_size_text
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.1.0"
+    version: "3.0.0"
   background_fetch:
     dependency: "direct main"
     description:
       name: background_fetch
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.7.2"
+    version: "1.0.3"
   better_player:
     dependency: "direct main"
     description:
@@ -225,6 +225,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.0.0"
+  dotenv:
+    dependency: "direct main"
+    description:
+      name: dotenv
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.0.0"
   fake_async:
     dependency: transitive
     description:
@@ -239,15 +246,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.0"
-  fijkplayer:
-    dependency: "direct main"
-    description:
-      path: "."
-      ref: HEAD
-      resolved-ref: "516ebe7712316e7c6c09afd3ee9ff6c3e9f4c928"
-      url: "https://github.com/randomjoho/fijkplayer.git"
-    source: git
-    version: "0.8.7"
   file:
     dependency: transitive
     description:
@@ -274,13 +272,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  flutter_animation_set:
-    dependency: "direct main"
-    description:
-      name: flutter_animation_set
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.0.4"
   flutter_blurhash:
     dependency: transitive
     description:
@@ -295,20 +286,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.0.2"
-  flutter_dotenv:
-    dependency: "direct main"
-    description:
-      name: flutter_dotenv
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "3.1.0"
   flutter_launcher_icons:
     dependency: "direct dev"
     description:
       name: flutter_launcher_icons
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.9.0"
+    version: "0.9.2"
   flutter_local_notifications:
     dependency: "direct main"
     description:
@@ -348,7 +332,7 @@ packages:
       name: flutter_web_auth
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.3.0"
+    version: "0.4.0"
   flutter_web_plugins:
     dependency: transitive
     description: flutter

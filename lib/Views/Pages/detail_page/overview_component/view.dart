@@ -54,7 +54,7 @@ Widget buildView(
                     _data.englishTitle != null
                         ? Padding(
                             padding: const EdgeInsets.only(top: 2.0),
-                            child: AutoSizeText(_data.englishTitle,
+                            child: AutoSizeText(_data.englishTitle ?? '',
                                 minFontSize: 14,
                                 maxLines: 3,
                                 style: TextStyle(

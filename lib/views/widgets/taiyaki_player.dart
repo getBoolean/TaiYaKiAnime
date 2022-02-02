@@ -32,7 +32,8 @@ class TaiyakiPlayer extends StatefulWidget {
   final List<SimklEpisodeModel> playlist;
 
   TaiyakiPlayer(
-      {Key? key, required this.isFullscreen,
+      {Key? key,
+      required this.isFullscreen,
       required this.onFS,
       required this.handlePlaylist,
       required this.isPlaylistVisible,
@@ -42,7 +43,8 @@ class TaiyakiPlayer extends StatefulWidget {
       required this.onEpisodeSelected,
       required this.args,
       required this.onSettings,
-      required this.hostsLinkModel}) : super(key: key);
+      required this.hostsLinkModel})
+      : super(key: key);
 
   @override
   _TaiyakiPlayerState createState() => _TaiyakiPlayerState();
@@ -55,6 +57,7 @@ class _TaiyakiPlayerState extends State<TaiyakiPlayer>
 
   Duration? videoDuration;
   bool didUpdateEpisode = false;
+
   // bool isPlaylistVisible = false;
   bool didAskTime = false;
 
@@ -100,7 +103,7 @@ class _TaiyakiPlayerState extends State<TaiyakiPlayer>
         useCache: true,
       ),
       liveStream: false,
-      resolutions: { for (var e in widget.qualities) e.name : e.link },
+      resolutions: {for (var e in widget.qualities) e.name: e.link},
     );
     await widget.playerController?.setupDataSource(
       _betterPlayerDataSource,
@@ -156,10 +159,9 @@ class _TaiyakiPlayerState extends State<TaiyakiPlayer>
       final DetailDatabaseModel? _currentAnime =
           _box.get(widget.args.databaseModel.ids.anilist);
       if (_currentAnime != null) {
-        _currentAnime
-          .lastWatchingModel = LastWatchingModel(
-              watchingEpisode: widget.args.episode,
-              progress: pos.inSeconds.toDouble());
+        _currentAnime.lastWatchingModel = LastWatchingModel(
+            watchingEpisode: widget.args.episode,
+            progress: pos.inSeconds.toDouble());
         (_currentAnime.episodeProgress ??= {}).addAll({
           widget.args.episode.episode:
               (pos.inSeconds / videoDuration!.inSeconds)
@@ -195,7 +197,8 @@ class _TaiyakiPlayerState extends State<TaiyakiPlayer>
             _status = 'Completed';
           }
           if (_videoArgs.databaseModel.ids.anilist != null) {
-            await AnilistAPI().syncProgress(_videoArgs.databaseModel.ids.anilist!,
+            await AnilistAPI().syncProgress(
+                _videoArgs.databaseModel.ids.anilist!,
                 _syncModel.copyWith(status: _status));
           }
         }
@@ -214,7 +217,6 @@ class _TaiyakiPlayerState extends State<TaiyakiPlayer>
           }
         }
       }
-      
     }
   }
 
@@ -321,7 +323,7 @@ class _TaiyakiPlayerState extends State<TaiyakiPlayer>
           children: [
             widget.playerController == null
                 ? const Center(
-                child: CircularProgressIndicator(),
+                    child: CircularProgressIndicator(),
                   )
                 : SizedBox(
                     height: widget.isFullscreen
@@ -379,14 +381,15 @@ class TaiyakiPlaylist extends StatefulWidget {
   final Function(SimklEpisodeModel) onEpisodeSelected;
 
   const TaiyakiPlaylist(
-      {Key? key, required this.episode,
+      {Key? key,
+      required this.episode,
       this.playlist = const [],
       required this.onEpisodeSelected,
-      required this.closePlaylist}) : super(key: key);
+      required this.closePlaylist})
+      : super(key: key);
 
   @override
-  __TaiyakiPlaylistState createState() =>
-      __TaiyakiPlaylistState();
+  __TaiyakiPlaylistState createState() => __TaiyakiPlaylistState();
 }
 
 class __TaiyakiPlaylistState extends State<TaiyakiPlaylist> {
@@ -440,35 +443,32 @@ class __TaiyakiPlaylistState extends State<TaiyakiPlaylist> {
         ),
         Row(
           children: [
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: SizedBox(
-            width: TaiyakiSize.height * 0.34,
-            child: ListView.builder(
-              itemCount: widget.playlist.length,
-              itemBuilder: (context, index) => GestureDetector(
-                onTap: () {
-                  setState(
-                      () => _selectedEpisode = widget.playlist[index]);
-                },
-                child: _TaiyakiPlaylistEpisodeCells(
-                    isCurrentIndex: _selectedEpisode.episode ==
-                        widget.playlist[index].episode,
-                    episode: widget.playlist[index]),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: SizedBox(
+                width: TaiyakiSize.height * 0.34,
+                child: ListView.builder(
+                  itemCount: widget.playlist.length,
+                  itemBuilder: (context, index) => GestureDetector(
+                    onTap: () {
+                      setState(() => _selectedEpisode = widget.playlist[index]);
+                    },
+                    child: _TaiyakiPlaylistEpisodeCells(
+                        isCurrentIndex: _selectedEpisode.episode ==
+                            widget.playlist[index].episode,
+                        episode: widget.playlist[index]),
+                  ),
+                ),
               ),
             ),
-          ),
-        ),
-        Expanded(
-            child: Padding(
-          padding: const EdgeInsets.fromLTRB(12.0, 15.0, 8.0, 8.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
+            Expanded(
+                child: Padding(
+              padding: const EdgeInsets.fromLTRB(12.0, 15.0, 8.0, 8.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Column(crossAxisAlignment: CrossAxisAlignment.end, children: [
                     Text(
                         'Episode ${_selectedEpisode.episode} - ${_selectedEpisode.title}',
                         textAlign: TextAlign.right,
@@ -490,30 +490,30 @@ class __TaiyakiPlaylistState extends State<TaiyakiPlaylist> {
                           )),
                     ),
                   ]),
-              Expanded(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    ElevatedButton(
-                      onPressed: widget.closePlaylist,
-                      child: const Text('Close'),
-                      style: ElevatedButton.styleFrom(
-                          primary: Colors.redAccent),
+                  Expanded(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        ElevatedButton(
+                          onPressed: widget.closePlaylist,
+                          child: const Text('Close'),
+                          style: ElevatedButton.styleFrom(
+                              primary: Colors.redAccent),
+                        ),
+                        const SizedBox(width: 15),
+                        SizedBox(
+                          width: TaiyakiSize.height * 0.2,
+                          child: ElevatedButton(
+                              onPressed: () =>
+                                  widget.onEpisodeSelected(_selectedEpisode),
+                              child: const Text('Play Now')),
+                        )
+                      ],
                     ),
-                    const SizedBox(width: 15),
-                    SizedBox(
-                      width: TaiyakiSize.height * 0.2,
-                      child: ElevatedButton(
-                          onPressed: () =>
-                              widget.onEpisodeSelected(_selectedEpisode),
-                          child: const Text('Play Now')),
-                    )
-                  ],
-                ),
-              )
-            ],
-          ),
-        ))
+                  )
+                ],
+              ),
+            ))
           ],
         ),
       ],
@@ -545,10 +545,11 @@ class _TaiyakiPlaylistEpisodeCells extends StatelessWidget {
           ),
           const SizedBox(height: 5),
           Text('Episode ${episode.episode}',
-              style:
-                  const TextStyle(fontWeight: FontWeight.w600, color: Colors.white)),
+              style: const TextStyle(
+                  fontWeight: FontWeight.w600, color: Colors.white)),
           Text(episode.title,
-              style: const TextStyle(fontSize: 13, color: Colors.white), maxLines: 1)
+              style: const TextStyle(fontSize: 13, color: Colors.white),
+              maxLines: 1)
         ]));
   }
 }

@@ -11,67 +11,67 @@ Widget buildView(
   final _width = MediaQuery.of(viewService.context).size.width;
 
   Widget _intro() => Align(
-    alignment: Alignment.center,
-    child: Column(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Expanded(
-          child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Animator(
-                  tweenMap: {
-                    'fadeAnime': Tween<double>(
-                      begin: 0,
-                      end: 1,
+        alignment: Alignment.center,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Expanded(
+              child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Animator(
+                      tweenMap: {
+                        'fadeAnime': Tween<double>(
+                          begin: 0,
+                          end: 1,
+                        ),
+                        'scaleAnime': Tween<double>(begin: 0.6, end: 1),
+                      },
+                      endAnimationListener: (anime) {
+                        state.animeKey.controller.forward();
+                      },
+                      cycles: 1,
+                      duration: const Duration(milliseconds: 1250),
+                      curve: Curves.easeInOutQuad,
+                      builder: (ctx, state, child) => FadeTransition(
+                        opacity: state.getAnimation('fadeAnime'),
+                        child: Image.asset(
+                          'assets/icon.png',
+                          height: _height * 0.3,
+                          width: _height * 0.3,
+                        ),
+                      ),
                     ),
-                    'scaleAnime': Tween<double>(begin: 0.6, end: 1),
-                  },
-                  endAnimationListener: (anime) {
-                    state.animeKey.controller.forward();
-                  },
-                  cycles: 1,
-                  duration: const Duration(milliseconds: 1250),
-                  curve: Curves.easeInOutQuad,
-                  builder: (ctx, state, child) => FadeTransition(
-                    opacity: state.getAnimation('fadeAnime'),
-                    child: Image.asset(
-                      'assets/icon.png',
-                      height: _height * 0.3,
-                      width: _height * 0.3,
+                    const SizedBox(height: 15),
+                    const Text('Taiyaki',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 40)),
+                    const Text('An anime app', style: TextStyle(fontSize: 16)),
+                  ]),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 12.0),
+              child: SizedBox(
+                  width: _width * 0.9,
+                  height: _height * 0.07,
+                  child: Animator(
+                    animatorKey: state.animeKey,
+                    cycles: 1,
+                    triggerOnInit: false,
+                    tween: Tween<Offset>(
+                        begin: Offset(0, _height * 0.25), end: Offset.zero),
+                    builder: (ctx, state, _) => FractionalTranslation(
+                      translation: (state.value as Offset),
+                      child: ElevatedButton(
+                          child: const Text("Let's get you setup"),
+                          onPressed: () => dispatch(
+                              OnboardingActionCreator.moveToPage(null))),
                     ),
-                  ),
-                ),
-                const SizedBox(height: 15),
-                const Text('Taiyaki',
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold, fontSize: 40)),
-                const Text('An anime app', style: TextStyle(fontSize: 16)),
-              ]),
+                  )),
+            ),
+          ],
         ),
-        Padding(
-          padding: const EdgeInsets.only(bottom: 12.0),
-          child: SizedBox(
-              width: _width * 0.9,
-              height: _height * 0.07,
-              child: Animator(
-                animatorKey: state.animeKey,
-                cycles: 1,
-                triggerOnInit: false,
-                tween: Tween<Offset>(
-                    begin: Offset(0, _height * 0.25), end: Offset.zero),
-                builder: (ctx, state, _) => FractionalTranslation(
-                  translation: (state.value as Offset),
-                  child: ElevatedButton(
-                      child: const Text("Let's get you setup"),
-                      onPressed: () => dispatch(
-                          OnboardingActionCreator.moveToPage(null))),
-                ),
-              )),
-        ),
-      ],
-    ),
-  );
+      );
 
   return Scaffold(
     body: PageView.builder(

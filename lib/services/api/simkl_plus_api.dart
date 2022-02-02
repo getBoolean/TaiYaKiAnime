@@ -17,6 +17,7 @@ class _Bearer {
   final String accessToken;
 
   _Bearer({required this.accessToken});
+
   factory _Bearer.fromJson(Map<String, dynamic> json) =>
       _Bearer(accessToken: json['access_token']);
 }
@@ -79,8 +80,9 @@ class SimklAPI with OauthLoginHandler implements BaseTracker {
         .simklUser!
         .copyWith(username: model.name, avatar: model.avatar, id: model.id);
 
-    await storage.write(key: 'simkl', value: json.encode(_user.toMap())).whenComplete(
-        () => GlobalUserStore.store.dispatch(
+    await storage
+        .write(key: 'simkl', value: json.encode(_user.toMap()))
+        .whenComplete(() => GlobalUserStore.store.dispatch(
             GlobalUserActionCreator.onUpdateUser(UpdateModel(
                 model: _user, tracker: ThirdPartyTrackersEnum.simkl))));
   }

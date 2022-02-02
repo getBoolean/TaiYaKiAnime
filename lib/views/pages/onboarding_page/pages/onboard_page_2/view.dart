@@ -19,9 +19,8 @@ Widget buildView(
     bottom: true,
     child: Padding(
       padding: const EdgeInsets.fromLTRB(8.0, 18.0, 8.0, 12.0),
-      child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
+      child:
+          Column(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
         Column(
           children: const [
             Text('Pick the Perfect Accent', style: _title),
@@ -42,8 +41,8 @@ Widget buildView(
                           margin: const EdgeInsets.all(12.0),
                           child: CircleAvatar(
                             radius: 25,
-                            backgroundColor: Color(int.parse(
-                                '0xff${taiyakiAccentColors[index]}')),
+                            backgroundColor: Color(
+                                int.parse('0xff${taiyakiAccentColors[index]}')),
                           )),
                     )),
           ),

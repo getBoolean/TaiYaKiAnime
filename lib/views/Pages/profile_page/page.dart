@@ -14,6 +14,7 @@ import 'view.dart';
 
 class ProfilePageArguments {
   final ThirdPartyTrackersEnum tracker;
+
   ProfilePageArguments({required this.tracker});
 }
 

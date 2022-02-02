@@ -36,16 +36,16 @@ class GogoAnime implements SourceBase {
     }
     final List<String> episodeBox = [];
     for (var i = 0; i < _totalEpisodes; i++) {
-      episodeBox.add(
-          request.options.baseUrl + '/' + _slug + '-episode-${i + 1}');
+      episodeBox
+          .add(request.options.baseUrl + '/' + _slug + '-episode-${i + 1}');
     }
     return episodeBox;
   }
 
   @override
   Future<List<SourceSearchResultsModel>> getSearchResults(String query) async {
-    final _response = await request
-        .get('/search.html', queryParameters: {'keyword': query});
+    final _response =
+        await request.get('/search.html', queryParameters: {'keyword': query});
     if (_response.statusCode != 200) {
       throw SourceException(
           error: 'The server returned a 400. Could not get information');
@@ -58,9 +58,7 @@ class GogoAnime implements SourceBase {
       final String link = e.querySelector('a')!.attributes['href']!;
       final String image = e.querySelector('img')!.attributes['src']!;
       return SourceSearchResultsModel(
-          title: title,
-          link: request.options.baseUrl + link,
-          image: image);
+          title: title, link: request.options.baseUrl + link, image: image);
     }).toList();
   }
 

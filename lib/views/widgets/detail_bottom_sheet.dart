@@ -7,9 +7,13 @@ class DetailBottomSheet extends StatelessWidget {
   final IndividualSettingsModel individualSettingsModel;
 
   const DetailBottomSheet(
-      {Key? key, required this.eraseLink, required this.individualSettingsModel}) : super(key: key);
+      {Key? key,
+      required this.eraseLink,
+      required this.individualSettingsModel})
+      : super(key: key);
 
-  final TextStyle _title = const TextStyle(fontWeight: FontWeight.w700, fontSize: 15);
+  final TextStyle _title =
+      const TextStyle(fontWeight: FontWeight.w700, fontSize: 15);
 
   @override
   Widget build(BuildContext context) {

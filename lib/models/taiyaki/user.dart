@@ -47,8 +47,7 @@ class UserModel {
 
   factory UserModel.fromJson(Map<String, dynamic> json) => UserModel(
         accessToken: json['accessToken'],
-        refreshToken:
-            json['refreshToken'],
+        refreshToken: json['refreshToken'],
         expiresIn: (json['expiresIn'] != null && json['expiresIn'] != 'null')
             ? DateTime.parse(json['expiresIn'])
             : null,

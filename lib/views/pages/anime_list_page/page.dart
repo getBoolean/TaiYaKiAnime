@@ -11,6 +11,7 @@ import 'view.dart';
 class AnimeListPageArguments {
   final ThirdPartyTrackersEnum tracker;
   final List<AnimeListModel> list;
+
   AnimeListPageArguments({required this.tracker, required this.list});
 }
 

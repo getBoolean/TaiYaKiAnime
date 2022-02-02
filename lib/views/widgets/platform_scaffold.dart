@@ -9,7 +9,8 @@ class PlatformScaffold extends StatelessWidget {
   final List<Widget>? actions;
 
   const PlatformScaffold(
-      {Key? key, required this.child, required this.appBarTitle, this.actions}) : super(key: key);
+      {Key? key, required this.child, required this.appBarTitle, this.actions})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {

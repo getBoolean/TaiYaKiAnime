@@ -44,7 +44,9 @@ void _onPickedLink(Action action, Context<WatchState> ctx) async {
       sourceName: _link.values.first);
 
   final _box = Hive.box<DetailDatabaseModel>(kHiveDetailBox);
-  await _box.put(ctx.state.databaseModel!.ids.anilist, _newDatabase).whenComplete(() {
+  await _box
+      .put(ctx.state.databaseModel!.ids.anilist, _newDatabase)
+      .whenComplete(() {
     ctx.dispatch(WatchActionCreator.updateDatabase(_newDatabase));
     Navigator.of(ctx.context).pop();
     ctx.dispatch(DetailActionCreator.fetchSimklEpisodes(_link.keys.first));

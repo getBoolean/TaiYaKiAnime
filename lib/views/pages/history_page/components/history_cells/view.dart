@@ -28,7 +28,8 @@ Widget buildView(
                 children: [
                   Text(
                     state.historyModel!.title,
-                    style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 16),
+                    style: const TextStyle(
+                        fontWeight: FontWeight.w600, fontSize: 16),
                     maxLines: 2,
                   ),
                   Row(children: [

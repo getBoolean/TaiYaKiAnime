@@ -32,10 +32,10 @@ class SettingsTrackersConnector
     return subState;
   }
 
-  // @override
-  // void set(SettingsState state, SettingsTrackersState subState) {
-  //   state.simklUser = subState.simklUser;
-  //   state.myanimelistUser = subState.myanimelistUser;
-  //   state.anilistUser = subState.anilistUser;
-  // }
+// @override
+// void set(SettingsState state, SettingsTrackersState subState) {
+//   state.simklUser = subState.simklUser;
+//   state.myanimelistUser = subState.myanimelistUser;
+//   state.anilistUser = subState.anilistUser;
+// }
 }

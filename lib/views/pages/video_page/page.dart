@@ -13,6 +13,7 @@ class VideoPageArguments {
   final DetailDatabaseModel databaseModel;
   final SimklEpisodeModel episode;
   final List<SimklEpisodeModel> playlist;
+
   VideoPageArguments(
       {required this.databaseModel,
       required this.episode,

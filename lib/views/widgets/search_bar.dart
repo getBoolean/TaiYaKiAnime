@@ -8,11 +8,13 @@ class SearchBar extends StatefulWidget {
   final String? placeholder;
   final bool isLoading;
 
-  const SearchBar(
-      {Key? key, required this.onEnter,
-      this.isLoading = false,
-      this.onDelayedEnter,
-      this.placeholder,}) : super(key: key);
+  const SearchBar({
+    Key? key,
+    required this.onEnter,
+    this.isLoading = false,
+    this.onDelayedEnter,
+    this.placeholder,
+  }) : super(key: key);
 
   @override
   _SearchBarState createState() => _SearchBarState();

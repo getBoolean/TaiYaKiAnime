@@ -43,7 +43,8 @@ Widget buildView(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(_activity.user.name,
-                            style: const TextStyle(fontWeight: FontWeight.w500)),
+                            style:
+                                const TextStyle(fontWeight: FontWeight.w500)),
                         Row(
                           children: [
                             Image.asset(
@@ -77,7 +78,8 @@ Widget buildView(
                         child: Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 3.0),
                           child: Text(_statusString,
-                              maxLines: 3, style: const TextStyle(fontSize: 12)),
+                              maxLines: 3,
+                              style: const TextStyle(fontSize: 12)),
                         )),
                     TaiyakiImage(
                       url: _activity.media.coverImage,

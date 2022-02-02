@@ -9,7 +9,9 @@ enum AnilistPageFilterEnum {
 class AnilistMediaModel {
   final String name;
   final bool isAdult;
+
   AnilistMediaModel({required this.name, required this.isAdult});
+
   factory AnilistMediaModel.fromJson(Map<String, dynamic> json) =>
       AnilistMediaModel(name: json['name'], isAdult: json['isAdult']);
 }

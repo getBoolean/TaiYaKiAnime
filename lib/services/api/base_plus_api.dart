@@ -6,9 +6,13 @@ import '../../store/global_user_store/global_user_action.dart';
 
 abstract class BaseTracker {
   Future<UpdateModel> login();
+
   Future<void> logout();
+
   Future<SyncModel> syncProgress(int id, SyncModel syncModel);
+
   Future getProfile();
+
   Future<List<AnimeListModel>> getAnimeList();
 }
 

@@ -36,6 +36,7 @@ class MyAnimeListUserlistModel {
   final _Node node;
 
   MyAnimeListUserlistModel(this.status, this.node);
+
   factory MyAnimeListUserlistModel.fromJson(Map<String, dynamic> json) =>
       MyAnimeListUserlistModel(_ListStatus.fromJson(json['list_status']),
           _Node.fromJson(json['node']));

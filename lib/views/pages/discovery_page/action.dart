@@ -14,7 +14,6 @@ enum DiscoveryAction {
   updateNextSeason,
   updateJustAdded,
   updateContinueItems,
-
   fetchContinueItems,
   grabAnilistActivity,
 }
@@ -23,6 +22,7 @@ class NotificationData {
   final String title, message;
   final int animeID;
   final List<IOSNotificationAttachment> attachments;
+
   NotificationData(
       {required this.message,
       required this.title,

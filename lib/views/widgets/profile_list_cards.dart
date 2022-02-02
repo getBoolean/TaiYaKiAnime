@@ -15,7 +15,9 @@ class ProfileListCards extends StatefulWidget {
   final ThirdPartyTrackersEnum tracker;
   final UserModel userModel;
 
-  const ProfileListCards({Key? key, required this.tracker, required this.userModel}) : super(key: key);
+  const ProfileListCards(
+      {Key? key, required this.tracker, required this.userModel})
+      : super(key: key);
 
   @override
   _ProfileListCardsState createState() => _ProfileListCardsState();
@@ -47,6 +49,7 @@ class _ProfileListCardsState extends State<ProfileListCards> {
   }
 
   final _random = Random();
+
 // Timer(const Duration(seconds: 5), _onChange);
   // String? _currentImage;
   int index = 0;
@@ -141,8 +144,8 @@ class _ProfileListCardsState extends State<ProfileListCards> {
                                     height: TaiyakiSize.height * 0.02,
                                     width: TaiyakiSize.height * 0.02),
                                 Text(_trackerName(),
-                                    style:
-                                        const TextStyle(fontWeight: FontWeight.bold))
+                                    style: const TextStyle(
+                                        fontWeight: FontWeight.bold))
                               ],
                             )
                           ]))),

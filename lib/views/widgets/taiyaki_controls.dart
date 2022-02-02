@@ -55,6 +55,7 @@ class _TaiyakiControlsState extends BetterPlayerControlsState<TaiyakiControls> {
   Timer? _hideTimer;
   Timer? _initTimer;
   Timer? _showAfterExpandCollapseTimer;
+
   // bool _displayTapped = false;
   bool _wasLoading = false;
   VideoPlayerController? _controller;

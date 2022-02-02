@@ -28,8 +28,8 @@ Widget buildView(
           onChanged: (val) => dispatch(SettingsActionCreator.onUpdateSetting(
               _settings.copyWith(autoChange100: val))),
           secondary: const Icon(Icons.queue_play_next),
-          subtitle:
-              const Text('Change to the next episode when the current one finishes'),
+          subtitle: const Text(
+              'Change to the next episode when the current one finishes'),
         ),
       ],
     ),

@@ -15,15 +15,15 @@ Widget buildView(WatchState state, Dispatch dispatch, ViewService viewService) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Center(
-      child: Column(children: [
-    const Text(
-        'Taiyaki requires a source to be able to link this entry. Tap on the button below to select the proper link and start watching.',
-        textAlign: TextAlign.center),
-    SizedBox(height: TaiyakiSize.height * 0.15),
-    ElevatedButton(
-      onPressed: () => dispatch(WatchActionCreator.openSourceSelector()),
-      child: const Text('Link to Taiyaki'),
-    ),
+          child: Column(children: [
+        const Text(
+            'Taiyaki requires a source to be able to link this entry. Tap on the button below to select the proper link and start watching.',
+            textAlign: TextAlign.center),
+        SizedBox(height: TaiyakiSize.height * 0.15),
+        ElevatedButton(
+          onPressed: () => dispatch(WatchActionCreator.openSourceSelector()),
+          child: const Text('Link to Taiyaki'),
+        ),
       ])),
     );
   }
@@ -57,20 +57,17 @@ Widget buildView(WatchState state, Dispatch dispatch, ViewService viewService) {
                         : 0.0,
                   ),
                 ),
-                Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(state.episodes.isNotEmpty
-                          ? percentageRemaining(
-                                  state.episodes.length,
-                                  (state.databaseModel?.episodeProgress ??
-                                          {0: 0})
-                                      .keys
-                                      .last) +
-                              '%'
-                          : '??%'),
-                      const Text('complete')
-                    ])
+                Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+                  Text(state.episodes.isNotEmpty
+                      ? percentageRemaining(
+                              state.episodes.length,
+                              (state.databaseModel?.episodeProgress ?? {0: 0})
+                                  .keys
+                                  .last) +
+                          '%'
+                      : '??%'),
+                  const Text('complete')
+                ])
               ],
             ),
           ),

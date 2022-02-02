@@ -17,6 +17,7 @@ class DetailState implements Cloneable<DetailState> {
 
   //Anilist
   AnilistNode? anilistData;
+
   //Simkl
   SimklNode? simklData;
 

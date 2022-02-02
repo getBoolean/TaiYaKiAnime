@@ -115,8 +115,8 @@ class _UpdatePageState extends State<UpdatePage> {
                             horizontal: 6.0, vertical: 4.0),
                         child: ChoiceChip(
                             selected: currentStatus == 'Plan to Watch',
-                            onSelected: (value) => setState(
-                                () => currentStatus = 'Plan to Watch'),
+                            onSelected: (value) =>
+                                setState(() => currentStatus = 'Plan to Watch'),
                             label: const Text('Plan to Watch'))),
                     Container(
                         margin: const EdgeInsets.symmetric(

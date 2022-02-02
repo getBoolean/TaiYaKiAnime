@@ -58,10 +58,8 @@ void _onSettings(Action action, Context<VideoState> ctx) {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text(ctx
-                                .state.allAvailableQualities[index].name),
-                            if (ctx.state.allAvailableQualities[index]
-                                    .name ==
+                            Text(ctx.state.allAvailableQualities[index].name),
+                            if (ctx.state.allAvailableQualities[index].name ==
                                 ctx.state.currentSelectedQuality?.name)
                               const Icon(
                                 Icons.check,
@@ -90,19 +88,19 @@ void _onSettings(Action action, Context<VideoState> ctx) {
                     itemBuilder: (context, index) => SizedBox(
                           height: TaiyakiSize.height * 0.09,
                           child: GestureDetector(
-                      onTap: () => ctx.dispatch(
-                          VideoActionCreator.setCurrentHost(
-                              ctx.state.allAvailableHosts[index])),
-                      child: Row(
-                        mainAxisAlignment:
-                            MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(ctx.state.allAvailableHosts[index].host),
-                          if (ctx.state.allAvailableHosts[index].host ==
-                              ctx.state.currentSelectedHost?.host)
-                            const Icon(Icons.check, color: Colors.green)
-                        ],
-                      )),
+                              onTap: () => ctx.dispatch(
+                                  VideoActionCreator.setCurrentHost(
+                                      ctx.state.allAvailableHosts[index])),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(ctx.state.allAvailableHosts[index].host),
+                                  if (ctx.state.allAvailableHosts[index].host ==
+                                      ctx.state.currentSelectedHost?.host)
+                                    const Icon(Icons.check, color: Colors.green)
+                                ],
+                              )),
                         )),
               ),
             ));
@@ -159,9 +157,8 @@ void _saveLastWatchingModel(Action action, Context<VideoState> ctx) async {
       .get(ctx.state.detailDatabaseModel!.ids.anilist);
 
   if (_box == null) return;
-  _box
-    .lastWatchingModel =
-        LastWatchingModel(watchingEpisode: ctx.state.episode!, progress: 0);
+  _box.lastWatchingModel =
+      LastWatchingModel(watchingEpisode: ctx.state.episode!, progress: 0);
 
   await Hive.box(kHiveDetailBox).put(_box.ids.anilist, _box);
 }
@@ -194,7 +191,8 @@ void _setUpPlayer(Action action, Context<VideoState> ctx) {
                     togglePlaylist: () =>
                         ctx.dispatch(VideoActionCreator.togglePlaylist(true)),
                     episode: ctx.state.episode!,
-                    controlsConfiguration: const BetterPlayerControlsConfiguration(
+                    controlsConfiguration:
+                        const BetterPlayerControlsConfiguration(
                       controlsHideTime: Duration(milliseconds: 250),
                       controlBarHeight: 55,
                     ),
@@ -296,5 +294,6 @@ void _enterPage(Action action, Context<VideoState> ctx) {
 
 void _exitPage() {
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
-  SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: SystemUiOverlay.values);
+  SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
+      overlays: SystemUiOverlay.values);
 }

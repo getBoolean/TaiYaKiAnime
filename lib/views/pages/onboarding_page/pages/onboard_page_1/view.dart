@@ -21,35 +21,35 @@ Widget buildView(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-      Column(
-        children: const [
-          Text('Pick a Theme', style: _title),
-          Text('You can change this later in Settings', style: _subTitle),
-        ],
-      ),
-      Column(
-        children: [
-          _ThemeCells(
-            themeData: ThemeData.light(),
-            name: 'Light',
-            onSelected: () =>
-                dispatch(OnboardPage1ActionCreator.updateTheme('Light')),
+          Column(
+            children: const [
+              Text('Pick a Theme', style: _title),
+              Text('You can change this later in Settings', style: _subTitle),
+            ],
           ),
-          _ThemeCells(
-            themeData: ThemeData.dark(),
-            name: 'Dark',
-            onSelected: () =>
-                dispatch(OnboardPage1ActionCreator.updateTheme('Dark')),
+          Column(
+            children: [
+              _ThemeCells(
+                themeData: ThemeData.light(),
+                name: 'Light',
+                onSelected: () =>
+                    dispatch(OnboardPage1ActionCreator.updateTheme('Light')),
+              ),
+              _ThemeCells(
+                themeData: ThemeData.dark(),
+                name: 'Dark',
+                onSelected: () =>
+                    dispatch(OnboardPage1ActionCreator.updateTheme('Dark')),
+              ),
+            ],
           ),
-        ],
-      ),
-      SizedBox(
-          height: query.height * 0.07,
-          width: query.width * 0.9,
-          child: ElevatedButton(
-              onPressed: () =>
-                  dispatch(OnboardingActionCreator.moveToPage(null)),
-              child: const Text('Next')))
+          SizedBox(
+              height: query.height * 0.07,
+              width: query.width * 0.9,
+              child: ElevatedButton(
+                  onPressed: () =>
+                      dispatch(OnboardingActionCreator.moveToPage(null)),
+                  child: const Text('Next')))
         ],
       ),
     ),

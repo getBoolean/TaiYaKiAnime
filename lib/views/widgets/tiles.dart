@@ -6,6 +6,7 @@ import 'taiyaki_size.dart';
 class Tiles extends StatelessWidget {
   final String image;
   final String title;
+
   // final int? id;
 
   final VoidCallback onTap;
@@ -61,6 +62,7 @@ class SourceTiles extends StatelessWidget {
   // final String image;
   final String name;
   final String dev;
+
   // final int? id;
 
   final VoidCallback onTap;

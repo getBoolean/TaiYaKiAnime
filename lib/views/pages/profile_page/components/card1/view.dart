@@ -11,25 +11,25 @@ Widget buildView(Card1State state, Dispatch dispatch, ViewService viewService) {
         padding: const EdgeInsets.all(8.0),
         child: Column(
           children: [
-        Transform.translate(
-          offset: Offset(0, -TaiyakiSize.height * 0.06),
-          child: CircleAvatar(
-              foregroundImage: state.user!.avatar != null
-                  // ignore: unnecessary_cast
-                  ? (NetworkImage(state.user!.avatar!) as ImageProvider)
-                  : const AssetImage('assets/icon.png'),
-              radius: 50),
-        ),
-        Transform.translate(
-          offset: Offset(0, -TaiyakiSize.height * 0.03),
-          child: Column(
-            children: [
-              Text(state.user!.username!,
-                  style:
-                      const TextStyle(fontWeight: FontWeight.w600, fontSize: 17)),
-            ],
-          ),
-        ),
+            Transform.translate(
+              offset: Offset(0, -TaiyakiSize.height * 0.06),
+              child: CircleAvatar(
+                  foregroundImage: state.user!.avatar != null
+                      // ignore: unnecessary_cast
+                      ? (NetworkImage(state.user!.avatar!) as ImageProvider)
+                      : const AssetImage('assets/icon.png'),
+                  radius: 50),
+            ),
+            Transform.translate(
+              offset: Offset(0, -TaiyakiSize.height * 0.03),
+              child: Column(
+                children: [
+                  Text(state.user!.username!,
+                      style: const TextStyle(
+                          fontWeight: FontWeight.w600, fontSize: 17)),
+                ],
+              ),
+            ),
           ],
         ),
       ));

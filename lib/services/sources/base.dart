@@ -3,14 +3,21 @@ import 'package:flutter/foundation.dart';
 
 abstract class SourceBase {
   Future<List<String>> getEpisodeLinks(String link);
+
   Future<List<SourceSearchResultsModel>> getSearchResults(String query);
+
   Future<List<SourceEpisodeHostsModel>> getEpisodeHosts(String episodeLink);
+
   Future<int> getTotalEpisodesAvailable(String link);
+
   void dispose();
 
   String get name;
+
   bool get usesCloudflare;
+
   Dio get request;
+
   SourceInfo get info;
 
   SourceBase() {
@@ -40,6 +47,7 @@ class SourceSearchResultsModel {
   final String title;
   final String image;
   final String link;
+
   SourceSearchResultsModel(
       {required this.title, required this.link, required this.image});
 }
@@ -47,5 +55,6 @@ class SourceSearchResultsModel {
 class SourceEpisodeHostsModel {
   final String host;
   final String hostLink;
+
   SourceEpisodeHostsModel({required this.hostLink, required this.host});
 }

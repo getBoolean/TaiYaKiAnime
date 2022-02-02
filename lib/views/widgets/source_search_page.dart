@@ -12,7 +12,8 @@ class SourceSearchPage extends StatefulWidget {
   final String query;
   final Function(Map<String, String>) onLink;
 
-  const SourceSearchPage({Key? key, required this.query, required this.onLink}) : super(key: key);
+  const SourceSearchPage({Key? key, required this.query, required this.onLink})
+      : super(key: key);
 
   @override
   _SourceSearchPageState createState() => _SourceSearchPageState();
@@ -52,92 +53,92 @@ class _SourceSearchPageState extends State<SourceSearchPage> {
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
-      children: [
-        SearchBar(
-            isLoading: isLoading,
-            placeholder: 'Enter a custom query',
-            onDelayedEnter: (String query) {
-              setState(() => results = []);
-              _search(query);
-            },
-            onEnter: (_) {}),
-        if (isLoading)
-          const Center(
-            child: CircularProgressIndicator(),
-          )
-        else if (results.isEmpty)
-          Center(
-              child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
-                Icon(Icons.inbox, size: 75),
-                Text('No results found', style: TextStyle(fontSize: 20)),
-              ]))
-        else
-          Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: ElevatedButton(
-                      onPressed: () {
-                        showCupertinoModalBottomSheet(
-                            context: context,
-                            builder: (builder) {
-                              return Scaffold(
-                                body: Column(
-                                  children: [
-                                const Padding(
-                                  padding: EdgeInsets.all(12.0),
-                                  child: Text('Select a source',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.w700,
-                                          fontSize: 16)),
-                                ),
-                                Expanded(
-                                  child: ListView.builder(
-                                    itemCount: kTaiyakiSources.length,
-                                    itemBuilder: (context, index) =>
-                                        SourceTiles(
-                                            onTap: () {
-                                              final _newSource =
-                                                  kTaiyakiSources[
-                                                      index];
-                                              setState(() =>
-                                                  _currentSource =
-                                                      _newSource);
-                                            },
-                                            name: kTaiyakiSources[index]
-                                                .name),
-                                  ),
-                                ),
-                                  ],
-                                ),
+          children: [
+            SearchBar(
+                isLoading: isLoading,
+                placeholder: 'Enter a custom query',
+                onDelayedEnter: (String query) {
+                  setState(() => results = []);
+                  _search(query);
+                },
+                onEnter: (_) {}),
+            if (isLoading)
+              const Center(
+                child: CircularProgressIndicator(),
+              )
+            else if (results.isEmpty)
+              Center(
+                  child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: const [
+                    Icon(Icons.inbox, size: 75),
+                    Text('No results found', style: TextStyle(fontSize: 20)),
+                  ]))
+            else
+              Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: ElevatedButton(
+                          onPressed: () {
+                            showCupertinoModalBottomSheet(
+                                context: context,
+                                builder: (builder) {
+                                  return Scaffold(
+                                    body: Column(
+                                      children: [
+                                        const Padding(
+                                          padding: EdgeInsets.all(12.0),
+                                          child: Text('Select a source',
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.w700,
+                                                  fontSize: 16)),
+                                        ),
+                                        Expanded(
+                                          child: ListView.builder(
+                                            itemCount: kTaiyakiSources.length,
+                                            itemBuilder: (context, index) =>
+                                                SourceTiles(
+                                                    onTap: () {
+                                                      final _newSource =
+                                                          kTaiyakiSources[
+                                                              index];
+                                                      setState(() =>
+                                                          _currentSource =
+                                                              _newSource);
+                                                    },
+                                                    name: kTaiyakiSources[index]
+                                                        .name),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  );
+                                });
+                          },
+                          child:
+                              Text('Current Source: ${_currentSource.name}')),
+                    ),
+                    SizedBox(
+                        height: TaiyakiSize.height * 0.85,
+                        child: ListView.builder(
+                            shrinkWrap: true,
+                            // physics: NeverScrollableScrollPhysics(),
+                            itemCount: results.length,
+                            itemBuilder: (BuildContext context, int index) {
+                              final _result = results[index];
+                              return Tiles(
+                                image: _result.image,
+                                title: _result.title,
+                                onTap: () {
+                                  final _link = _result.link;
+                                  widget.onLink({_link: _currentSource.name});
+                                },
                               );
-                            });
-                      },
-                      child:
-                          Text('Current Source: ${_currentSource.name}')),
-                ),
-                SizedBox(
-                    height: TaiyakiSize.height * 0.85,
-                    child: ListView.builder(
-                        shrinkWrap: true,
-                        // physics: NeverScrollableScrollPhysics(),
-                        itemCount: results.length,
-                        itemBuilder: (BuildContext context, int index) {
-                          final _result = results[index];
-                          return Tiles(
-                            image: _result.image,
-                            title: _result.title,
-                            onTap: () {
-                              final _link = _result.link;
-                              widget.onLink({_link: _currentSource.name});
-                            },
-                          );
-                        }))
-              ])
-      ],
+                            }))
+                  ])
+          ],
         ),
       ),
     );

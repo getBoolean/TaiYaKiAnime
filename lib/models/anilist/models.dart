@@ -69,8 +69,7 @@ class AnilistNode {
       source: json['source'] ?? 'N/A',
       status: json['status'] ?? 'N/A',
       episodes: json['episodes'],
-      countryOfOrigin:
-          json['countryOfOrigin'],
+      countryOfOrigin: json['countryOfOrigin'],
       hashtag: json['hashtag'],
       season: json['season'],
       seasonYear: json['seasonYear'],
@@ -94,11 +93,12 @@ class AnilistNode {
       mediaListEntryModel: json['mediaListEntry'] != null
           ? MediaListEntryModel.fromJson(json['mediaListEntry'])
           : null,
-      scoreDistribution: (json['stats'] != null && json['stats']['scoreDistribution'] != null)
-          ? List<AnilistScoreDistributionModel>.from(json['stats']['scoreDistribution']
-              .map((i) => AnilistScoreDistributionModel.fromJson(i))
-              .toList())
-          : [],
+      scoreDistribution:
+          (json['stats'] != null && json['stats']['scoreDistribution'] != null)
+              ? List<AnilistScoreDistributionModel>.from(json['stats']['scoreDistribution']
+                  .map((i) => AnilistScoreDistributionModel.fromJson(i))
+                  .toList())
+              : [],
       statusDistribution:
           (json['stats'] != null && json['stats']['statusDistribution'] != null)
               ? List<AnilistStatusDistributionModel>.from(json['stats']['statusDistribution'].map((i) => AnilistStatusDistributionModel.fromJson(i)).toList())
@@ -167,6 +167,7 @@ class AnilistScoreDistributionModel {
   final int score;
 
   AnilistScoreDistributionModel({required this.amount, required this.score});
+
   factory AnilistScoreDistributionModel.fromJson(Map<String, dynamic> json) =>
       AnilistScoreDistributionModel(
           amount: json['amount'], score: json['score']);
@@ -175,7 +176,9 @@ class AnilistScoreDistributionModel {
 class AnilistStatusDistributionModel {
   final int amount;
   final String status;
+
   AnilistStatusDistributionModel({required this.amount, required this.status});
+
   factory AnilistStatusDistributionModel.fromJson(Map<String, dynamic> json) =>
       AnilistStatusDistributionModel(
           status: json['status'], amount: json['amount']);
@@ -204,9 +207,7 @@ class AnilistNextAiringEpisodeModel {
 
   factory AnilistNextAiringEpisodeModel.fromJson(Map<String, dynamic> json) =>
       AnilistNextAiringEpisodeModel(
-          episode: json['episode'],
-          timeUntilAiring:
-              json['timeUntilAiring']);
+          episode: json['episode'], timeUntilAiring: json['timeUntilAiring']);
 }
 
 class AnilistFollowersActivityModel {
@@ -223,6 +224,7 @@ class AnilistFollowersActivityModel {
       required this.createdAt,
       required this.progress,
       required this.user});
+
   factory AnilistFollowersActivityModel.fromJson(Map<String, dynamic> json) =>
       AnilistFollowersActivityModel(
           status: json['status'],
@@ -239,6 +241,7 @@ class AnilistUserModel {
 
   AnilistUserModel(
       {required this.id, required this.name, required this.avatar});
+
   factory AnilistUserModel.fromJson(Map<String, dynamic> json) =>
       AnilistUserModel(
           id: json['id'], name: json['name'], avatar: json['avatar']['large']);
@@ -246,7 +249,9 @@ class AnilistUserModel {
 
 class AnilistAnimeListModel {
   final List<AnilistNode> entries;
+
   AnilistAnimeListModel({required this.entries});
+
   factory AnilistAnimeListModel.fromJson(Map<String, dynamic> json) =>
       AnilistAnimeListModel(
           entries: List<AnilistNode>.from((json['lists'] as List)
@@ -259,7 +264,9 @@ class AnilistAnimeListModel {
 class _GenreCounts {
   final String genreName;
   final int genreCount;
+
   _GenreCounts({required this.genreCount, required this.genreName});
+
   factory _GenreCounts.fromJson(Map<String, dynamic> json) =>
       _GenreCounts(genreCount: json['count'], genreName: json['genre']);
 }
@@ -268,10 +275,12 @@ class AnilistViewerStats {
   final List<_GenreCounts> genres;
   final int count;
   final int episodesWatched;
+
   AnilistViewerStats(
       {this.genres = const [],
       required this.count,
       required this.episodesWatched});
+
   factory AnilistViewerStats.fromJson(Map<String, dynamic> json) =>
       AnilistViewerStats(
           count: json['count'],

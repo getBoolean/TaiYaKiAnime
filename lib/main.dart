@@ -75,9 +75,7 @@ Future<void> _initApp() async {
     final UserModel _simklUser = UserModel.fromJson(json.decode(_simkl));
     GlobalUserStore.store.dispatch(GlobalUserActionCreator.onUpdateUser(
         UpdateModel(model: _simklUser, tracker: ThirdPartyTrackersEnum.simkl)));
-    await SimklAPI()
-        .getProfile()
-        .whenComplete(() => SimklAPI().getAnimeList());
+    await SimklAPI().getProfile().whenComplete(() => SimklAPI().getAnimeList());
   }
 
   Hive.registerAdapter(DetailDatabaseModelAdapter());

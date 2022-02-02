@@ -93,6 +93,7 @@ class SimklUserListModel {
       required this.totalEpisodes,
       required this.status,
       required this.show});
+
   factory SimklUserListModel.fromJson(Map<String, dynamic> json) =>
       SimklUserListModel(
           score: json['user_rating'],

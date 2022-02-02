@@ -23,14 +23,12 @@ Widget buildView(
     bottom: true,
     child: Padding(
       padding: const EdgeInsets.fromLTRB(8.0, 18.0, 8.0, 12.0),
-      child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
+      child:
+          Column(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
         Column(
           children: const [
             Text('Use a tracker?', style: _title),
-            Text('You can also sign in later in Settings',
-                style: _subTitle),
+            Text('You can also sign in later in Settings', style: _subTitle),
           ],
         ),
         SizedBox(

@@ -5,7 +5,9 @@ import 'base.dart';
 
 class _XstreamModel {
   final String file, label;
+
   _XstreamModel({required this.file, required this.label});
+
   factory _XstreamModel.fromJson(Map<String, dynamic> json) =>
       _XstreamModel(file: json['file'], label: json['label']);
 }

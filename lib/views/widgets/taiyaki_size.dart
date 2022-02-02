@@ -11,5 +11,6 @@ class TaiyakiSize {
   }
 
   static get height => _height;
+
   static get width => _width;
 }

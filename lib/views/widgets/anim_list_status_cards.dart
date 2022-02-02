@@ -10,7 +10,11 @@ class AnimeListStatusCards extends StatelessWidget {
   final VoidCallback onTap;
 
   const AnimeListStatusCards(
-      {Key? key, required this.statusName, required this.onTap, this.data = const []}) : super(key: key);
+      {Key? key,
+      required this.statusName,
+      required this.onTap,
+      this.data = const []})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {

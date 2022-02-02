@@ -145,7 +145,8 @@ class AnilistAPI with OauthLoginHandler implements BaseTracker {
 
       if (_authResponse.statusCode == 200) {
         final _Bearer _bearer = _Bearer.fromJson(_authResponse.data);
-        final UserModel _userModel = UserModel(accessToken: _bearer.accessToken);
+        final UserModel _userModel =
+            UserModel(accessToken: _bearer.accessToken);
         UpdateModel model;
         await _storage.write(
             key: 'anilist', value: json.encode(_userModel.toMap()));

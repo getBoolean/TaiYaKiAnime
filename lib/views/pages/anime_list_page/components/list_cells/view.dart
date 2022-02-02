@@ -16,8 +16,7 @@ Widget buildView(
           clipBehavior: Clip.antiAlias,
           child: Row(children: [
             TaiyakiImage(
-                url: state.model?.coverImage,
-                width: TaiyakiSize.width * 0.2),
+                url: state.model?.coverImage, width: TaiyakiSize.width * 0.2),
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -35,8 +34,7 @@ Widget buildView(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           Row(
-                            mainAxisAlignment:
-                                MainAxisAlignment.spaceBetween,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
                                   '${state.model!.progress} / ${(state.model?.totalEpisodes ?? '??')}'),
@@ -44,9 +42,9 @@ Widget buildView(
                                   state.model!.score != 0.0)
                                 Row(
                                   children: [
-                                    const Icon(Icons.star, color: Colors.orange),
-                                    Text(state.model!.score!
-                                        .toStringAsFixed(0))
+                                    const Icon(Icons.star,
+                                        color: Colors.orange),
+                                    Text(state.model!.score!.toStringAsFixed(0))
                                   ],
                                 )
                             ],

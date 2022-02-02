@@ -12,19 +12,15 @@ enum VideoAction {
   changeVideoSource,
   expandSynopsis,
   togglePlaylist,
-
   setAvailableQualities,
   setAvailableHosts,
   setCurrentQuality,
   setCurrentHost,
   setSimklEpisode,
   updateSimklEpisode,
-
   saveHistory,
   saveLastWatchingModel,
-
   syncWatchList,
-
   onSettings,
 }
 

@@ -90,6 +90,7 @@ class LastWatchingModel {
   SimklEpisodeModel watchingEpisode;
   @HiveField(1)
   final double progress;
+
   LastWatchingModel({required this.watchingEpisode, required this.progress});
 }
 

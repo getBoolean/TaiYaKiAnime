@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import '../routes.dart';
 
 class TaiyakiBottomNavigation extends StatefulWidget {
-  const TaiyakiBottomNavigation({Key key = const Key('taiyaki_bottom_navigation')})
+  const TaiyakiBottomNavigation(
+      {Key key = const Key('taiyaki_bottom_navigation')})
       : super(key: key);
 
   @override

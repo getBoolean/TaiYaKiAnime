@@ -17,9 +17,8 @@ Widget buildView(
     bottom: true,
     child: Padding(
       padding: const EdgeInsets.fromLTRB(8.0, 18.0, 8.0, 12.0),
-      child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
+      child:
+          Column(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
         Column(
           children: const [
             Text("You're all set!", style: _title),

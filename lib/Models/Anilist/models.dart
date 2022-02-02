@@ -64,16 +64,16 @@ class AnilistNode {
       description: json['description'],
       englishTitle: json['title']['english'],
       genres: json['genres'] != null ? List<String>.from(json['genres']) : [],
-      duration: json['duration'] != null ? json['duration'] : null,
-      meanScore: json['meanScore'] != null ? json['meanScore'] : null,
-      source: json['source'] != null ? json['source'] : 'N/A',
-      status: json['status'] != null ? json['status'] : 'N/A',
-      episodes: json['episodes'] != null ? json['episodes'] : null,
+      duration: json['duration'],
+      meanScore: json['meanScore'],
+      source: json['source'] ?? 'N/A',
+      status: json['status'] ?? 'N/A',
+      episodes: json['episodes'],
       countryOfOrigin:
-          json['countryOfOrigin'] != null ? json['countryOfOrigin'] : null,
-      hashtag: json['hashtag'] != null ? json['hashtag'] : null,
-      season: json['season'] != null ? json['season'] : null,
-      seasonYear: json['seasonYear'] != null ? json['seasonYear'] : null,
+          json['countryOfOrigin'],
+      hashtag: json['hashtag'],
+      season: json['season'],
+      seasonYear: json['seasonYear'],
       nextAiringEpisode: json['nextAiringEpisode'] != null
           ? AnilistNextAiringEpisodeModel.fromJson(json['nextAiringEpisode'])
           : null,
@@ -104,7 +104,7 @@ class AnilistNode {
               ? List<AnilistStatusDistributionModel>.from(json['stats']['statusDistribution'].map((i) => AnilistStatusDistributionModel.fromJson(i)).toList())
               : [],
       trends: json['trends'] != null ? List<AnilistTrendsModel>.from(json['trends']['nodes'].map((i) => AnilistTrendsModel.fromJson(i)).toList()) : [],
-      type: json['type'] != null ? json['type'] : 'N/A');
+      type: json['type'] ?? 'N/A');
 }
 
 class AnilistCharactersModel {
@@ -143,9 +143,7 @@ class AnilistViewerModel {
       AnilistViewerModel(
           name: json['data']['Viewer']['name'],
           avatar: json['data']['Viewer']['avatar']['large'],
-          bannerImage: json['data']['Viewer']['bannerImage'] != null
-              ? json['data']['Viewer']['bannerImage']
-              : null,
+          bannerImage: json['data']['Viewer']['bannerImage'],
           id: json['data']['Viewer']['id']);
 }
 
@@ -158,9 +156,9 @@ class MediaListEntryModel {
 
   factory MediaListEntryModel.fromJson(Map<String, dynamic> json) =>
       MediaListEntryModel(
-        status: json['status'] != null ? json['status'] : null,
-        score: json['score'] != null ? json['score'] : null,
-        progress: json['progress'] != null ? json['progress'] : null,
+        status: json['status'],
+        score: json['score'],
+        progress: json['progress'],
       );
 }
 
@@ -208,7 +206,7 @@ class AnilistNextAiringEpisodeModel {
       AnilistNextAiringEpisodeModel(
           episode: json['episode'],
           timeUntilAiring:
-              json['timeUntilAiring'] != null ? json['timeUntilAiring'] : null);
+              json['timeUntilAiring']);
 }
 
 class AnilistFollowersActivityModel {

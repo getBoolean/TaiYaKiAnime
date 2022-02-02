@@ -1,10 +1,10 @@
 import 'package:fish_redux/fish_redux.dart';
 
+import 'adapter.dart';
 import 'effect.dart';
 import 'reducer.dart';
 import 'state.dart';
 import 'view.dart';
-import 'adapter.dart';
 
 class FollowerCardsComponent extends Component<FollowerCardsState> {
   FollowerCardsComponent()

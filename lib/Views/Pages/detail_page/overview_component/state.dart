@@ -1,6 +1,6 @@
 import 'package:fish_redux/fish_redux.dart';
-import 'package:taiyaki/Models/Anilist/models.dart';
-import 'package:taiyaki/Views/Pages/detail_page/state.dart';
+import '../../../../Models/Anilist/models.dart';
+import '../state.dart';
 
 class OverviewState implements Cloneable<OverviewState> {
   AnilistNode? data;
@@ -18,7 +18,7 @@ class OverviewState implements Cloneable<OverviewState> {
 class OverviewConnector extends ConnOp<DetailState, OverviewState> {
   @override
   OverviewState get(DetailState state) {
-    final subState = new OverviewState().clone();
+    final subState = OverviewState().clone();
     subState.data = state.anilistData;
     subState.synopsisExpanded = state.synopsisExpanded;
     return subState;

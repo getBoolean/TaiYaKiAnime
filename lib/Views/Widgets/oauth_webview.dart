@@ -4,7 +4,7 @@ import 'package:webview_flutter/webview_flutter.dart';
 class OauthWebview extends StatefulWidget {
   final Uri uri;
 
-  OauthWebview({required this.uri, key}) : super(key: key);
+  const OauthWebview({required this.uri, key}) : super(key: key);
 
   @override
   _OauthWebviewState createState() => _OauthWebviewState();

@@ -1,19 +1,19 @@
 import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter/material.dart';
-import 'package:taiyaki/Models/Taiyaki/Trackers.dart';
-import 'package:taiyaki/Services/API/Anilist+API.dart';
-import 'package:taiyaki/Services/API/MyAnimeList+API.dart';
-import 'package:taiyaki/Services/API/SIMKL+API.dart';
-import 'package:taiyaki/Store/GlobalUserStore/GlobalUserStore.dart';
-import 'package:taiyaki/Utils/misc.dart';
-import 'package:taiyaki/Views/Pages/onboarding_page/action.dart';
+import '../../../../../Models/Taiyaki/Trackers.dart';
+import '../../../../../Services/API/Anilist+API.dart';
+import '../../../../../Services/API/MyAnimeList+API.dart';
+import '../../../../../Services/API/SIMKL+API.dart';
+import '../../../../../Store/GlobalUserStore/GlobalUserStore.dart';
+import '../../../../../Utils/misc.dart';
+import '../../action.dart';
 
 import 'state.dart';
 
 Widget buildView(
     OnboardPage3State state, Dispatch dispatch, ViewService viewService) {
-  final TextStyle _title = TextStyle(fontWeight: FontWeight.w800, fontSize: 26);
-  final TextStyle _subTitle =
+  const TextStyle _title = TextStyle(fontWeight: FontWeight.w800, fontSize: 26);
+  const TextStyle _subTitle =
       TextStyle(fontWeight: FontWeight.w200, fontSize: 14, color: Colors.grey);
 
   final query = MediaQuery.of(viewService.context).size;
@@ -28,7 +28,7 @@ Widget buildView(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
             Column(
-              children: [
+              children: const [
                 Text('Use a tracker?', style: _title),
                 Text('You can also sign in later in Settings',
                     style: _subTitle),
@@ -38,7 +38,7 @@ Widget buildView(
               height: query.height * 0.45,
               child: Wrap(
                 alignment: WrapAlignment.center,
-                children: [
+                children: const [
                   _TrackerBubbles(tracker: ThirdPartyTrackersEnum.anilist),
                   _TrackerBubbles(tracker: ThirdPartyTrackersEnum.myanimelist),
                   _TrackerBubbles(tracker: ThirdPartyTrackersEnum.simkl)
@@ -51,7 +51,7 @@ Widget buildView(
                 child: ElevatedButton(
                     onPressed: () =>
                         dispatch(OnboardingActionCreator.moveToPage(4)),
-                    child: Text('Next'))),
+                    child: const Text('Next'))),
           ])),
     ),
   );
@@ -83,20 +83,20 @@ class __TrackerBubblesState extends State<_TrackerBubbles> {
   void _update() {
     switch (widget.tracker) {
       case ThirdPartyTrackersEnum.anilist:
-        this.setState(() {
+        setState(() {
           _avatar = GlobalUserStore.store.getState().anilistUser?.avatar;
           _userName = GlobalUserStore.store.getState().anilistUser?.username;
         });
         break;
       case ThirdPartyTrackersEnum.myanimelist:
-        this.setState(() {
+        setState(() {
           _avatar = GlobalUserStore.store.getState().myanimelistUser?.avatar;
           _userName =
               GlobalUserStore.store.getState().myanimelistUser?.username;
         });
         break;
       case ThirdPartyTrackersEnum.simkl:
-        this.setState(() {
+        setState(() {
           _avatar = GlobalUserStore.store.getState().simklUser?.avatar;
           _userName = GlobalUserStore.store.getState().simklUser?.username;
         });
@@ -107,7 +107,7 @@ class __TrackerBubblesState extends State<_TrackerBubbles> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        if (_userName == null)
+        if (_userName == null) {
           switch (widget.tracker) {
             case ThirdPartyTrackersEnum.anilist:
               AnilistAPI().login().whenComplete(() {
@@ -122,6 +122,7 @@ class __TrackerBubblesState extends State<_TrackerBubbles> {
               MyAnimeListAPI().login().whenComplete(() =>
                   MyAnimeListAPI().getProfile().whenComplete(() => _update()));
           }
+        }
       },
       child: Container(
         margin: const EdgeInsets.all(20),
@@ -137,7 +138,7 @@ class __TrackerBubblesState extends State<_TrackerBubbles> {
             Padding(
               padding: const EdgeInsets.only(top: 10.0),
               child: Text(_userName ?? '',
-                  style: TextStyle(fontWeight: FontWeight.w700)),
+                  style: const TextStyle(fontWeight: FontWeight.w700)),
             ),
           ],
         ),

@@ -1,6 +1,6 @@
 import 'package:hive/hive.dart';
-import 'package:taiyaki/Models/SIMKL/models.dart';
-import 'package:taiyaki/Models/Taiyaki/Trackers.dart';
+import '../SIMKL/models.dart';
+import 'Trackers.dart';
 
 part 'DetailDatabase.g.dart';
 

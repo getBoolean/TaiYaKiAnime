@@ -6,8 +6,8 @@ import 'state.dart';
 
 Widget buildView(
     OnboardPage5State state, Dispatch dispatch, ViewService viewService) {
-  final TextStyle _title = TextStyle(fontWeight: FontWeight.w800, fontSize: 26);
-  final TextStyle _subTitle =
+  const TextStyle _title = TextStyle(fontWeight: FontWeight.w800, fontSize: 26);
+  const TextStyle _subTitle =
       TextStyle(fontWeight: FontWeight.w200, fontSize: 14, color: Colors.grey);
 
   final query = MediaQuery.of(viewService.context).size;
@@ -22,7 +22,7 @@ Widget buildView(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
             Column(
-              children: [
+              children: const [
                 Text("You're all set!", style: _title),
                 Text(
                   'Go watch anime, update your anime list, or even binge series',
@@ -33,7 +33,7 @@ Widget buildView(
             ),
             SizedBox(
               height: query.height * 0.45,
-              child: Icon(Icons.check_circle, color: Colors.green, size: 225),
+              child: const Icon(Icons.check_circle, color: Colors.green, size: 225),
             ),
             SizedBox(
                 height: query.height * 0.07,
@@ -41,7 +41,7 @@ Widget buildView(
                 child: ElevatedButton(
                     onPressed: () =>
                         dispatch(OnboardingActionCreator.dismissOnboarding()),
-                    child: Text('Close Setup'))),
+                    child: const Text('Close Setup'))),
           ])),
     ),
   );

@@ -1,33 +1,33 @@
 import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter/material.dart';
-import 'package:taiyaki/Models/Taiyaki/User.dart';
-import 'package:taiyaki/Services/API/Anilist+API.dart';
-import 'package:taiyaki/Services/API/MyAnimeList+API.dart';
-import 'package:taiyaki/Services/API/SIMKL+API.dart';
-import 'package:taiyaki/Store/GlobalUserStore/GlobalUserStore.dart';
-import 'package:taiyaki/Views/Pages/discovery_page/action.dart';
-import 'package:taiyaki/Views/Pages/settings_page/action.dart';
+import '../../../../../Models/Taiyaki/User.dart';
+import '../../../../../Services/API/Anilist+API.dart';
+import '../../../../../Services/API/MyAnimeList+API.dart';
+import '../../../../../Services/API/SIMKL+API.dart';
+import '../../../../../Store/GlobalUserStore/GlobalUserStore.dart';
+import '../../../discovery_page/action.dart';
+import '../../action.dart';
 
 import 'state.dart';
 
 Widget buildView(
     SettingsTrackersState state, Dispatch dispatch, ViewService viewService) {
   return Padding(
-    padding: EdgeInsets.symmetric(vertical: 8.0),
+    padding: const EdgeInsets.symmetric(vertical: 8.0),
     child: ListView(
       children: [
         SwitchListTile.adaptive(
-          title: Text('Auto sync at 75%'),
+          title: const Text('Auto sync at 75%'),
           value: state.appSettingsModel!.updateAt75,
           onChanged: (val) => dispatch(SettingsActionCreator.onUpdateSetting(
               state.appSettingsModel!.copyWith(updateAt75: val))),
-          secondary: Icon(Icons.sync),
-          subtitle: Text('Must be signed in to at least one tracker'),
+          secondary: const Icon(Icons.sync),
+          subtitle: const Text('Must be signed in to at least one tracker'),
         ),
         _TrackerCards(
             name: 'Anilist',
             model: GlobalUserStore.store.getState().anilistUser,
-            onLogin: () => new AnilistAPI()
+            onLogin: () => AnilistAPI()
                 .login()
                 .then((value) =>
                     dispatch(SettingsActionCreator.updateUserModel(value)))
@@ -37,13 +37,13 @@ Widget buildView(
         _TrackerCards(
             name: 'MyAnimeList',
             model: state.myanimelistUser,
-            onLogin: () => new MyAnimeListAPI().login().then((value) =>
+            onLogin: () => MyAnimeListAPI().login().then((value) =>
                 dispatch(SettingsActionCreator.updateUserModel(value))),
             onLogout: MyAnimeListAPI().logout),
         _TrackerCards(
             name: 'SIMKL',
             model: state.simklUser,
-            onLogin: () => new SimklAPI().login().then((value) =>
+            onLogin: () => SimklAPI().login().then((value) =>
                 dispatch(SettingsActionCreator.updateUserModel(value))),
             onLogout: () {}),
       ],
@@ -57,7 +57,7 @@ class _TrackerCards extends StatelessWidget {
   final VoidCallback onLogout;
   final UserModel? model;
 
-  _TrackerCards(
+  const _TrackerCards(
       {required this.name,
       required this.onLogin,
       required this.onLogout,
@@ -68,7 +68,7 @@ class _TrackerCards extends StatelessWidget {
     final bool isLoggedIn = model != null;
 
     return Card(
-      margin: EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
+      margin: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
       child: Padding(
         padding: const EdgeInsets.only(left: 10.0, right: 8.0, bottom: 10.0),
         child: Column(
@@ -79,7 +79,7 @@ class _TrackerCards extends StatelessWidget {
               children: [
                 Text(
                   name,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 20,
                   ),

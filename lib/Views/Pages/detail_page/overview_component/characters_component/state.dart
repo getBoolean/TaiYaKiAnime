@@ -1,7 +1,7 @@
 import 'package:fish_redux/fish_redux.dart';
-import 'package:taiyaki/Models/Anilist/models.dart';
-import 'package:taiyaki/Views/Pages/detail_page/character_cells/state.dart';
-import 'package:taiyaki/Views/Pages/detail_page/overview_component/state.dart';
+import '../../../../../Models/Anilist/models.dart';
+import '../../character_cells/state.dart';
+import '../state.dart';
 
 class CharactersState extends ImmutableSource
     implements Cloneable<CharactersState> {
@@ -40,7 +40,7 @@ class CharactersState extends ImmutableSource
 class CharactersConnector extends ConnOp<OverviewState, CharactersState> {
   @override
   CharactersState get(OverviewState state) {
-    final subState = new CharactersState().clone();
+    final subState = CharactersState().clone();
     subState.characters = state.data?.characters ?? [];
     return subState;
   }

@@ -1,8 +1,8 @@
 import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter/material.dart' hide Action;
 import 'package:hive/hive.dart';
-import 'package:taiyaki/Models/Taiyaki/DetailDatabase.dart';
-import 'package:taiyaki/Utils/strings.dart';
+import '../../../Models/Taiyaki/DetailDatabase.dart';
+import '../../../Utils/strings.dart';
 
 import 'action.dart';
 import 'state.dart';
@@ -19,21 +19,21 @@ Effect<HistoryState> buildEffect() {
 void _onAction(Action action, Context<HistoryState> ctx) {}
 
 void _deleteHistory(Action action, Context<HistoryState> ctx) async {
-  showDialog(
+  await showDialog(
       context: ctx.context,
       builder: (builder) => AlertDialog(
-            title: Text(
+            title: const Text(
               'Delete History?',
               style: TextStyle(
                   fontWeight: FontWeight.bold,
                   color: Colors.redAccent,
                   fontSize: 16),
             ),
-            content: Text('This action is irreversible'),
+            content: const Text('This action is irreversible'),
             actions: [
               TextButton(
                   onPressed: () => Navigator.of(ctx.context).pop(),
-                  child: Text('Cancel')),
+                  child: const Text('Cancel')),
               ElevatedButton(
                   onPressed: () {
                     final _box = Hive.box<HistoryModel>(HIVE_HISTORY_BOX);
@@ -43,7 +43,7 @@ void _deleteHistory(Action action, Context<HistoryState> ctx) async {
                     });
                   },
                   style: ElevatedButton.styleFrom(primary: Colors.red),
-                  child: Text('Delete'))
+                  child: const Text('Delete'))
             ],
           ));
 }

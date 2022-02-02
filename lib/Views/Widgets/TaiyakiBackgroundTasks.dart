@@ -7,51 +7,57 @@ import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:http/http.dart' as http;
 import 'package:path_provider/path_provider.dart';
-import 'package:taiyaki/Models/SIMKL/models.dart';
-import 'package:taiyaki/Models/Taiyaki/DetailDatabase.dart';
-import 'package:taiyaki/Models/Taiyaki/Trackers.dart';
-import 'package:taiyaki/Services/Sources/index.dart';
-import 'package:taiyaki/Utils/strings.dart';
-import 'package:taiyaki/Views/Pages/discovery_page/action.dart';
-import 'package:taiyaki/Views/Widgets/TaiyakiNotificationHandler.dart';
+import '../../Models/SIMKL/models.dart';
+import '../../Models/Taiyaki/DetailDatabase.dart';
+import '../../Models/Taiyaki/Trackers.dart';
+import '../../Services/Sources/index.dart';
+import '../../Utils/strings.dart';
+import '../Pages/discovery_page/action.dart';
+import 'TaiyakiNotificationHandler.dart';
 
 class BackgroundTasks {
   static void backgroundFetchHeadlessTask(HeadlessTask task) async {
     void registerCheck() {
-      if (Hive.isAdapterRegistered(1) == false)
+      if (Hive.isAdapterRegistered(1) == false) {
         Hive.registerAdapter(DetailDatabaseModelAdapter());
-      if (Hive.isAdapterRegistered(2) == false)
+      }
+      if (Hive.isAdapterRegistered(2) == false) {
         Hive.registerAdapter(LastWatchingModelAdapter());
-      if (Hive.isAdapterRegistered(3) == false)
+      }
+      if (Hive.isAdapterRegistered(3) == false) {
         Hive.registerAdapter(ThirdPartyBundleIdsAdapter());
-      if (Hive.isAdapterRegistered(4) == false)
+      }
+      if (Hive.isAdapterRegistered(4) == false) {
         Hive.registerAdapter(HistoryModelAdapter());
-      if (Hive.isAdapterRegistered(5) == false)
+      }
+      if (Hive.isAdapterRegistered(5) == false) {
         Hive.registerAdapter(SimklEpisodeModelAdapter());
-      if (Hive.isAdapterRegistered(6) == false)
+      }
+      if (Hive.isAdapterRegistered(6) == false) {
         Hive.registerAdapter(IndividualSettingsModelAdapter());
+      }
     }
 
-    String taskId = task.taskId;
-    bool isTimeout = task.timeout;
+    final String taskId = task.taskId;
+    final bool isTimeout = task.timeout;
     if (isTimeout) {
       // This task has exceeded its allowed running-time.
       // You must stop what you're doing and immediately .finish(taskId)
-      print("[BackgroundFetch] Headless task timed-out: $taskId");
+      print('[BackgroundFetch] Headless task timed-out: $taskId');
       BackgroundFetch.finish(taskId);
-      Hive.close();
+      await Hive.close();
       return;
     }
     print('[BackgroundFetch] Headless event received.');
 
-    Hive.initFlutter().then((value) {
+    await Hive.initFlutter().then((value) {
       registerCheck();
       Hive.openBox<DetailDatabaseModel>(HIVE_DETAIL_BOX).whenComplete(() =>
           BackgroundTasks()
               ._fetchForNewEpisodes(taskId)
               .whenComplete(() => Hive.close()));
     });
-    Hive.close();
+    await Hive.close();
     BackgroundFetch.finish(taskId);
   }
 
@@ -65,7 +71,7 @@ class BackgroundTasks {
   }
 
   static Future<void> init() async {
-    BackgroundFetch.registerHeadlessTask(
+    await BackgroundFetch.registerHeadlessTask(
         BackgroundTasks.backgroundFetchHeadlessTask);
     final BackgroundFetchConfig _config = BackgroundFetchConfig(
       minimumFetchInterval: 60,
@@ -112,7 +118,7 @@ class BackgroundTasks {
 
           episodes =
               episodes.copyWith(episodeCount: _count, notification: true);
-          Hive.box<DetailDatabaseModel>(HIVE_DETAIL_BOX)
+          await Hive.box<DetailDatabaseModel>(HIVE_DETAIL_BOX)
               .put(episodes.ids.anilist, episodes);
         }
       }

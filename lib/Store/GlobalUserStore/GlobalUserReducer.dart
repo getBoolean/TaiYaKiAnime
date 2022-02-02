@@ -1,6 +1,6 @@
 import 'package:fish_redux/fish_redux.dart';
-import 'package:taiyaki/Models/Taiyaki/Sync.dart';
-import 'package:taiyaki/Models/Taiyaki/Trackers.dart';
+import '../../Models/Taiyaki/Sync.dart';
+import '../../Models/Taiyaki/Trackers.dart';
 
 import 'GlobalUserAction.dart';
 import 'GlobalUserState.dart';
@@ -46,13 +46,13 @@ GlobalUserState _onUpdateModel(GlobalUserState state, Action action) {
   final clone = state.clone();
   switch (model.tracker) {
     case ThirdPartyTrackersEnum.anilist:
-      clone..anilistUser = model.model;
+      clone.anilistUser = model.model;
       break;
     case ThirdPartyTrackersEnum.myanimelist:
-      clone..myanimelistUser = model.model;
+      clone.myanimelistUser = model.model;
       break;
     case ThirdPartyTrackersEnum.simkl:
-      clone..simklUser = model.model;
+      clone.simklUser = model.model;
       break;
   }
   return clone;
@@ -63,13 +63,13 @@ GlobalUserState _onRemoveUser(GlobalUserState state, Action action) {
   final clone = state.clone();
   switch (tracker) {
     case ThirdPartyTrackersEnum.anilist:
-      clone..anilistUser = null;
+      clone.anilistUser = null;
       break;
     case ThirdPartyTrackersEnum.myanimelist:
-      clone..myanimelistUser = null;
+      clone.myanimelistUser = null;
       break;
     case ThirdPartyTrackersEnum.simkl:
-      clone..simklUser = null;
+      clone.simklUser = null;
       break;
   }
   return clone;

@@ -1,7 +1,7 @@
 import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
-import 'package:taiyaki/Views/Widgets/TaiyakiSize.dart';
+import '../../../Widgets/TaiyakiSize.dart';
 
 import 'state.dart';
 
@@ -27,13 +27,13 @@ Widget buildView(StatsState state, Dispatch dispatch, ViewService viewService) {
                   plotAreaBorderWidth: 0,
                   series: state.scoreDistribution,
                   primaryXAxis: CategoryAxis(
-                      majorTickLines: MajorTickLines(width: 0),
-                      axisLine: AxisLine(width: 0),
-                      majorGridLines: MajorGridLines(width: 0)),
+                      majorTickLines: const MajorTickLines(width: 0),
+                      axisLine: const AxisLine(width: 0),
+                      majorGridLines: const MajorGridLines(width: 0)),
                   primaryYAxis: NumericAxis(
                       isVisible: false,
-                      axisLine: AxisLine(width: 0),
-                      majorTickLines: MajorTickLines(size: 0))),
+                      axisLine: const AxisLine(width: 0),
+                      majorTickLines: const MajorTickLines(size: 0))),
             ),
           ),
         ),
@@ -66,7 +66,7 @@ Widget buildView(StatsState state, Dispatch dispatch, ViewService viewService) {
             height: TaiyakiSize.height * 0.34,
             child: Card(
               child: state.trendsAverageScore.first.dataSource.length <= 1
-                  ? Center(
+                  ? const Center(
                       child: Text('No trending average score data recorded'))
                   : SfCartesianChart(
                       series: state.trendsAverageScore,
@@ -75,13 +75,13 @@ Widget buildView(StatsState state, Dispatch dispatch, ViewService viewService) {
                         textStyle: _title,
                       ),
                       primaryXAxis: CategoryAxis(
-                          majorGridLines: MajorGridLines(width: 0)),
+                          majorGridLines: const MajorGridLines(width: 0)),
                       primaryYAxis: NumericAxis(
-                        majorGridLines: MajorGridLines(
+                        majorGridLines: const MajorGridLines(
                           width: 0,
                         ),
                         autoScrollingMode: AutoScrollingMode.start,
-                        axisLine: AxisLine(width: 1),
+                        axisLine: const AxisLine(width: 1),
                       ),
                     ),
             ),
@@ -92,7 +92,7 @@ Widget buildView(StatsState state, Dispatch dispatch, ViewService viewService) {
             height: TaiyakiSize.height * 0.34,
             child: Card(
               child: state.trendsWatchers.first.dataSource.length <= 1
-                  ? Center(child: Text('No trending data recorded'))
+                  ? const Center(child: Text('No trending data recorded'))
                   : SfCartesianChart(
                       series: state.trendsWatchers,
                       title: ChartTitle(
@@ -100,7 +100,7 @@ Widget buildView(StatsState state, Dispatch dispatch, ViewService viewService) {
                         textStyle: _title,
                       ),
                       primaryXAxis: CategoryAxis(
-                          majorGridLines: MajorGridLines(width: 0)),
+                          majorGridLines: const MajorGridLines(width: 0)),
                     ),
             ),
           )),

@@ -1,5 +1,5 @@
 import 'package:fish_redux/fish_redux.dart';
-import 'package:taiyaki/Store/GlobalSettingsStore/GlobalSettingsAction.dart';
+import 'GlobalSettingsAction.dart';
 
 import 'GlobalSettingsState.dart';
 

@@ -4,16 +4,16 @@ import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter/material.dart' hide Action;
 import 'package:hive/hive.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
-import 'package:taiyaki/Models/Anilist/models.dart';
-import 'package:taiyaki/Models/Taiyaki/DetailDatabase.dart';
-import 'package:taiyaki/Models/Taiyaki/Trackers.dart';
-import 'package:taiyaki/Services/API/Anilist+API.dart';
-import 'package:taiyaki/Services/API/MyAnimeList+API.dart';
-import 'package:taiyaki/Services/API/SIMKL+API.dart';
-import 'package:taiyaki/Services/Sources/index.dart';
-import 'package:taiyaki/Store/GlobalUserStore/GlobalUserStore.dart';
-import 'package:taiyaki/Utils/strings.dart';
-import 'package:taiyaki/Views/Widgets/detail_bottom_sheet.dart';
+import '../../../Models/Anilist/models.dart';
+import '../../../Models/Taiyaki/DetailDatabase.dart';
+import '../../../Models/Taiyaki/Trackers.dart';
+import '../../../Services/API/Anilist+API.dart';
+import '../../../Services/API/MyAnimeList+API.dart';
+import '../../../Services/API/SIMKL+API.dart';
+import '../../../Services/Sources/index.dart';
+import '../../../Store/GlobalUserStore/GlobalUserStore.dart';
+import '../../../Utils/strings.dart';
+import '../../Widgets/detail_bottom_sheet.dart';
 
 import 'action.dart';
 import 'state.dart';
@@ -50,21 +50,21 @@ void _showBottomSheet(Action action, Context<DetailState> ctx) {
                   context: context,
                   builder: (context) {
                     return AlertDialog(
-                      title: Text(
+                      title: const Text(
                         'Remove source link?',
                       ),
-                      content: Text(
+                      content: const Text(
                           'This will not affect your progress or tracking data'),
                       actions: [
                         TextButton(
                             onPressed: () => Navigator.of(context).pop(),
-                            child: Text('Cancel')),
+                            child: const Text('Cancel')),
                         TextButton(
                             onPressed: () {
                               final _ctx = ctx.state.detailDatabaseModel!;
                               ctx.dispatch(
                                   DetailActionCreator.udpateDetailDatabase(
-                                      new DetailDatabaseModel(
+                                      DetailDatabaseModel(
                                           title: _ctx.title,
                                           coverImage: _ctx.coverImage,
                                           ids: _ctx.ids,
@@ -74,7 +74,7 @@ void _showBottomSheet(Action action, Context<DetailState> ctx) {
                               Navigator.of(context).pop();
                               Navigator.of(context).pop();
                             },
-                            child: Text('Confirm')),
+                            child: const Text('Confirm')),
                       ],
                     );
                   });
@@ -97,14 +97,14 @@ void _showSnack(Action action, Context<DetailState> ctx) {
 void _onInit(Action action, Context<DetailState> ctx) async {
   final dynamic _ticker = ctx.stfState;
   ctx.state.tabController =
-      new TabController(length: ctx.state.tabs.length, vsync: _ticker);
+      TabController(length: ctx.state.tabs.length, vsync: _ticker);
 
   final AnilistNode data = await AnilistAPI().getDetailData(ctx.state.id,
       idMal: ctx.state.isMal ? ctx.state.id : null);
   ctx.dispatch(DetailActionCreator.updateAnilistData(data));
   ctx.dispatch(
       DetailActionCreator.updateCovers(data.bannerImage ?? data.coverImage));
-  ctx.state.coverTimer = new Timer.periodic(const Duration(seconds: 20),
+  ctx.state.coverTimer = Timer.periodic(const Duration(seconds: 20),
       (timer) => ctx.dispatch(DetailActionCreator.switchCovers()));
   ctx.dispatch(DetailActionCreator.fetchDetailDatabase());
   ctx.dispatch(DetailActionCreator.initTempDatabase());
@@ -123,14 +123,16 @@ void _onInit(Action action, Context<DetailState> ctx) async {
       ctx.state.detailDatabaseModel!.ids.simkl == null) {
     try {
       final _simklID = await SimklAPI().fetchSimklID(data.idMal);
-      if (_simklID != null)
+      if (_simklID != null) {
         ctx.dispatch(DetailActionCreator.udpateDetailDatabase(
             ctx.state.detailDatabaseModel!.copyWith(
                 ids: ctx.state.detailDatabaseModel!.ids..simkl = _simklID)));
+      }
 
-      SimklAPI().fetchSimklData(_simklID!).then((data) {
-        if (data.fanart != null)
+      await SimklAPI().fetchSimklData(_simklID!).then((data) {
+        if (data.fanart != null) {
           ctx.dispatch(DetailActionCreator.updateCovers(data.fanart!));
+        }
         return ctx.dispatch(DetailActionCreator.onUpdateSimklData(data));
       });
     } catch (error) {
@@ -172,9 +174,10 @@ void _fetchLocalDatabase(Action action, Context<DetailState> ctx) {
 
     if (_storageData != null) {
       ctx.dispatch(DetailActionCreator.udpateDetailDatabase(_storageData));
-      if (_storageData.link != null && ctx.state.episodes.isEmpty)
+      if (_storageData.link != null && ctx.state.episodes.isEmpty) {
         ctx.dispatch(
             DetailActionCreator.fetchSimklEpisodes(_storageData.link!));
+      }
     }
   }
 }
@@ -205,9 +208,10 @@ void _onFetchSimklEpisodes(Action action, Context<DetailState> ctx) async {
 
   final int? _simklID = ctx.state.detailDatabaseModel!.ids.simkl;
   if (_simklID == null) return;
-  SimklAPI().fetchSimklData(_simklID).then((data) {
-    if (data.fanart != null)
+  await SimklAPI().fetchSimklData(_simklID).then((data) {
+    if (data.fanart != null) {
       ctx.dispatch(DetailActionCreator.updateCovers(data.fanart!));
+    }
     return ctx.dispatch(DetailActionCreator.onUpdateSimklData(data));
   });
 

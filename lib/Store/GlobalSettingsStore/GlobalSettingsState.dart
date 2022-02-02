@@ -1,8 +1,8 @@
 import 'package:fish_redux/fish_redux.dart';
-import 'package:taiyaki/Models/Taiyaki/Settings.dart';
+import '../../Models/Taiyaki/Settings.dart';
 
 abstract class GlobalSettingsBaseState {
-  AppSettingsModel appSettings = new AppSettingsModel();
+  AppSettingsModel appSettings = AppSettingsModel();
 }
 
 class GlobalSettingsState
@@ -12,5 +12,5 @@ class GlobalSettingsState
       GlobalSettingsState()..appSettings = appSettings;
 
   @override
-  AppSettingsModel appSettings = new AppSettingsModel();
+  AppSettingsModel appSettings = AppSettingsModel();
 }

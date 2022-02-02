@@ -8,7 +8,7 @@ class SearchBar extends StatefulWidget {
   final String? placeholder;
   final bool isLoading;
 
-  SearchBar(
+  const SearchBar(
       {required this.onEnter,
       this.isLoading = false,
       this.onDelayedEnter,
@@ -68,25 +68,24 @@ class _SearchBarState extends State<SearchBar> {
                       helperText: widget.placeholder ?? 'Search for an anime',
                     ),
                     onChanged: (String query) {
-                      if (query.length > 1)
-                        this.setState(() => _showClear = true);
-                      else
-                        this.setState(() => _showClear = false);
+                      if (query.length > 1) {
+                        setState(() => _showClear = true);
+                      } else {
+                        setState(() => _showClear = false);
+                      }
 
                       if (widget.onDelayedEnter == null) widget.onEnter(query);
                     },
                     textInputAction: TextInputAction.search,
-                    onSubmitted: widget.onDelayedEnter != null
-                        ? widget.onDelayedEnter
-                        : widget.onEnter,
+                    onSubmitted: widget.onDelayedEnter ?? widget.onEnter,
                   ),
                 ),
                 if (_showClear == true)
                   IconButton(
-                    icon: Icon(Icons.close),
+                    icon: const Icon(Icons.close),
                     onPressed: () {
                       _textController.clear();
-                      this.setState(() => _showClear = false);
+                      setState(() => _showClear = false);
                     },
                   )
               ],

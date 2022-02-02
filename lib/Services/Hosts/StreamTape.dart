@@ -1,8 +1,8 @@
 import 'dart:convert';
 
 import 'package:html/parser.dart';
-import 'package:taiyaki/Services/Exceptions/API/Exceptions+API.dart';
-import 'package:taiyaki/Services/Sources/Base.dart';
+import '../Exceptions/API/Exceptions+API.dart';
+import '../Sources/Base.dart';
 
 import 'Base.dart';
 

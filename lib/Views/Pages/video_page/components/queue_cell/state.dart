@@ -1,5 +1,5 @@
 import 'package:fish_redux/fish_redux.dart';
-import 'package:taiyaki/Models/SIMKL/models.dart';
+import '../../../../../Models/SIMKL/models.dart';
 
 class QueueCellState implements Cloneable<QueueCellState> {
   SimklEpisodeModel? simklEpisodeModel;

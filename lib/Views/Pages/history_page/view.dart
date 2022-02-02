@@ -1,9 +1,9 @@
 import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:focus_detector/focus_detector.dart';
-import 'package:taiyaki/Views/Pages/history_page/action.dart';
-import 'package:taiyaki/Views/Widgets/platform_scaffold.dart';
 
+import '../../Widgets/platform_scaffold.dart';
+import 'action.dart';
 import 'state.dart';
 
 Widget buildView(
@@ -14,7 +14,7 @@ Widget buildView(
     actions: [
       if (state.historyItems.isNotEmpty)
         IconButton(
-            icon: Icon(Icons.delete),
+            icon: const Icon(Icons.delete),
             onPressed: () => dispatch(HistoryActionCreator.deleteHistory()))
     ],
     child: FocusDetector(
@@ -28,10 +28,10 @@ Widget buildView(
               : Center(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
+                    children: const [
                       Icon(Icons.all_inbox, size: 75),
                       Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: EdgeInsets.all(8.0),
                         child: Text('No history items recorded'),
                       )
                     ],

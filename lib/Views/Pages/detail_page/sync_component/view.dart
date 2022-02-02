@@ -1,12 +1,12 @@
 import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
-import 'package:taiyaki/Models/Taiyaki/Sync.dart';
-import 'package:taiyaki/Models/Taiyaki/Trackers.dart';
-import 'package:taiyaki/Views/Pages/detail_page/sync_component/action.dart';
-import 'package:taiyaki/Views/Widgets/TaiyakiSize.dart';
-import 'package:taiyaki/Views/Widgets/update_page.dart';
 
+import '../../../../Models/Taiyaki/Sync.dart';
+import '../../../../Models/Taiyaki/Trackers.dart';
+import '../../../Widgets/TaiyakiSize.dart';
+import '../../../Widgets/update_page.dart';
+import 'action.dart';
 import 'state.dart';
 
 Widget buildView(SyncState state, Dispatch dispatch, ViewService viewService) {
@@ -16,13 +16,13 @@ Widget buildView(SyncState state, Dispatch dispatch, ViewService viewService) {
       ? Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [
+            children: const [
               Icon(
                 Icons.verified_user,
                 size: 75,
               ),
               Padding(
-                padding: const EdgeInsets.all(12.0),
+                padding: EdgeInsets.all(12.0),
                 child: Text(
                     'Sign in to a tracker in Settings to start keeping track of what you watch',
                     textAlign: TextAlign.center,
@@ -92,22 +92,25 @@ Widget buildView(SyncState state, Dispatch dispatch, ViewService viewService) {
                                     SyncModel(progress: 0),
                                 bulkIds: state.ids,
                                 onUpdateAnilist: (model) {
-                                  if (model != null)
+                                  if (model != null) {
                                     dispatch(SyncActionCreator.onUpdateAnilist(
                                         model));
+                                  }
                                 },
                                 onUpdateSimkl: (model) {
-                                  if (model != null)
+                                  if (model != null) {
                                     dispatch(
                                         SyncActionCreator.onUpdateSimkl(model));
+                                  }
                                 },
                                 onUpdateMAL: (model) {
-                                  if (model != null)
+                                  if (model != null) {
                                     dispatch(
                                         SyncActionCreator.onUpdateMAL(model));
+                                  }
                                 },
                               )),
-                      child: Text(
+                      child: const Text(
                         'Update All',
                         style: TextStyle(
                             fontWeight: FontWeight.bold, fontSize: 17),
@@ -128,7 +131,7 @@ class _SyncCards extends StatelessWidget {
   final Function(SyncModel)? onUpdateMAL;
   final Function(SyncModel)? onUpdateSIMKL;
 
-  _SyncCards(
+  const _SyncCards(
       {required this.name,
       required this.model,
       required this.tracker,
@@ -156,7 +159,7 @@ class _SyncCards extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 8.0),
                     child: Text(name,
-                        style: TextStyle(
+                        style: const TextStyle(
                             fontWeight: FontWeight.bold, fontSize: 21)),
                   ),
                 ],
@@ -195,7 +198,7 @@ class _SyncCards extends StatelessWidget {
                                 },
                               ))
                       : null,
-                  child: Text('Edit'),
+                  child: const Text('Edit'),
                 ),
               )
             ],
@@ -210,7 +213,7 @@ class _InfoRow extends StatelessWidget {
   final String title;
   final String? data;
 
-  _InfoRow({required this.title, this.data});
+  const _InfoRow({required this.title, this.data});
 
   @override
   Widget build(BuildContext context) {
@@ -223,7 +226,7 @@ class _InfoRow extends StatelessWidget {
             children: [
               Text(
                 title,
-                style: TextStyle(fontWeight: FontWeight.w700, fontSize: 16),
+                style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 16),
               ),
               Container(
                   constraints:
@@ -235,7 +238,7 @@ class _InfoRow extends StatelessWidget {
             ],
           ),
         ),
-        Divider(),
+        const Divider(),
       ],
     );
   }

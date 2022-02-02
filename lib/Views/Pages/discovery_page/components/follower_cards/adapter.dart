@@ -1,5 +1,5 @@
 import 'package:fish_redux/fish_redux.dart';
-import 'package:taiyaki/Views/Pages/discovery_page/components/follower_cells/component.dart';
+import '../follower_cells/component.dart';
 
 import 'state.dart';
 

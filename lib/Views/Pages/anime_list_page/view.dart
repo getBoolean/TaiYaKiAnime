@@ -1,6 +1,6 @@
 import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter/material.dart';
-import 'package:taiyaki/Views/Widgets/TaiyakiSize.dart';
+import '../../Widgets/TaiyakiSize.dart';
 
 import 'state.dart';
 
@@ -11,7 +11,7 @@ Widget buildView(
       appBar: AppBar(
           title: Text(
         state.list.first.status,
-        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
+        style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
       )),
       body: ListView.builder(
         itemExtent: TaiyakiSize.height * 0.15,

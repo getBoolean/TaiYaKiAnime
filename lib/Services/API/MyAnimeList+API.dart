@@ -4,15 +4,16 @@ import 'package:dio/dio.dart';
 import 'package:dotenv/dotenv.dart' show env;
 import 'package:flutter_secure_storage/flutter_secure_storage.dart'
     hide Options;
-import 'package:taiyaki/Models/MyAnimeList/models.dart';
-import 'package:taiyaki/Models/Taiyaki/Sync.dart';
-import 'package:taiyaki/Models/Taiyaki/Trackers.dart';
-import 'package:taiyaki/Models/Taiyaki/User.dart';
-import 'package:taiyaki/Services/API/Base+API.dart';
-import 'package:taiyaki/Services/Exceptions/API/Exceptions+API.dart';
-import 'package:taiyaki/Store/GlobalUserStore/GlobalUserAction.dart';
-import 'package:taiyaki/Store/GlobalUserStore/GlobalUserStore.dart';
-import 'package:taiyaki/Utils/strings.dart';
+
+import '../../Models/MyAnimeList/models.dart';
+import '../../Models/Taiyaki/Sync.dart';
+import '../../Models/Taiyaki/Trackers.dart';
+import '../../Models/Taiyaki/User.dart';
+import '../../Store/GlobalUserStore/GlobalUserAction.dart';
+import '../../Store/GlobalUserStore/GlobalUserStore.dart';
+import '../../Utils/strings.dart';
+import '../Exceptions/API/Exceptions+API.dart';
+import 'Base+API.dart';
 
 class _Bearer {
   final String accessToken;
@@ -59,14 +60,12 @@ class _Node {
   factory _Node.fromJson(Map<String, dynamic> json) => _Node(
       json['id'],
       json['title'],
-      json['main_picture']['large'] != null
-          ? json['main_picture']['large']
-          : json['main_picture']['medium'],
+      json['main_picture']['large'] ?? json['main_picture']['medium'],
       json['num_episodes']);
 }
 
 class MyAnimeListAPI with OauthLoginHandler implements BaseTracker {
-  late Dio _request = new Dio(BaseOptions(
+  late final Dio _request = Dio(BaseOptions(
       baseUrl: 'https://api.myanimelist.net/v2',
       contentType: Headers.jsonContentType))
     ..interceptors.add(InterceptorsWrapper(onRequest:
@@ -75,12 +74,13 @@ class MyAnimeListAPI with OauthLoginHandler implements BaseTracker {
       if (_tokens?.accessToken != null) {
         if (DateTime.now().difference(_tokens!.expiresIn!).inMinutes <= 0) {
           _request.interceptors.requestLock.lock();
-          final _newToken = await this.refreshTokens(_tokens.refreshToken!);
+          final _newToken = await refreshTokens(_tokens.refreshToken!);
           options.headers.addAll({'Authorization': 'Bearer ' + _newToken});
           _request.interceptors.requestLock.unlock();
-        } else
+        } else {
           options.headers
               .addAll({'Authorization': 'Bearer ' + _tokens.accessToken});
+        }
       }
 
       return handler.next(options);
@@ -88,7 +88,7 @@ class MyAnimeListAPI with OauthLoginHandler implements BaseTracker {
 
   @override
   Future<UpdateModel> login() async {
-    final _storage = new FlutterSecureStorage();
+    const _storage = const FlutterSecureStorage();
     final String challenge = getRandString(100);
     final Uri _authEndpoint = Uri(
         scheme: 'https',
@@ -105,7 +105,7 @@ class MyAnimeListAPI with OauthLoginHandler implements BaseTracker {
     final Uri _tokenEndpoint =
         Uri.parse('https://myanimelist.net/v1/oauth2/token');
 
-    final String _redirectEndpoint = 'taiyaki://myanimelist/redirect';
+    const String _redirectEndpoint = 'taiyaki://myanimelist/redirect';
 
     final _code =
         Uri.parse(await obtainCode(_authEndpoint)).queryParameters['code'];
@@ -121,11 +121,11 @@ class MyAnimeListAPI with OauthLoginHandler implements BaseTracker {
         options: Options(contentType: Headers.formUrlEncodedContentType));
 
     if (_tokenResponse.statusCode == 200) {
-      final _Bearer _bearer = new _Bearer.fromJson(_tokenResponse.data);
+      final _Bearer _bearer = _Bearer.fromJson(_tokenResponse.data);
       final UserModel model = UserModel(
           accessToken: _bearer.accessToken,
           refreshToken: _bearer.refreshToken,
-          expiresIn: new DateTime.now().add(
+          expiresIn: DateTime.now().add(
             Duration(seconds: _bearer.expiry),
           ));
       final UpdateModel updateModel = UpdateModel(
@@ -134,22 +134,25 @@ class MyAnimeListAPI with OauthLoginHandler implements BaseTracker {
       await Future.sync(() => GlobalUserStore.store
           .dispatch(GlobalUserActionCreator.onUpdateUser(updateModel)));
 
-      _storage
+      await _storage
           .write(key: 'myanimelist', value: json.encode(model.toMap()))
-          .whenComplete(() => this.getProfile());
+          .whenComplete(() => getProfile());
 
       return updateModel;
-    } else
+    } else {
       throw APIException(message: 'Could not grab the access token from MAL');
+    }
   }
 
   @override
   Future<SyncModel> syncProgress(int id, SyncModel syncModel) async {
     final Map<String, dynamic> data = {};
-    if (syncModel.progress != null)
+    if (syncModel.progress != null) {
       data.addAll({'num_watched_episodes': syncModel.progress});
-    if (syncModel.status != null && syncModel.status != 'Not in List')
+    }
+    if (syncModel.status != null && syncModel.status != 'Not in List') {
       data.addAll({'status': SyncModel.convertToMAL(syncModel.status)});
+    }
     if (syncModel.score != null) data.addAll({'score': syncModel.score});
 
     final _response = await _request.put('/anime/$id/my_list_status',
@@ -158,7 +161,7 @@ class MyAnimeListAPI with OauthLoginHandler implements BaseTracker {
           contentType: Headers.formUrlEncodedContentType,
         ));
 
-    MyAnimeListEntryModel _model =
+    final MyAnimeListEntryModel _model =
         MyAnimeListEntryModel.fromJson(_response.data);
     return SyncModel(
         progress: _model.numWatchedEpisodes,
@@ -178,7 +181,7 @@ class MyAnimeListAPI with OauthLoginHandler implements BaseTracker {
         .myanimelistUser!
         .copyWith(username: model.name, avatar: model.avatar, id: model.id);
 
-    storage
+    await storage
         .write(key: 'myanimelist', value: json.encode(_user.toMap()))
         .whenComplete(() => GlobalUserStore.store.dispatch(
             GlobalUserActionCreator.onUpdateUser(UpdateModel(
@@ -210,19 +213,19 @@ class MyAnimeListAPI with OauthLoginHandler implements BaseTracker {
           contentType: Headers.formUrlEncodedContentType,
         ));
 
-    final _Bearer _bearer = new _Bearer.fromJson(_tokens.data);
+    final _Bearer _bearer = _Bearer.fromJson(_tokens.data);
 
     final UserModel model =
         GlobalUserStore.store.getState().myanimelistUser!.copyWith(
             accessToken: _bearer.accessToken,
             refreshToken: _bearer.refreshToken,
-            expiresIn: new DateTime.now().add(
+            expiresIn: DateTime.now().add(
               Duration(seconds: _bearer.expiry),
             ));
     final UpdateModel updateModel =
         UpdateModel(model: model, tracker: ThirdPartyTrackersEnum.myanimelist);
 
-    storage
+    await storage
         .write(key: 'myanimelist', value: json.encode(model.toMap()))
         .whenComplete(() => GlobalUserStore.store
             .dispatch(GlobalUserActionCreator.onUpdateUser(updateModel)));

@@ -1,7 +1,7 @@
 import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter/material.dart' hide Action;
-import 'package:taiyaki/Models/Taiyaki/Trackers.dart';
-import 'package:taiyaki/Views/Pages/detail_page/page.dart';
+import '../../../Models/Taiyaki/Trackers.dart';
+import '../detail_page/page.dart';
 
 import 'action.dart';
 import 'state.dart';

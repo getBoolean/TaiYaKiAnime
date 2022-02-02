@@ -1,11 +1,11 @@
 import 'package:fish_redux/fish_redux.dart';
-import 'package:taiyaki/Models/Anilist/models.dart';
-import 'package:taiyaki/Models/MyAnimeList/models.dart';
-import 'package:taiyaki/Models/Taiyaki/Sync.dart';
-import 'package:taiyaki/Models/Taiyaki/Trackers.dart';
-import 'package:taiyaki/Services/API/SIMKL+API.dart';
-import 'package:taiyaki/Store/GlobalUserStore/GlobalUserStore.dart';
-import 'package:taiyaki/Views/Pages/detail_page/state.dart';
+import '../../../../Models/Anilist/models.dart';
+import '../../../../Models/MyAnimeList/models.dart';
+import '../../../../Models/Taiyaki/Sync.dart';
+import '../../../../Models/Taiyaki/Trackers.dart';
+import '../../../../Services/API/SIMKL+API.dart';
+import '../../../../Store/GlobalUserStore/GlobalUserStore.dart';
+import '../state.dart';
 
 class SyncState implements Cloneable<SyncState> {
   SyncModel? anilistSync;
@@ -69,13 +69,14 @@ class SyncConnector extends ConnOp<DetailState, SyncState> {
           score: _match.score?.toInt(),
           status: _match.status,
         );
-      } else
+      } else {
         subState.simklSync = SyncModel(
           progress: 0,
           status: 'Not in List',
           score: 0,
           episodes: state.anilistData?.episodes,
         );
+      }
     }
 
     return subState;

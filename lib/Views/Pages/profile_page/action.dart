@@ -1,6 +1,6 @@
 import 'package:fish_redux/fish_redux.dart';
-import 'package:taiyaki/Models/Anilist/models.dart';
-import 'package:taiyaki/Models/Taiyaki/Sync.dart';
+import '../../../Models/Anilist/models.dart';
+import '../../../Models/Taiyaki/Sync.dart';
 
 //TODO replace with your own action
 enum ProfileAction { action, updateStats, moveToList }

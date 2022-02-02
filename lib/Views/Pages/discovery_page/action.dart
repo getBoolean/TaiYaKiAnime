@@ -1,7 +1,7 @@
 import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:taiyaki/Models/Anilist/models.dart';
-import 'package:taiyaki/Models/Taiyaki/DetailDatabase.dart';
+import '../../../Models/Anilist/models.dart';
+import '../../../Models/Taiyaki/DetailDatabase.dart';
 
 enum DiscoveryAction {
   action,

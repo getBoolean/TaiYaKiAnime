@@ -2,15 +2,16 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:dotenv/dotenv.dart' show env;
-import 'package:taiyaki/Models/SIMKL/models.dart';
-import 'package:taiyaki/Models/Taiyaki/Sync.dart';
-import 'package:taiyaki/Models/Taiyaki/Trackers.dart';
-import 'package:taiyaki/Models/Taiyaki/User.dart';
-import 'package:taiyaki/Services/API/Base+API.dart';
-import 'package:taiyaki/Services/Exceptions/API/Exceptions+API.dart';
-import 'package:taiyaki/Store/GlobalUserStore/GlobalUserAction.dart';
-import 'package:taiyaki/Store/GlobalUserStore/GlobalUserStore.dart';
-import 'package:taiyaki/Utils/strings.dart';
+
+import '../../Models/SIMKL/models.dart';
+import '../../Models/Taiyaki/Sync.dart';
+import '../../Models/Taiyaki/Trackers.dart';
+import '../../Models/Taiyaki/User.dart';
+import '../../Store/GlobalUserStore/GlobalUserAction.dart';
+import '../../Store/GlobalUserStore/GlobalUserStore.dart';
+import '../../Utils/strings.dart';
+import '../Exceptions/API/Exceptions+API.dart';
+import 'Base+API.dart';
 
 class _Bearer {
   final String accessToken;
@@ -29,14 +30,14 @@ class _SimklSyncModel {
   _SimklSyncModel({this.status, required this.id, this.malID, this.episodes});
 
   toJson() {
-    if (status != null)
+    if (status != null) {
       return {
         'to': _nativeToSimklStatus(status!),
         'ids': {
           'simkl': id,
         }
       };
-    else {
+    } else {
       return '''
      {
       'shows': [
@@ -62,22 +63,23 @@ class SimklAPI with OauthLoginHandler implements BaseTracker {
         ..interceptors.add(InterceptorsWrapper(onRequest:
             (RequestOptions options, RequestInterceptorHandler handler) {
           final _token = GlobalUserStore.store.getState().simklUser;
-          if (_token != null)
+          if (_token != null) {
             options.headers
                 .addAll({'Authorization': 'Bearer ' + _token.accessToken});
+          }
           return handler.next(options);
         }));
 
   @override
   Future getProfile() async {
-    final _response = await this._request.get('/users/settings');
+    final _response = await _request.get('/users/settings');
     final SimklUserModel model = SimklUserModel.fromJson(_response.data);
     final UserModel _user = GlobalUserStore.store
         .getState()
         .simklUser!
         .copyWith(username: model.name, avatar: model.avatar, id: model.id);
 
-    storage.write(key: 'simkl', value: json.encode(_user.toMap())).whenComplete(
+    await storage.write(key: 'simkl', value: json.encode(_user.toMap())).whenComplete(
         () => GlobalUserStore.store.dispatch(
             GlobalUserActionCreator.onUpdateUser(UpdateModel(
                 model: _user, tracker: ThirdPartyTrackersEnum.simkl))));
@@ -85,7 +87,7 @@ class SimklAPI with OauthLoginHandler implements BaseTracker {
 
   @override
   Future<UpdateModel> login() async {
-    final _redirectUri = 'taiyaki://simkl/redirect';
+    const _redirectUri = 'taiyaki://simkl/redirect';
     final _authEndpoint = Uri(
         scheme: 'https',
         host: 'simkl.com',
@@ -95,11 +97,11 @@ class SimklAPI with OauthLoginHandler implements BaseTracker {
           'client_id': env['SIMKL_CLIENT_ID'],
           'redirect_uri': _redirectUri,
         });
-    final _tokenEndpoint = 'https://api.simkl.com/oauth/token';
+    const _tokenEndpoint = 'https://api.simkl.com/oauth/token';
     final String _code =
         Uri.parse(await obtainCode(_authEndpoint)).queryParameters['code']!;
-    if (_code.length != 0) {
-      final _response = await new Dio().post(_tokenEndpoint, data: {
+    if (_code.isNotEmpty) {
+      final _response = await Dio().post(_tokenEndpoint, data: {
         'code': _code,
         'client_id': env['SIMKL_CLIENT_ID'],
         'client_secret': env['SIMKL_CLIENT_SECRET'],
@@ -122,13 +124,15 @@ class SimklAPI with OauthLoginHandler implements BaseTracker {
             .write(key: 'simkl', value: json.encode(_userModel.toMap()))
             .whenComplete(() => GlobalUserStore.store
                 .dispatch(GlobalUserActionCreator.onUpdateUser(_updateModel)))
-            .whenComplete(() => this.getProfile());
+            .whenComplete(() => getProfile());
         return _updateModel;
-      } else
+      } else {
         throw APIException(message: 'Could not obtain Bearer token from SIMKL');
-    } else
-      throw new APIException(
+      }
+    } else {
+      throw APIException(
           message: 'Could not obtain authorization code from SIMKL');
+    }
   }
 
   @override
@@ -146,10 +150,11 @@ class SimklAPI with OauthLoginHandler implements BaseTracker {
       final _json =
           _SimklSyncModel(id: id, episodes: syncModel.progress).toJson();
       final _response = await _request.post('/sync/history', data: _json);
-      if (_response.statusCode == 200)
+      if (_response.statusCode == 200) {
         return syncModel;
-      else
-        throw new APIException(message: 'Simkl could not update the episodes');
+      } else {
+        throw APIException(message: 'Simkl could not update the episodes');
+      }
     }
 
     throw UnimplementedError();
@@ -158,10 +163,11 @@ class SimklAPI with OauthLoginHandler implements BaseTracker {
   Future<int?> fetchSimklID(int malID) async {
     final _response =
         await _request.get('/search/id', queryParameters: {'mal': malID});
-    if (_response.data == null || (_response.data as List).isEmpty)
-      throw new APIException(
+    if (_response.data == null || (_response.data as List).isEmpty) {
+      throw APIException(
           message:
               'SIMKL does not have the ID for this anime. Is it airing yet?');
+    }
     final _id = SimklIDLookupModel.fromJson((_response.data as List).first);
     return _id.simklID;
   }
@@ -173,7 +179,7 @@ class SimklAPI with OauthLoginHandler implements BaseTracker {
       final _json = SimklNode.fromJson(_response.data);
       return _json;
     }
-    throw new APIException(
+    throw APIException(
         message: 'Simkl could not find any anime associated with this ID');
   }
 
@@ -188,7 +194,7 @@ class SimklAPI with OauthLoginHandler implements BaseTracker {
   @override
   Future<List<AnimeListModel>> getAnimeList() async {
     final _response = await _request.get('/sync/all-items/anime');
-    final List<SimklUserListModel> _list = new List<SimklUserListModel>.from(
+    final List<SimklUserListModel> _list = List<SimklUserListModel>.from(
         _response.data['anime']
             .map((e) => SimklUserListModel.fromJson(e))
             .toList());

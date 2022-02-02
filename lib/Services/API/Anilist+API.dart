@@ -3,15 +3,16 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:dotenv/dotenv.dart' show env;
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:taiyaki/Models/Anilist/models.dart';
-import 'package:taiyaki/Models/Anilist/typed_models.dart';
-import 'package:taiyaki/Models/Taiyaki/Sync.dart';
-import 'package:taiyaki/Models/Taiyaki/Trackers.dart';
-import 'package:taiyaki/Models/Taiyaki/User.dart';
-import 'package:taiyaki/Services/API/Base+API.dart';
-import 'package:taiyaki/Services/Exceptions/API/Exceptions+API.dart';
-import 'package:taiyaki/Store/GlobalUserStore/GlobalUserAction.dart';
-import 'package:taiyaki/Store/GlobalUserStore/GlobalUserStore.dart';
+
+import '../../Models/Anilist/models.dart';
+import '../../Models/Anilist/typed_models.dart';
+import '../../Models/Taiyaki/Sync.dart';
+import '../../Models/Taiyaki/Trackers.dart';
+import '../../Models/Taiyaki/User.dart';
+import '../../Store/GlobalUserStore/GlobalUserAction.dart';
+import '../../Store/GlobalUserStore/GlobalUserStore.dart';
+import '../Exceptions/API/Exceptions+API.dart';
+import 'Base+API.dart';
 
 class _Bearer {
   final String accessToken;
@@ -23,7 +24,7 @@ class _Bearer {
 }
 
 class AnilistAPI with OauthLoginHandler implements BaseTracker {
-  final Dio _request = new Dio(
+  final Dio _request = Dio(
     BaseOptions(
       baseUrl: 'https://graphql.anilist.co',
       contentType: Headers.jsonContentType,
@@ -32,13 +33,14 @@ class AnilistAPI with OauthLoginHandler implements BaseTracker {
   )..interceptors.add(
       InterceptorsWrapper(
         onError: (DioError error, onError) {
-          throw new Exception(error.toString());
+          throw Exception(error.toString());
         },
         onRequest: (RequestOptions options, RequestInterceptorHandler handler) {
           final _token =
               GlobalUserStore.store.getState().anilistUser?.accessToken;
-          if (_token != null)
+          if (_token != null) {
             options.headers.addAll({'Authorization': 'Bearer $_token'});
+          }
 
           return handler.next(options);
         },
@@ -77,18 +79,19 @@ class AnilistAPI with OauthLoginHandler implements BaseTracker {
     if (_response.statusCode == 200) {
       final List<AnilistNode> model = List<AnilistNode>.from(
           ((_response.data['data']['Page']['media'])
-              .map((i) => new AnilistNode.fromJson(i))
+              .map((i) => AnilistNode.fromJson(i))
               .toList()));
       return model;
-    } else
-      throw new APIException(
+    } else {
+      throw APIException(
           message: 'Could not get a valid response from the Anilist server');
+    }
   }
 
   Future<MediaListEntryModel?> getMediaList(int id) async {
     final _response = await _request
         .post('', data: {'query': AnilistGraphTypes.fetchEntry(id)});
-    if (_response.data['data']["Media"]['mediaListEntry'] != null) {
+    if (_response.data['data']['Media']['mediaListEntry'] != null) {
       final MediaListEntryModel entry = MediaListEntryModel.fromJson(
           _response.data['data']['Media']['mediaListEntry']);
       return entry;
@@ -103,17 +106,18 @@ class AnilistAPI with OauthLoginHandler implements BaseTracker {
       final AnilistNode data =
           AnilistNode.fromJson(_response.data['data']['Media']);
       return data;
-    } else
-      throw new APIException(
+    } else {
+      throw APIException(
           message: 'Could not get a valid response from the Anilist server');
+    }
   }
 
   @override
   Future<UpdateModel> login() async {
-    final _storage = new FlutterSecureStorage();
+    const _storage = FlutterSecureStorage();
     final _clientID = env['ANILIST_CLIENT_ID']!;
     final _clientSecret = env['ANILIST_CLIENT_SECRET']!;
-    final _redirectEndpoint = 'taiyaki://anilist/redirect';
+    const _redirectEndpoint = 'taiyaki://anilist/redirect';
 
     final _authEndpoint = Uri(
         scheme: 'https',
@@ -131,7 +135,7 @@ class AnilistAPI with OauthLoginHandler implements BaseTracker {
     final String _codeResponse = await obtainCode(_authEndpoint);
     final _code = Uri.parse(_codeResponse).queryParameters['code'];
     if (_code != null) {
-      final _authResponse = await new Dio().postUri(_tokenEndpoint, data: {
+      final _authResponse = await Dio().postUri(_tokenEndpoint, data: {
         'grant_type': 'authorization_code',
         'client_id': _clientID,
         'client_secret': _clientSecret,
@@ -140,8 +144,8 @@ class AnilistAPI with OauthLoginHandler implements BaseTracker {
       });
 
       if (_authResponse.statusCode == 200) {
-        final _Bearer _bearer = new _Bearer.fromJson(_authResponse.data);
-        UserModel _userModel = UserModel(accessToken: _bearer.accessToken);
+        final _Bearer _bearer = _Bearer.fromJson(_authResponse.data);
+        final UserModel _userModel = UserModel(accessToken: _bearer.accessToken);
         UpdateModel model;
         await _storage.write(
             key: 'anilist', value: json.encode(_userModel.toMap()));
@@ -150,14 +154,16 @@ class AnilistAPI with OauthLoginHandler implements BaseTracker {
             tracker: ThirdPartyTrackersEnum.anilist, model: _userModel);
         GlobalUserStore.store
             .dispatch(GlobalUserActionCreator.onUpdateUser(model));
-        this.getProfile();
+        await getProfile();
         return model;
-      } else
-        throw new APIException(
+      } else {
+        throw APIException(
             message: 'Could not obtain the Bearer token from Anilist');
-    } else
-      throw new APIException(
+      }
+    } else {
+      throw APIException(
           message: 'Could not obtain an authorization code from Anilist');
+    }
   }
 
   @override
@@ -173,8 +179,9 @@ class AnilistAPI with OauthLoginHandler implements BaseTracker {
           status: model.status,
           score: model.score,
           episodes: syncModel.episodes);
-    } else
+    } else {
       throw APIException(message: 'Error updating your data to Anilist');
+    }
   }
 
   @override
@@ -184,7 +191,7 @@ class AnilistAPI with OauthLoginHandler implements BaseTracker {
 
     if (_response.statusCode == 200) {
       final AnilistViewerModel viewerModel =
-          new AnilistViewerModel.fromJson(_response.data);
+          AnilistViewerModel.fromJson(_response.data);
       final UserModel _user = GlobalUserStore.store
           .getState()
           .anilistUser!
@@ -194,14 +201,15 @@ class AnilistAPI with OauthLoginHandler implements BaseTracker {
               background: viewerModel.bannerImage,
               id: viewerModel.id);
 
-      storage
+      await storage
           .write(key: 'anilist', value: json.encode(_user.toMap()))
           .whenComplete(() => GlobalUserStore.store.dispatch(
               GlobalUserActionCreator.onUpdateUser(UpdateModel(
                   model: _user, tracker: ThirdPartyTrackersEnum.anilist))));
-    } else
-      throw new APIException(
+    } else {
+      throw APIException(
           message: 'Could not obtain the user profile from Anilist');
+    }
   }
 
   @override
@@ -229,8 +237,9 @@ class AnilistAPI with OauthLoginHandler implements BaseTracker {
       GlobalUserStore.store.dispatch(GlobalUserActionCreator.onUpdateUserList(
           data, ThirdPartyTrackersEnum.anilist));
       return data;
-    } else
+    } else {
       throw APIException(message: 'Could not obtain the users anime list');
+    }
   }
 
   Future<AnilistViewerStats> grabStats() async {
@@ -248,7 +257,7 @@ class AnilistAPI with OauthLoginHandler implements BaseTracker {
       case 'PLANNING':
         return 'Planning';
       case 'COMPLETED':
-        return "Completed";
+        return 'Completed';
       case 'PAUSED':
         return 'On Hold';
       case 'DROPPED':

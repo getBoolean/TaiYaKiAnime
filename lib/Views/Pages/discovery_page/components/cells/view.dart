@@ -1,9 +1,9 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter/material.dart';
-import 'package:taiyaki/Views/Pages/discovery_page/components/cells/action.dart';
-import 'package:taiyaki/Views/Widgets/taiyaki_image.dart';
 
+import '../../../../Widgets/taiyaki_image.dart';
+import 'action.dart';
 import 'state.dart';
 
 Widget buildView(
@@ -31,7 +31,7 @@ Widget buildView(
                 ),
                 Container(
                   height: 50,
-                  padding: EdgeInsets.symmetric(
+                  padding: const EdgeInsets.symmetric(
                     horizontal: 8.0,
                     vertical: 6.0,
                   ),
@@ -40,7 +40,7 @@ Widget buildView(
                     child: AutoSizeText(
                       state.title,
                       textAlign: TextAlign.left,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 13,
                       ),

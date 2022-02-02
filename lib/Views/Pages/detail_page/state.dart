@@ -3,12 +3,12 @@ import 'dart:async';
 import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
-import 'package:taiyaki/Models/Anilist/models.dart';
-import 'package:taiyaki/Models/MyAnimeList/models.dart';
-import 'package:taiyaki/Models/SIMKL/models.dart';
-import 'package:taiyaki/Models/Taiyaki/DetailDatabase.dart';
-import 'package:taiyaki/Utils/strings.dart';
-import 'package:taiyaki/Views/Pages/detail_page/page.dart';
+import '../../../Models/Anilist/models.dart';
+import '../../../Models/MyAnimeList/models.dart';
+import '../../../Models/SIMKL/models.dart';
+import '../../../Models/Taiyaki/DetailDatabase.dart';
+import '../../../Utils/strings.dart';
+import 'page.dart';
 
 class DetailState implements Cloneable<DetailState> {
   late int id;
@@ -26,7 +26,7 @@ class DetailState implements Cloneable<DetailState> {
 
   Timer? coverTimer;
 
-  final GlobalKey<ScaffoldState> scaffoldKey = new GlobalKey<ScaffoldState>();
+  final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
   MyAnimeListEntryModel? malEntryData;
 
@@ -35,17 +35,17 @@ class DetailState implements Cloneable<DetailState> {
   List<SimklEpisodeModel> episodes = [];
 
   final List<Tab> tabs = [
-    Tab(
+    const Tab(
       text: 'Overview',
     ),
-    Tab(
+    const Tab(
       text: 'Sync',
     ),
-    Tab(
+    const Tab(
       text: 'Watch',
     ),
-    Tab(text: 'Stats'),
-    Tab(text: 'Recommendations')
+    const Tab(text: 'Stats'),
+    const Tab(text: 'Recommendations')
   ];
 
   //Overview State

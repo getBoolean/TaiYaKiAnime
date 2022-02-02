@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:taiyaki/Models/Taiyaki/Sync.dart';
-import 'package:taiyaki/Views/Widgets/taiyaki_image.dart';
 
+import '../../Models/Taiyaki/Sync.dart';
 import 'TaiyakiSize.dart';
+import 'taiyaki_image.dart';
 
 class AnimeListStatusCards extends StatelessWidget {
   final String statusName;
   final List<AnimeListModel> data;
   final VoidCallback onTap;
 
-  AnimeListStatusCards(
+  const AnimeListStatusCards(
       {required this.statusName, required this.onTap, this.data = const []});
 
   @override
@@ -27,8 +27,8 @@ class AnimeListStatusCards extends StatelessWidget {
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(this.statusName,
-                          style: TextStyle(
+                      Text(statusName,
+                          style: const TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 16)),
                       Text(data.length.toString() + ' total items'),
                     ]),
@@ -40,7 +40,7 @@ class AnimeListStatusCards extends StatelessWidget {
                       horizontal: 4.0, vertical: 2.0),
                   child: ListView(
                     scrollDirection: Axis.horizontal,
-                    physics: NeverScrollableScrollPhysics(),
+                    physics: const NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
                     children: List.generate(3, (index) {
                       if (data.length >= 3) return data[index];

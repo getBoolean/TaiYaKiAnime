@@ -1,5 +1,5 @@
 import 'package:fish_redux/fish_redux.dart';
-import 'package:taiyaki/Models/Taiyaki/DetailDatabase.dart';
+import '../../../Models/Taiyaki/DetailDatabase.dart';
 
 //TODO replace with your own action
 enum HistoryAction { action, init, loadHistory, deleteHistory }

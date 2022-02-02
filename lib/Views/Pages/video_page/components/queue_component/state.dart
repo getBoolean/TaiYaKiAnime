@@ -1,7 +1,8 @@
 import 'package:fish_redux/fish_redux.dart';
-import 'package:taiyaki/Models/SIMKL/models.dart';
-import 'package:taiyaki/Views/Pages/video_page/components/queue_cell/state.dart';
-import 'package:taiyaki/Views/Pages/video_page/state.dart';
+
+import '../../../../../Models/SIMKL/models.dart';
+import '../../state.dart';
+import '../queue_cell/state.dart';
 
 class QueueState extends ImmutableSource implements Cloneable<QueueState> {
   List<SimklEpisodeModel> queueList = const [];

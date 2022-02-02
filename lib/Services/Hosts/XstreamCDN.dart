@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:taiyaki/Services/Sources/Base.dart';
+import '../Sources/Base.dart';
 
 import 'Base.dart';
 
@@ -23,7 +23,7 @@ class XstreamCDN with HostsAPIRequests implements HostsBase {
         '/api/source/' +
         _api.pathSegments.last;
     final _response = await requests.post(_jsonLink,
-        data: {'r': '', "d": 'fcdn.stream'},
+        data: {'r': '', 'd': 'fcdn.stream'},
         options: Options(headers: {'Referer': link}));
 
     final List<_XstreamModel> _results = List<_XstreamModel>.from(
@@ -33,7 +33,7 @@ class XstreamCDN with HostsAPIRequests implements HostsBase {
         .map((e) => HostsLinkModel(
               name: e.label,
               link: e.file,
-              headers: {"Referer": 'https://fcdn.stream/'},
+              headers: {'Referer': 'https://fcdn.stream/'},
             ))
         .toList();
   }

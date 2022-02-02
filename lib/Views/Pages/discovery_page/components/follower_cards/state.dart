@@ -1,7 +1,8 @@
 import 'package:fish_redux/fish_redux.dart';
-import 'package:taiyaki/Models/Anilist/models.dart';
-import 'package:taiyaki/Views/Pages/discovery_page/components/follower_cells/state.dart';
-import 'package:taiyaki/Views/Pages/discovery_page/state.dart';
+
+import '../../../../../Models/Anilist/models.dart';
+import '../../state.dart';
+import '../follower_cells/state.dart';
 
 class FollowerCardsState extends ImmutableSource
     implements Cloneable<FollowerCardsState> {

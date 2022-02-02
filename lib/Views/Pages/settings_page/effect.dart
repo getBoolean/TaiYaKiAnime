@@ -1,5 +1,5 @@
 import 'package:fish_redux/fish_redux.dart';
-import 'package:taiyaki/Store/GlobalUserStore/GlobalUserStore.dart';
+import '../../../Store/GlobalUserStore/GlobalUserStore.dart';
 
 import 'action.dart';
 import 'state.dart';
@@ -32,10 +32,12 @@ void _onInit(Action action, Context<SettingsState> ctx) {
     if (event.anilistUser != state.anilistUser) {
       ctx.state.anilistUser = event.anilistUser;
     }
-    if (event.myanimelistUser != state.myanimelistUser)
+    if (event.myanimelistUser != state.myanimelistUser) {
       ctx.state.myanimelistUser = event.myanimelistUser;
-    if (event.simklUser != state.simklUser)
+    }
+    if (event.simklUser != state.simklUser) {
       ctx.state.simklUser = event.simklUser;
+    }
     // event.myanimelistUser != state.myanimelistUser ||
     // event.simklUser != state.simklUser) ctx.forceUpdate();
     ctx.forceUpdate();

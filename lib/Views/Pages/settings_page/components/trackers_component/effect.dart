@@ -1,5 +1,5 @@
 import 'package:fish_redux/fish_redux.dart';
-import 'package:taiyaki/Store/GlobalUserStore/GlobalUserStore.dart';
+import '../../../../../Store/GlobalUserStore/GlobalUserStore.dart';
 
 import 'action.dart';
 import 'state.dart';

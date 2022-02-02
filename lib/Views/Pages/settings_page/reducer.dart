@@ -1,6 +1,6 @@
 import 'package:fish_redux/fish_redux.dart';
-import 'package:taiyaki/Models/Taiyaki/Trackers.dart';
-import 'package:taiyaki/Store/GlobalUserStore/GlobalUserAction.dart';
+import '../../../Models/Taiyaki/Trackers.dart';
+import '../../../Store/GlobalUserStore/GlobalUserAction.dart';
 
 import 'action.dart';
 import 'state.dart';

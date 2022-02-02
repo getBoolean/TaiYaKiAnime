@@ -1,9 +1,9 @@
 import 'package:fish_redux/fish_redux.dart';
-import 'package:taiyaki/Views/Pages/search_page/adapter.dart';
-import 'package:taiyaki/Views/Pages/search_page/filter_sheet_component/component.dart';
-import 'package:taiyaki/Views/Pages/search_page/filter_sheet_component/state.dart';
 
+import 'adapter.dart';
 import 'effect.dart';
+import 'filter_sheet_component/component.dart';
+import 'filter_sheet_component/state.dart';
 import 'reducer.dart';
 import 'state.dart';
 import 'view.dart';

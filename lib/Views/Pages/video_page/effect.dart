@@ -4,18 +4,18 @@ import 'package:flutter/material.dart' hide Action;
 import 'package:flutter/services.dart';
 import 'package:hive/hive.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
-import 'package:taiyaki/Models/SIMKL/models.dart';
-import 'package:taiyaki/Models/Taiyaki/DetailDatabase.dart';
-import 'package:taiyaki/Services/Hosts/Base.dart';
-import 'package:taiyaki/Services/Hosts/index.dart';
-import 'package:taiyaki/Services/Sources/Base.dart';
-import 'package:taiyaki/Services/Sources/index.dart';
-import 'package:taiyaki/Utils/strings.dart';
-import 'package:taiyaki/Views/Pages/video_page/page.dart';
-import 'package:taiyaki/Views/Widgets/TaiyakiControls.dart';
-import 'package:taiyaki/Views/Widgets/TaiyakiSize.dart';
 
+import '../../../Models/SIMKL/models.dart';
+import '../../../Models/Taiyaki/DetailDatabase.dart';
+import '../../../Services/Hosts/Base.dart';
+import '../../../Services/Hosts/index.dart';
+import '../../../Services/Sources/Base.dart';
+import '../../../Services/Sources/index.dart';
+import '../../../Utils/strings.dart';
+import '../../Widgets/TaiyakiControls.dart';
+import '../../Widgets/TaiyakiSize.dart';
 import 'action.dart';
+import 'page.dart';
 import 'state.dart';
 
 Effect<VideoState> buildEffect() {
@@ -41,7 +41,7 @@ void _onSettings(Action action, Context<VideoState> ctx) {
     showDialog(
         context: ctx.context,
         builder: (builder) => AlertDialog(
-              title: Text('Select a quality'),
+              title: const Text('Select a quality'),
               content: SizedBox(
                 // height: TaiyakiSize.height * 0.28,
                 width: TaiyakiSize.width * 0.45,
@@ -64,7 +64,7 @@ void _onSettings(Action action, Context<VideoState> ctx) {
                                 if (ctx.state.allAvailableQualities[index]
                                         .name ==
                                     ctx.state.currentSelectedQuality?.name)
-                                  Icon(
+                                  const Icon(
                                     Icons.check,
                                     color: Colors.green,
                                   )
@@ -80,7 +80,7 @@ void _onSettings(Action action, Context<VideoState> ctx) {
     showDialog(
         context: ctx.context,
         builder: (builder) => AlertDialog(
-              title: Text('Select a host'),
+              title: const Text('Select a host'),
               content: SizedBox(
                 height: TaiyakiSize.height * 0.28,
                 width: TaiyakiSize.width * 0.45,
@@ -102,7 +102,7 @@ void _onSettings(Action action, Context<VideoState> ctx) {
                                   Text(ctx.state.allAvailableHosts[index].host),
                                   if (ctx.state.allAvailableHosts[index].host ==
                                       ctx.state.currentSelectedHost?.host)
-                                    Icon(Icons.check, color: Colors.green)
+                                    const Icon(Icons.check, color: Colors.green)
                                 ],
                               )),
                         ))),
@@ -110,13 +110,13 @@ void _onSettings(Action action, Context<VideoState> ctx) {
             ));
   }
 
-  final TextStyle style = TextStyle(fontWeight: FontWeight.w600, fontSize: 18);
+  const TextStyle style = TextStyle(fontWeight: FontWeight.w600, fontSize: 18);
 
   showCupertinoModalBottomSheet(
     enableDrag: false,
     context: ctx.context,
     builder: (builder) => Material(
-      child: Container(
+      child: SizedBox(
         height: TaiyakiSize.height * 0.25,
         child: Padding(
           padding: const EdgeInsets.all(8.0),
@@ -129,7 +129,7 @@ void _onSettings(Action action, Context<VideoState> ctx) {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
+                      const Text(
                         'Quality',
                         style: style,
                       ),
@@ -144,7 +144,7 @@ void _onSettings(Action action, Context<VideoState> ctx) {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text('Server', style: style),
+                      const Text('Server', style: style),
                       Text(ctx.state?.currentSelectedHost?.host ?? '???'),
                     ],
                   ),
@@ -166,7 +166,7 @@ void _saveLastWatchingModel(Action action, Context<VideoState> ctx) async {
 
   if (_box == null) return;
   _box
-    ..lastWatchingModel =
+    .lastWatchingModel =
         LastWatchingModel(watchingEpisode: ctx.state.episode!, progress: 0);
 
   await Hive.box(HIVE_DETAIL_BOX).put(_box.ids.anilist, _box);
@@ -177,7 +177,7 @@ void _saveHistory(Action action, Context<VideoState> ctx) {
   final anilistId = _state.detailDatabaseModel!.ids.anilist;
   if (anilistId == null) return;
   final _box = Hive.box<HistoryModel>(HIVE_HISTORY_BOX);
-  final HistoryModel _history = new HistoryModel(
+  final HistoryModel _history = HistoryModel(
       title: _state.detailDatabaseModel!.title,
       coverImage: _state.detailDatabaseModel!.coverImage,
       sourceName: _state.detailDatabaseModel!.sourceName!,
@@ -200,8 +200,8 @@ void _setUpPlayer(Action action, Context<VideoState> ctx) {
                     togglePlaylist: () =>
                         ctx.dispatch(VideoActionCreator.togglePlaylist(true)),
                     episode: ctx.state.episode!,
-                    controlsConfiguration: BetterPlayerControlsConfiguration(
-                      controlsHideTime: const Duration(milliseconds: 250),
+                    controlsConfiguration: const BetterPlayerControlsConfiguration(
+                      controlsHideTime: Duration(milliseconds: 250),
                       controlBarHeight: 55,
                     ),
                     onControlsVisibilityChanged: (bool controlsVisible) {},
@@ -216,7 +216,7 @@ void _setUpPlayer(Action action, Context<VideoState> ctx) {
           }
           // routePageBuilder:
           );
-  ctx.state.videoController = new BetterPlayerController(
+  ctx.state.videoController = BetterPlayerController(
     _betterPlayerConfiguration,
   );
   // ctx.state.playerController = new FijkPlayer()
@@ -246,7 +246,7 @@ void _setSimklEpisode(Action action, Context<VideoState> ctx) async {
   // }
 
   ctx.state.videoController =
-      new BetterPlayerController(BetterPlayerConfiguration());
+      BetterPlayerController(const BetterPlayerConfiguration());
   final SimklEpisodeModel episode = action.payload;
 
   ctx.dispatch(VideoActionCreator.updateSimklEpisode(episode));

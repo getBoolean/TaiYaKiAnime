@@ -2,10 +2,10 @@ import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:focus_detector/focus_detector.dart';
 import 'package:kenburns/kenburns.dart';
-import 'package:taiyaki/Views/Pages/detail_page/action.dart';
-import 'package:taiyaki/Views/Widgets/TaiyakiSize.dart';
-import 'package:taiyaki/Views/Widgets/taiyaki_image.dart';
 
+import '../../Widgets/TaiyakiSize.dart';
+import '../../Widgets/taiyaki_image.dart';
+import 'action.dart';
 import 'state.dart';
 
 Widget buildView(
@@ -14,8 +14,9 @@ Widget buildView(
 
   return FocusDetector(
     onFocusGained: () {
-      if (state.anilistData != null)
+      if (state.anilistData != null) {
         dispatch(DetailActionCreator.fetchTrackers());
+      }
     },
     child: Scaffold(
         floatingActionButton: FloatingActionButton(
@@ -23,7 +24,7 @@ Widget buildView(
           onPressed: state.detailDatabaseModel?.link == null
               ? null
               : () => dispatch(DetailActionCreator.showBottomSheet()),
-          child: Icon(Icons.edit),
+          child: const Icon(Icons.edit),
           backgroundColor: state.detailDatabaseModel?.link == null
               ? Colors.grey
               : Theme.of(viewService.context).colorScheme.secondary,
@@ -31,7 +32,7 @@ Widget buildView(
         body: AnimatedSwitcher(
           duration: const Duration(seconds: 1),
           child: state.anilistData == null
-              ? Center(
+              ? const Center(
                   child: CircularProgressIndicator(),
                 )
               : FocusDetector(
@@ -49,7 +50,7 @@ Widget buildView(
                           expandedHeight: TaiyakiSize.height * 0.3,
                           collapsedHeight: TaiyakiSize.height * 0.09,
                           flexibleSpace: FlexibleSpaceBar(
-                            background: new Stack(
+                            background: Stack(
                               fit: StackFit.expand,
                               children: [
                                 // 1
@@ -70,7 +71,7 @@ Widget buildView(
                                       child: AnimatedSwitcher(
                                           duration: const Duration(
                                               milliseconds: 1550),
-                                          child: Container(
+                                          child: SizedBox(
                                               height: TaiyakiSize.height * 0.35,
                                               width: TaiyakiSize.width + 150,
                                               key: UniqueKey(),
@@ -78,7 +79,7 @@ Widget buildView(
                                                   url: state.covers.first)))),
                                 ),
                                 Container(
-                                  decoration: BoxDecoration(
+                                  decoration: const BoxDecoration(
                                       gradient: LinearGradient(
                                           begin: Alignment.bottomCenter,
                                           end: Alignment.topCenter,
@@ -91,7 +92,7 @@ Widget buildView(
                             ),
                           ),
                           bottom: PreferredSize(
-                            preferredSize: Size.fromHeight(15),
+                            preferredSize: const Size.fromHeight(15),
                             child: TabBar(
                               isScrollable: true,
                               controller: state.tabController,

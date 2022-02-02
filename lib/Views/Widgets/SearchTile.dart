@@ -1,8 +1,8 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:taiyaki/Models/Anilist/models.dart';
-import 'package:taiyaki/Views/Widgets/TaiyakiSize.dart';
-import 'package:taiyaki/Views/Widgets/taiyaki_image.dart';
+import '../../Models/Anilist/models.dart';
+import 'TaiyakiSize.dart';
+import 'taiyaki_image.dart';
 
 class SearchTile extends StatelessWidget {
   const SearchTile({Key? key, required this.node, required this.onTap})
@@ -29,7 +29,7 @@ class SearchTile extends StatelessWidget {
               ),
               Expanded(
                 child: Padding(
-                  padding: EdgeInsets.symmetric(
+                  padding: const EdgeInsets.symmetric(
                     horizontal: 16.0,
                     vertical: 8.0,
                   ),
@@ -40,14 +40,14 @@ class SearchTile extends StatelessWidget {
                         node.title,
                         maxLines: 2,
                         textAlign: TextAlign.start,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 20,
                         ),
                       ),
                       Expanded(
                         child: AutoSizeText(
-                          node.description ?? "",
+                          node.description ?? '',
                           overflow: TextOverflow.fade,
                           maxLines: 20,
                           minFontSize: 15,

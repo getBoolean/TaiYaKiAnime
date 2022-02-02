@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:taiyaki/Views/Pages/discovery_page/action.dart';
+import '../Pages/discovery_page/action.dart';
 
 const AndroidNotificationDetails _androidNotificationDetails =
     AndroidNotificationDetails(
@@ -33,10 +33,10 @@ class NotificationHandler {
         android: AndroidNotificationDetails(
             '48', 'taiyaki.android.notification', 'Released episodes',
             enableLights: true,
-            ledColor: Color(0xff8405c3),
+            ledColor: const Color(0xff8405c3),
             ledOnMs: 2500,
             ledOffMs: 2500,
-            color: Color(0xff8405c3),
+            color: const Color(0xff8405c3),
             styleInformation: styleInformation),
         iOS: IOSNotificationDetails(attachments: [attachement!]),
       );
@@ -55,19 +55,19 @@ class NotificationHandler {
         AndroidInitializationSettings(
       'app_icon',
     );
-    final IOSInitializationSettings initializationSettingsIOS =
+    const IOSInitializationSettings initializationSettingsIOS =
         IOSInitializationSettings(
       requestSoundPermission: false,
       requestBadgePermission: false,
       requestAlertPermission: false,
     );
-    final MacOSInitializationSettings initializationSettingsMacOS =
+    const MacOSInitializationSettings initializationSettingsMacOS =
         MacOSInitializationSettings(
             requestAlertPermission: false,
             requestBadgePermission: false,
             requestSoundPermission: false);
     final InitializationSettings initializationSettings =
-        InitializationSettings(
+        const InitializationSettings(
             android: initializationSettingsAndroid,
             iOS: initializationSettingsIOS,
             macOS: initializationSettingsMacOS);

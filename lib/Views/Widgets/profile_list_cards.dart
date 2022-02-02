@@ -2,19 +2,19 @@ import 'dart:io';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:taiyaki/Models/Taiyaki/Sync.dart';
-import 'package:taiyaki/Models/Taiyaki/Trackers.dart';
-import 'package:taiyaki/Models/Taiyaki/User.dart';
-import 'package:taiyaki/Store/GlobalUserStore/GlobalUserStore.dart';
-import 'package:taiyaki/Views/Pages/profile_page/page.dart';
-import 'package:taiyaki/Views/Widgets/TaiyakiSize.dart';
-import 'package:taiyaki/Views/Widgets/taiyaki_image.dart';
+import '../../Models/Taiyaki/Sync.dart';
+import '../../Models/Taiyaki/Trackers.dart';
+import '../../Models/Taiyaki/User.dart';
+import '../../Store/GlobalUserStore/GlobalUserStore.dart';
+import '../Pages/profile_page/page.dart';
+import 'TaiyakiSize.dart';
+import 'taiyaki_image.dart';
 
 class ProfileListCards extends StatefulWidget {
   final ThirdPartyTrackersEnum tracker;
   final UserModel userModel;
 
-  ProfileListCards({required this.tracker, required this.userModel});
+  const ProfileListCards({required this.tracker, required this.userModel});
 
   @override
   _ProfileListCardsState createState() => _ProfileListCardsState();
@@ -45,7 +45,7 @@ class _ProfileListCardsState extends State<ProfileListCards> {
     }
   }
 
-  final _random = new Random();
+  final _random = Random();
 // Timer(const Duration(seconds: 5), _onChange);
   // String? _currentImage;
   int index = 0;
@@ -110,7 +110,7 @@ class _ProfileListCardsState extends State<ProfileListCards> {
               padding: const EdgeInsets.only(bottom: 1.0),
               child: Align(
                   alignment: Alignment.bottomCenter,
-                  child: Container(
+                  child: SizedBox(
                       height: TaiyakiSize.height * 0.2,
                       width: _cardWidth,
                       child: Column(
@@ -121,7 +121,7 @@ class _ProfileListCardsState extends State<ProfileListCards> {
                                   // ignore: unnecessary_cast
                                   ? (NetworkImage(widget.userModel.avatar!)
                                       as ImageProvider<Object>)
-                                  : AssetImage('assets/icon.png'),
+                                  : const AssetImage('assets/icon.png'),
                               radius: 30,
                             ),
                             Text(
@@ -141,7 +141,7 @@ class _ProfileListCardsState extends State<ProfileListCards> {
                                     width: TaiyakiSize.height * 0.02),
                                 Text(_trackerName(),
                                     style:
-                                        TextStyle(fontWeight: FontWeight.bold))
+                                        const TextStyle(fontWeight: FontWeight.bold))
                               ],
                             )
                           ]))),

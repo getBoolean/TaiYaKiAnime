@@ -1,6 +1,6 @@
 import 'package:fish_redux/fish_redux.dart';
-import 'package:taiyaki/Models/Taiyaki/DetailDatabase.dart';
-import 'package:taiyaki/Views/Pages/history_page/components/history_cells/state.dart';
+import '../../../Models/Taiyaki/DetailDatabase.dart';
+import 'components/history_cells/state.dart';
 
 class HistoryState extends ImmutableSource implements Cloneable<HistoryState> {
   List<HistoryModel> historyItems = [];

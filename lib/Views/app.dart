@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:taiyaki/Store/GlobalSettingsStore/GlobalSettingsStore.dart';
-import 'package:taiyaki/Store/GlobalUserStore/GlobalUserStore.dart';
-import 'package:taiyaki/Views/Widgets/Theme.dart';
-import 'package:taiyaki/Views/routes.dart';
 
+import '../Store/GlobalSettingsStore/GlobalSettingsStore.dart';
+import '../Store/GlobalUserStore/GlobalUserStore.dart';
+import 'Widgets/Theme.dart';
 import 'Widgets/bottom_navigation.dart';
+import 'routes.dart';
 
 class CreateApp extends StatefulWidget {
   @override
@@ -20,20 +20,22 @@ class _CreateAppState extends State<CreateApp> {
   void initState() {
     GlobalSettingsStore.store.observable().listen((event) {
       final _isDarkS = event.appSettings;
-      if (_isDarkS.isDarkMode != this._isDark)
-        this.setState(() => _isDark = _isDarkS.isDarkMode);
-      if (_isDarkS.accent != this._accent)
-        this.setState(() => _accent = _isDarkS.accent);
+      if (_isDarkS.isDarkMode != _isDark) {
+        setState(() => _isDark = _isDarkS.isDarkMode);
+      }
+      if (_isDarkS.accent != _accent) {
+        setState(() => _accent = _isDarkS.accent);
+      }
     });
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    var accent = Color(int.parse('0xff$_accent'));
-    var bgColor = Color(0xff121212);
-    var cardColor = Color(0xff1D1D1D);
-    var bottomNavbarColor = Color(0xff1f1f1f);
+    final accent = Color(int.parse('0xff$_accent'));
+    const bgColor = Color(0xff121212);
+    const cardColor = Color(0xff1D1D1D);
+    const bottomNavbarColor = Color(0xff1f1f1f);
 
     return MaterialApp(
       theme: _isDark
@@ -41,7 +43,7 @@ class _CreateAppState extends State<CreateApp> {
               cardColor: cardColor,
               scaffoldBackgroundColor: bgColor,
               dialogBackgroundColor: bgColor,
-              appBarTheme: AppBarTheme(
+              appBarTheme: const AppBarTheme(
                 color: bgColor,
                 elevation: 0.0,
               ),
@@ -50,7 +52,7 @@ class _CreateAppState extends State<CreateApp> {
                   borderRadius: BorderRadius.circular(8.0),
                 ),
               ),
-              bottomNavigationBarTheme: BottomNavigationBarThemeData(
+              bottomNavigationBarTheme: const BottomNavigationBarThemeData(
                 backgroundColor: bottomNavbarColor,
                 type: BottomNavigationBarType.fixed,
                 elevation: 8.0,
@@ -79,7 +81,7 @@ class _CreateAppState extends State<CreateApp> {
                   GoogleFonts.poppinsTextTheme(ThemeData.light().textTheme)),
       // home: TaiyakiBottomNavigation(),
       home: GlobalUserStore.store.getState().passedOnboarding
-          ? TaiyakiBottomNavigation()
+          ? const TaiyakiBottomNavigation()
           : routes.buildPage('onboarding_page', null),
       onGenerateRoute: (RouteSettings settings) {
         return MaterialPageRoute(builder: (BuildContext context) {

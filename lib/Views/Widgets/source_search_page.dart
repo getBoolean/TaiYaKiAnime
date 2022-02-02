@@ -1,25 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
-import 'package:taiyaki/Services/Exceptions/API/Exceptions+API.dart';
-import 'package:taiyaki/Services/Sources/Base.dart';
-import 'package:taiyaki/Services/Sources/Gogoanime.dart';
-import 'package:taiyaki/Services/Sources/index.dart';
-import 'package:taiyaki/Views/Widgets/TaiyakiSize.dart';
-import 'package:taiyaki/Views/Widgets/search_bar.dart';
-import 'package:taiyaki/Views/Widgets/tiles.dart';
+import '../../Services/Sources/Base.dart';
+import '../../Services/Sources/Gogoanime.dart';
+import '../../Services/Sources/index.dart';
+import 'TaiyakiSize.dart';
+import 'search_bar.dart';
+import 'tiles.dart';
 
 class SourceSearchPage extends StatefulWidget {
   final String query;
   final Function(Map<String, String>) onLink;
 
-  SourceSearchPage({required this.query, required this.onLink});
+  const SourceSearchPage({required this.query, required this.onLink});
 
   @override
   _SourceSearchPageState createState() => _SourceSearchPageState();
 }
 
 class _SourceSearchPageState extends State<SourceSearchPage> {
-  SourceBase _currentSource = new GogoAnime();
+  SourceBase _currentSource = GogoAnime();
   bool isLoading = false;
   List<SourceSearchResultsModel> results = [];
 
@@ -36,15 +35,15 @@ class _SourceSearchPageState extends State<SourceSearchPage> {
   }
 
   Future _search(String query) async {
-    this.setState(() => isLoading = true);
+    setState(() => isLoading = true);
 
     try {
       final _results = await _currentSource.getSearchResults(query);
-      this.setState(() {
+      setState(() {
         isLoading = false;
         results = _results;
       });
-    } on SourceException {} catch (e) {}
+    } on Exception catch (_) {}
   }
 
   @override
@@ -58,19 +57,19 @@ class _SourceSearchPageState extends State<SourceSearchPage> {
                 isLoading: isLoading,
                 placeholder: 'Enter a custom query',
                 onDelayedEnter: (String query) {
-                  this.setState(() => results = []);
+                  setState(() => results = []);
                   _search(query);
                 },
                 onEnter: (_) {}),
             if (isLoading)
-              Center(
+              const Center(
                 child: CircularProgressIndicator(),
               )
             else if (results.isEmpty)
               Center(
                   child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
+                      children: const [
                     Icon(Icons.inbox, size: 75),
                     Text('No results found', style: TextStyle(fontSize: 20)),
                   ]))
@@ -89,8 +88,8 @@ class _SourceSearchPageState extends State<SourceSearchPage> {
                                     body: Container(
                                         child: Column(
                                       children: [
-                                        Padding(
-                                          padding: const EdgeInsets.all(12.0),
+                                        const Padding(
+                                          padding: EdgeInsets.all(12.0),
                                           child: Text('Select a source',
                                               style: TextStyle(
                                                   fontWeight: FontWeight.w700,
@@ -105,7 +104,7 @@ class _SourceSearchPageState extends State<SourceSearchPage> {
                                                       final _newSource =
                                                           kTaiyakiSources[
                                                               index];
-                                                      this.setState(() =>
+                                                      setState(() =>
                                                           _currentSource =
                                                               _newSource);
                                                     },
@@ -121,7 +120,7 @@ class _SourceSearchPageState extends State<SourceSearchPage> {
                           child:
                               Text('Current Source: ${_currentSource.name}')),
                     ),
-                    Container(
+                    SizedBox(
                         height: TaiyakiSize.height * 0.85,
                         child: ListView.builder(
                             shrinkWrap: true,

@@ -9,7 +9,7 @@ Widget buildView(
     child: Container(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: [
+        children: const [
           Icon(Icons.update, size: 75),
           Text('Coming soon..'),
         ],

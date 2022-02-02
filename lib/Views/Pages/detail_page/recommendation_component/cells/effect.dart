@@ -1,6 +1,6 @@
 import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter/material.dart' hide Action;
-import 'package:taiyaki/Views/Pages/detail_page/page.dart';
+import '../../page.dart';
 
 import 'action.dart';
 import 'state.dart';

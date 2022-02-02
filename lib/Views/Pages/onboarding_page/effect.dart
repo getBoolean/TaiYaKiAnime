@@ -1,11 +1,11 @@
 import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter/material.dart' hide Action;
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:taiyaki/Store/GlobalUserStore/GlobalUserAction.dart';
-import 'package:taiyaki/Store/GlobalUserStore/GlobalUserStore.dart';
-import 'package:taiyaki/Views/Widgets/bottom_navigation.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../../../Store/GlobalUserStore/GlobalUserAction.dart';
+import '../../../Store/GlobalUserStore/GlobalUserStore.dart';
+import '../../Widgets/bottom_navigation.dart';
 import 'action.dart';
 import 'state.dart';
 
@@ -22,11 +22,11 @@ Effect<OnboardingState> buildEffect() {
 void _onAction(Action action, Context<OnboardingState> ctx) {}
 
 void _dismissOnboarding(Action action, Context<OnboardingState> ctx) async {
-  final _storage = FlutterSecureStorage();
+  const _storage = FlutterSecureStorage();
   await _storage.write(key: 'onboarding', value: '1');
   GlobalUserStore.store.dispatch(GlobalUserActionCreator.onUpdateOnboarding());
-  Navigator.of(ctx.context).pushReplacement(MaterialPageRoute(
-      builder: (BuildContext context) => TaiyakiBottomNavigation()));
+  await Navigator.of(ctx.context).pushReplacement(MaterialPageRoute(
+      builder: (BuildContext context) => const TaiyakiBottomNavigation()));
 }
 
 void _openDiscord(Action action, Context<OnboardingState> ctx) async {
@@ -48,7 +48,7 @@ void _moveToPage(Action action, Context<OnboardingState> ctx) {
 
 void _onInit(Action action, Context<OnboardingState> ctx) {
   ctx.addObservable(GlobalUserStore.store.subscribe);
-  ctx.state.pageController = new PageController(
+  ctx.state.pageController = PageController(
     keepPage: true,
   );
 }

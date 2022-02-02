@@ -1,13 +1,13 @@
 import 'package:fish_redux/fish_redux.dart';
-import 'package:taiyaki/Views/Pages/settings_page/components/customization_component/component.dart';
-import 'package:taiyaki/Views/Pages/settings_page/components/customization_component/state.dart';
-import 'package:taiyaki/Views/Pages/settings_page/components/general_component/component.dart';
-import 'package:taiyaki/Views/Pages/settings_page/components/general_component/state.dart';
-import 'package:taiyaki/Views/Pages/settings_page/components/notification_component/component.dart';
-import 'package:taiyaki/Views/Pages/settings_page/components/notification_component/state.dart';
-import 'package:taiyaki/Views/Pages/settings_page/components/trackers_component/state.dart';
 
+import 'components/customization_component/component.dart';
+import 'components/customization_component/state.dart';
+import 'components/general_component/component.dart';
+import 'components/general_component/state.dart';
+import 'components/notification_component/component.dart';
+import 'components/notification_component/state.dart';
 import 'components/trackers_component/component.dart';
+import 'components/trackers_component/state.dart';
 import 'effect.dart';
 import 'reducer.dart';
 import 'state.dart';

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../routes.dart';
 
 class TaiyakiBottomNavigation extends StatefulWidget {
-  TaiyakiBottomNavigation({Key key = const Key('taiyaki_bottom_navigation')})
+  const TaiyakiBottomNavigation({Key key = const Key('taiyaki_bottom_navigation')})
       : super(key: key);
 
   @override
@@ -19,9 +19,9 @@ class _BottomNavigationState extends State<TaiyakiBottomNavigation> {
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: index,
         selectedItemColor: Theme.of(context).colorScheme.secondary,
-        onTap: (int newIndex) => this.setState(() => index = newIndex),
+        onTap: (int newIndex) => setState(() => index = newIndex),
         unselectedItemColor: Colors.grey,
-        items: [
+        items: const [
           BottomNavigationBarItem(
               icon: Icon(Icons.dashboard), label: 'Discover'),
           BottomNavigationBarItem(icon: Icon(Icons.history), label: 'History'),

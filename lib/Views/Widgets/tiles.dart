@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:taiyaki/Views/Widgets/TaiyakiSize.dart';
-import 'package:taiyaki/Views/Widgets/taiyaki_image.dart';
+import 'TaiyakiSize.dart';
+import 'taiyaki_image.dart';
 
 class Tiles extends StatelessWidget {
   final String image;
@@ -9,7 +9,7 @@ class Tiles extends StatelessWidget {
 
   final VoidCallback onTap;
 
-  Tiles({
+  const Tiles({
     required this.image,
     required this.onTap,
     required this.title,
@@ -21,7 +21,7 @@ class Tiles extends StatelessWidget {
       onTap: onTap,
       child: Card(
         clipBehavior: Clip.antiAlias,
-        child: Container(
+        child: SizedBox(
           height: TaiyakiSize.height * 0.15,
           width: TaiyakiSize.width * 0.9,
           child: Row(
@@ -40,7 +40,7 @@ class Tiles extends StatelessWidget {
                     children: [
                       Text(
                         title,
-                        style: TextStyle(fontWeight: FontWeight.w600),
+                        style: const TextStyle(fontWeight: FontWeight.w600),
                         maxLines: 3,
                       )
                     ],
@@ -63,7 +63,7 @@ class SourceTiles extends StatelessWidget {
 
   final VoidCallback onTap;
 
-  SourceTiles({
+  const SourceTiles({
     // required this.image,
     required this.onTap,
     required this.name,
@@ -76,7 +76,7 @@ class SourceTiles extends StatelessWidget {
       onTap: onTap,
       child: Card(
         clipBehavior: Clip.antiAlias,
-        child: Container(
+        child: SizedBox(
           height: TaiyakiSize.height * 0.15,
           width: TaiyakiSize.width * 0.9,
           child: Row(
@@ -86,7 +86,7 @@ class SourceTiles extends StatelessWidget {
               //   height: TaiyakiSize.height * 0.15,
               //   width: TaiyakiSize.height * 0.12,
               // ),
-              Container(
+              SizedBox(
                 width: TaiyakiSize.height * 0.12,
                 height: TaiyakiSize.height * 0.15,
               ),
@@ -99,13 +99,13 @@ class SourceTiles extends StatelessWidget {
                     children: [
                       Text(
                         name,
-                        style: TextStyle(
+                        style: const TextStyle(
                             fontWeight: FontWeight.w600, fontSize: 17),
                         maxLines: 3,
                       ),
                       Text(
                         dev,
-                        style: TextStyle(fontWeight: FontWeight.w400),
+                        style: const TextStyle(fontWeight: FontWeight.w400),
                         maxLines: 1,
                       )
                     ],

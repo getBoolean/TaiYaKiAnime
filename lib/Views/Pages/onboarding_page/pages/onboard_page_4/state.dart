@@ -1,5 +1,5 @@
 import 'package:fish_redux/fish_redux.dart';
-import 'package:taiyaki/Views/Pages/onboarding_page/state.dart';
+import '../../state.dart';
 
 class OnboardingPage4State implements Cloneable<OnboardingPage4State> {
   @override

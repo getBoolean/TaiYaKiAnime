@@ -1,6 +1,6 @@
 import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter/material.dart';
-import 'package:taiyaki/Views/Widgets/TaiyakiSize.dart';
+import '../../../../Widgets/TaiyakiSize.dart';
 
 import 'state.dart';
 
@@ -8,7 +8,7 @@ Widget buildView(RowsState state, Dispatch dispatch, ViewService viewService) {
   final _adapter = viewService.buildAdapter();
   final TextStyle title = TextStyle(
       fontWeight: FontWeight.w600, fontSize: TaiyakiSize.height * 0.03);
-  return Container(
+  return SizedBox(
     height: TaiyakiSize.height * 0.42,
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -30,8 +30,8 @@ Widget buildView(RowsState state, Dispatch dispatch, ViewService viewService) {
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8.0),
             child: state.data.isEmpty
-                ? Center(
-                    child: const CircularProgressIndicator(),
+                ? const Center(
+                    child: CircularProgressIndicator(),
                   )
                 : ListView.builder(
                     cacheExtent: 10000,

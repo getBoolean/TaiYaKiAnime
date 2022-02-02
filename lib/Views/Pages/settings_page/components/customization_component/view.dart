@@ -1,9 +1,9 @@
 import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter/material.dart';
-import 'package:taiyaki/Utils/misc.dart';
-import 'package:taiyaki/Views/Pages/settings_page/action.dart';
-import 'package:taiyaki/Views/Widgets/TaiyakiSize.dart';
 
+import '../../../../../Utils/misc.dart';
+import '../../../../Widgets/TaiyakiSize.dart';
+import '../../action.dart';
 import 'state.dart';
 
 Widget buildView(CustomizationSettingState state, Dispatch dispatch,
@@ -12,12 +12,12 @@ Widget buildView(CustomizationSettingState state, Dispatch dispatch,
     body: ListView(
       children: [
         SwitchListTile.adaptive(
-            title: Text('Dark Mode'),
-            secondary: Icon(Icons.border_color),
+            title: const Text('Dark Mode'),
+            secondary: const Icon(Icons.border_color),
             value: state.appSettingsModel!.isDarkMode,
             onChanged: (val) => dispatch(SettingsActionCreator.onUpdateSetting(
                 state.appSettingsModel!.copyWith(isDarkMode: val)))),
-        ListTile(
+        const ListTile(
           title: Text('Accent'),
           leading: Icon(Icons.edit_outlined),
         ),

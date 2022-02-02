@@ -1,11 +1,11 @@
 import 'package:fish_redux/fish_redux.dart';
-import 'package:taiyaki/Models/Taiyaki/Trackers.dart';
-import 'package:taiyaki/Views/Pages/profile_page/components/card1/component.dart';
-import 'package:taiyaki/Views/Pages/profile_page/components/card1/state.dart';
-import 'package:taiyaki/Views/Pages/profile_page/components/card2/component.dart';
-import 'package:taiyaki/Views/Pages/profile_page/components/card3/component.dart';
 
+import '../../../Models/Taiyaki/Trackers.dart';
+import 'components/card1/component.dart';
+import 'components/card1/state.dart';
+import 'components/card2/component.dart';
 import 'components/card2/state.dart';
+import 'components/card3/component.dart';
 import 'components/card3/state.dart';
 import 'effect.dart';
 import 'reducer.dart';

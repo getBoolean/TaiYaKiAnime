@@ -1,32 +1,33 @@
 import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter/material.dart';
-import 'package:taiyaki/Store/GlobalSettingsStore/GlobalSettingsStore.dart';
-import 'package:taiyaki/Utils/math.dart';
-import 'package:taiyaki/Views/Pages/detail_page/action.dart';
-import 'package:taiyaki/Views/Pages/detail_page/watch_component/action.dart';
-import 'package:taiyaki/Views/Widgets/TaiyakiSize.dart';
 
+import '../../../../Store/GlobalSettingsStore/GlobalSettingsStore.dart';
+import '../../../../Utils/math.dart';
+import '../../../Widgets/TaiyakiSize.dart';
+import '../action.dart';
+import 'action.dart';
 import 'state.dart';
 
 Widget buildView(WatchState state, Dispatch dispatch, ViewService viewService) {
   final _adapter = viewService.buildAdapter();
 
-  if (state.databaseModel?.link == null)
+  if (state.databaseModel?.link == null) {
     return Container(
         child: Padding(
       padding: const EdgeInsets.all(8.0),
       child: Center(
           child: Column(children: [
-        Text(
+        const Text(
             'Taiyaki requires a source to be able to link this entry. Tap on the button below to select the proper link and start watching.',
             textAlign: TextAlign.center),
         SizedBox(height: TaiyakiSize.height * 0.15),
         ElevatedButton(
           onPressed: () => dispatch(WatchActionCreator.openSourceSelector()),
-          child: Text('Link to Taiyaki'),
+          child: const Text('Link to Taiyaki'),
         ),
       ])),
     ));
+  }
 
   return Container(
     child: ListView(
@@ -45,7 +46,7 @@ Widget buildView(WatchState state, Dispatch dispatch, ViewService viewService) {
                     height: TaiyakiSize.height * 0.12,
                     width: TaiyakiSize.height * 0.12,
                     child: CircularProgressIndicator(
-                      value: state.episodes.length > 0
+                      value: state.episodes.isNotEmpty
                           ? double.parse(
                               percentageRemaining(
                                   state.episodes.length,
@@ -61,7 +62,7 @@ Widget buildView(WatchState state, Dispatch dispatch, ViewService viewService) {
                   Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(state.episodes.length > 0
+                        Text(state.episodes.isNotEmpty
                             ? percentageRemaining(
                                     state.episodes.length,
                                     (state.databaseModel?.episodeProgress ??
@@ -70,7 +71,7 @@ Widget buildView(WatchState state, Dispatch dispatch, ViewService viewService) {
                                         .last) +
                                 '%'
                             : '??%'),
-                        Text('complete')
+                        const Text('complete')
                       ])
                 ],
               ),
@@ -93,7 +94,7 @@ Widget buildView(WatchState state, Dispatch dispatch, ViewService viewService) {
                   },
                   child: Text(
                       (state.databaseModel?.isFollowing ?? false)
-                          ? "Following this anime"
+                          ? 'Following this anime'
                           : 'Notify me on new episodes',
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
@@ -111,7 +112,7 @@ Widget buildView(WatchState state, Dispatch dispatch, ViewService viewService) {
             padding: const EdgeInsets.symmetric(vertical: 4.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: [
+              children: const [
                 Icon(Icons.info_outline, color: Colors.grey),
                 SizedBox(width: 4),
                 Text('Spoil protection is turned on',
@@ -124,7 +125,7 @@ Widget buildView(WatchState state, Dispatch dispatch, ViewService viewService) {
             ),
           ),
         ListView.builder(
-          physics: NeverScrollableScrollPhysics(),
+          physics: const NeverScrollableScrollPhysics(),
           shrinkWrap: true,
           itemExtent: TaiyakiSize.height * 0.18,
           itemBuilder: _adapter.itemBuilder,

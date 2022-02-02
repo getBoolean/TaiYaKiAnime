@@ -1,8 +1,9 @@
 import 'package:fish_redux/fish_redux.dart';
-import 'package:taiyaki/Models/Anilist/models.dart';
-import 'package:taiyaki/Models/Taiyaki/Misc.dart';
-import 'package:taiyaki/Views/Pages/discovery_page/components/cells/state.dart';
-import 'package:taiyaki/Views/Pages/discovery_page/state.dart';
+
+import '../../../../../Models/Anilist/models.dart';
+import '../../../../../Models/Taiyaki/Misc.dart';
+import '../../state.dart';
+import '../cells/state.dart';
 
 class RowsState extends ImmutableSource implements Cloneable<RowsState> {
   String rowTitle;
@@ -22,7 +23,7 @@ class RowsState extends ImmutableSource implements Cloneable<RowsState> {
   @override
   Object getItemData(int index) {
     final _item = data[index];
-    return new DiscoveryRowCellsState(
+    return DiscoveryRowCellsState(
       coverImage: _item.coverImage,
       title: _item.title,
       id: _item.id,
@@ -94,10 +95,11 @@ class NextSeasonRowsConnector extends ConnOp<DiscoveryState, RowsState> {
     int year;
     final _seasonCheck = mapSeasonToAnilistNextSeason(
         mapMonthToAnilistSeason(DateTime.now().month));
-    if (_seasonCheck == 'FALL')
+    if (_seasonCheck == 'FALL') {
       year = DateTime.now().year + 1;
-    else
+    } else {
       year = DateTime.now().year;
+    }
 
     final subState = RowsState().clone();
     subState.rowTitle = 'Next Season';

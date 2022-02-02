@@ -1,9 +1,9 @@
 import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter/material.dart';
-import 'package:taiyaki/Views/Pages/detail_page/recommendation_component/cells/action.dart';
-import 'package:taiyaki/Views/Widgets/TaiyakiSize.dart';
-import 'package:taiyaki/Views/Widgets/taiyaki_image.dart';
 
+import '../../../../Widgets/TaiyakiSize.dart';
+import '../../../../Widgets/taiyaki_image.dart';
+import 'action.dart';
 import 'state.dart';
 
 Widget buildView(RecommendationCellsState state, Dispatch dispatch,
@@ -24,7 +24,7 @@ Widget buildView(RecommendationCellsState state, Dispatch dispatch,
             child: Text(
               state.media!.title,
               maxLines: 3,
-              style: TextStyle(fontSize: 13),
+              style: const TextStyle(fontSize: 13),
             ),
           ),
         ],

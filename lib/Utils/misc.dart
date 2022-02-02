@@ -1,6 +1,6 @@
-import 'package:taiyaki/Models/Taiyaki/Trackers.dart';
-import 'package:taiyaki/Models/Taiyaki/User.dart';
-import 'package:taiyaki/Store/GlobalUserStore/GlobalUserStore.dart';
+import '../Models/Taiyaki/Trackers.dart';
+import '../Models/Taiyaki/User.dart';
+import '../Store/GlobalUserStore/GlobalUserStore.dart';
 
 UserModel mapTrackerToUser(ThirdPartyTrackersEnum tracker) {
   switch (tracker) {

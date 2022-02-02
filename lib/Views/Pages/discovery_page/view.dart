@@ -1,12 +1,12 @@
 import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter/material.dart';
-import 'package:taiyaki/Models/Taiyaki/Trackers.dart';
-import 'package:taiyaki/Store/GlobalUserStore/GlobalUserStore.dart';
-import 'package:taiyaki/Views/Pages/discovery_page/action.dart';
-import 'package:taiyaki/Views/Widgets/TaiyakiSize.dart';
-import 'package:taiyaki/Views/Widgets/platform_scaffold.dart';
-import 'package:taiyaki/Views/Widgets/profile_list_cards.dart';
 
+import '../../../Models/Taiyaki/Trackers.dart';
+import '../../../Store/GlobalUserStore/GlobalUserStore.dart';
+import '../../Widgets/TaiyakiSize.dart';
+import '../../Widgets/platform_scaffold.dart';
+import '../../Widgets/profile_list_cards.dart';
+import 'action.dart';
 import 'state.dart';
 
 Widget buildView(
@@ -19,7 +19,7 @@ Widget buildView(
     appBarTitle: 'Discovery',
     actions: [
       IconButton(
-          icon: Icon(Icons.search),
+          icon: const Icon(Icons.search),
           onPressed: () => dispatch(DiscoveryActionCreator.onAction())),
     ],
     child: ListView(
@@ -58,7 +58,7 @@ Widget buildView(
         viewService.buildComponent('popular_slot'),
         // viewService.buildComponent('next_season_slot'),
         //  viewService.buildComponent('just_added_slot'),
-        SizedBox(height: 8),
+        const SizedBox(height: 8),
       ],
     ),
   );

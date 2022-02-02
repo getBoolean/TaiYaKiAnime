@@ -1,6 +1,6 @@
 import 'package:fish_redux/fish_redux.dart';
-import 'package:taiyaki/Models/Taiyaki/Settings.dart';
-import 'package:taiyaki/Views/Pages/onboarding_page/state.dart';
+import '../../../../../Models/Taiyaki/Settings.dart';
+import '../../state.dart';
 
 class OnboardingPage2State implements Cloneable<OnboardingPage2State> {
   AppSettingsModel? appSettingsModel;

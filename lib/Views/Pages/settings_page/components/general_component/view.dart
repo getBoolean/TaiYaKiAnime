@@ -1,6 +1,6 @@
 import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter/material.dart';
-import 'package:taiyaki/Views/Pages/settings_page/action.dart';
+import '../../action.dart';
 
 import 'state.dart';
 
@@ -12,9 +12,9 @@ Widget buildView(
     body: ListView(
       children: [
         SwitchListTile.adaptive(
-          title: Text('Blur spoilers'),
-          secondary: Icon(Icons.blur_circular),
-          subtitle: Text('Blur out unwatched episodes'),
+          title: const Text('Blur spoilers'),
+          secondary: const Icon(Icons.blur_circular),
+          subtitle: const Text('Blur out unwatched episodes'),
           value: _settings.blurSpoilers,
           onChanged: (val) {
             print('the value $val');
@@ -23,13 +23,13 @@ Widget buildView(
           },
         ),
         SwitchListTile.adaptive(
-          title: Text('Auto play next episode'),
+          title: const Text('Auto play next episode'),
           value: _settings.autoChange100,
           onChanged: (val) => dispatch(SettingsActionCreator.onUpdateSetting(
               _settings.copyWith(autoChange100: val))),
-          secondary: Icon(Icons.queue_play_next),
+          secondary: const Icon(Icons.queue_play_next),
           subtitle:
-              Text('Change to the next episode when the current one finishes'),
+              const Text('Change to the next episode when the current one finishes'),
         ),
       ],
     ),

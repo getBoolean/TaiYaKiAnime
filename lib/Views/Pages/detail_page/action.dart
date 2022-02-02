@@ -1,8 +1,8 @@
 import 'package:fish_redux/fish_redux.dart';
-import 'package:taiyaki/Models/Anilist/models.dart';
-import 'package:taiyaki/Models/MyAnimeList/models.dart';
-import 'package:taiyaki/Models/SIMKL/models.dart';
-import 'package:taiyaki/Models/Taiyaki/DetailDatabase.dart';
+import '../../../Models/Anilist/models.dart';
+import '../../../Models/MyAnimeList/models.dart';
+import '../../../Models/SIMKL/models.dart';
+import '../../../Models/Taiyaki/DetailDatabase.dart';
 
 //TODO replace with your own action
 enum DetailAction {

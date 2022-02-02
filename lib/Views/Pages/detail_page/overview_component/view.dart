@@ -1,11 +1,11 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter/material.dart';
-import 'package:taiyaki/Utils/strings.dart';
-import 'package:taiyaki/Views/Pages/detail_page/overview_component/action.dart';
-import 'package:taiyaki/Views/Widgets/TaiyakiSize.dart';
-import 'package:taiyaki/Views/Widgets/taiyaki_image.dart';
 
+import '../../../../Utils/strings.dart';
+import '../../../Widgets/TaiyakiSize.dart';
+import '../../../Widgets/taiyaki_image.dart';
+import 'action.dart';
 import 'state.dart';
 
 Widget buildView(
@@ -25,7 +25,7 @@ Widget buildView(
   final _data = state.data!;
 
   return ListView(
-    physics: NeverScrollableScrollPhysics(),
+    physics: const NeverScrollableScrollPhysics(),
     // crossAxisAlignment: CrossAxisAlignment.start,
     children: [
       Padding(
@@ -40,7 +40,7 @@ Widget buildView(
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8.0),
-              child: Container(
+              child: SizedBox(
                 width: TaiyakiSize.width * 0.48,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -97,7 +97,7 @@ Widget buildView(
                   dispatch(OverviewActionCreator.onExpandSynopsis()),
               child: Text(
                 state.synopsisExpanded ? 'Read Less' : 'Read More',
-                style: TextStyle(fontWeight: FontWeight.bold),
+                style: const TextStyle(fontWeight: FontWeight.bold),
               ),
             )
           ],
@@ -170,7 +170,7 @@ class _InfoRow extends StatelessWidget {
   final String title;
   final String? data;
 
-  _InfoRow({required this.title, this.data});
+  const _InfoRow({required this.title, this.data});
 
   @override
   Widget build(BuildContext context) {
@@ -183,7 +183,7 @@ class _InfoRow extends StatelessWidget {
             children: [
               Text(
                 title,
-                style: TextStyle(fontWeight: FontWeight.w700, fontSize: 16),
+                style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 16),
               ),
               Container(
                   constraints:
@@ -195,7 +195,7 @@ class _InfoRow extends StatelessWidget {
             ],
           ),
         ),
-        Divider(),
+        const Divider(),
       ],
     );
   }

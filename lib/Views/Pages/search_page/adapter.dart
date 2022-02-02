@@ -1,6 +1,6 @@
 import 'package:fish_redux/fish_redux.dart';
-import 'package:taiyaki/Views/Pages/search_page/cells/component.dart';
-import 'package:taiyaki/Views/Pages/search_page/state.dart';
+import 'cells/component.dart';
+import 'state.dart';
 
 class SearchAdapter extends SourceFlowAdapter<SearchState> {
   SearchAdapter()

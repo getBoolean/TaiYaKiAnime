@@ -14,7 +14,7 @@ import 'package:better_player/src/video_player/video_player.dart';
 
 // Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:taiyaki/Models/SIMKL/models.dart';
+import '../../Models/SIMKL/models.dart';
 
 import 'TaiyakiSize.dart';
 
@@ -199,7 +199,7 @@ class _TaiyakiControlsState extends BetterPlayerControlsState<TaiyakiControls> {
         opacity: _hideStuff ? 0.0 : 1.0,
         duration: _controlsConfiguration.controlsHideTime,
         onEnd: _onPlayerHide,
-        child: Container(
+        child: SizedBox(
           width: widget.isFullscreen ? TaiyakiSize.height : null,
           height: _controlsConfiguration.controlBarHeight,
           child: Padding(
@@ -230,7 +230,7 @@ class _TaiyakiControlsState extends BetterPlayerControlsState<TaiyakiControls> {
                   children: [
                     if (widget.isFullscreen)
                       IconButton(
-                        icon: Icon(Icons.featured_play_list),
+                        icon: const Icon(Icons.featured_play_list),
                         onPressed: () {
                           _controller?.pause();
                           widget.togglePlaylist();
@@ -239,7 +239,7 @@ class _TaiyakiControlsState extends BetterPlayerControlsState<TaiyakiControls> {
                     else
                       const SizedBox(width: 45),
                     IconButton(
-                      icon: Icon(Icons.more_vert),
+                      icon: const Icon(Icons.more_vert),
                       onPressed: onShowMoreClicked,
                     ),
                   ],
@@ -344,7 +344,7 @@ class _TaiyakiControlsState extends BetterPlayerControlsState<TaiyakiControls> {
       opacity: _hideStuff ? 0.0 : 1.0,
       duration: _controlsConfiguration.controlsHideTime,
       onEnd: _onPlayerHide,
-      child: Container(
+      child: SizedBox(
         height: _controlsConfiguration.controlBarHeight,
         // color: _controlsConfiguration.controlBarColor,
         child: Row(
@@ -574,7 +574,7 @@ class _TaiyakiControlsState extends BetterPlayerControlsState<TaiyakiControls> {
                 child: Padding(
                   padding: const EdgeInsets.all(12),
                   child: Text(
-                    "${_betterPlayerController!.translations.controlsNextVideoIn} $time ...",
+                    '${_betterPlayerController!.translations.controlsNextVideoIn} $time ...',
                     style: const TextStyle(color: Colors.white),
                   ),
                 ),

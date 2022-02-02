@@ -1,7 +1,7 @@
 import 'package:fish_redux/fish_redux.dart';
-import 'package:taiyaki/Views/Pages/detail_page/overview_component/characters_component/state.dart';
 
 import 'characters_component/component.dart';
+import 'characters_component/state.dart';
 import 'effect.dart';
 import 'reducer.dart';
 import 'state.dart';

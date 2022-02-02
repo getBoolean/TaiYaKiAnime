@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:html/parser.dart';
-import 'package:taiyaki/Services/Exceptions/API/Exceptions+API.dart';
-import 'package:taiyaki/Services/Sources/Base.dart';
+import '../Exceptions/API/Exceptions+API.dart';
+import 'Base.dart';
 
 class GogoAnime implements SourceBase {
   @override
@@ -30,25 +30,26 @@ class GogoAnime implements SourceBase {
         .last
         .querySelector('a')!
         .attributes['ep_end']!);
-    if (_totalEpisodes == null)
-      throw new SourceException(
+    if (_totalEpisodes == null) {
+      throw SourceException(
           error: 'Could not fetch the last episode, html may be broken');
+    }
     final List<String> episodeBox = [];
     for (var i = 0; i < _totalEpisodes; i++) {
       episodeBox.add(
-          this.request.options.baseUrl + '/' + _slug + '-episode-${i + 1}');
+          request.options.baseUrl + '/' + _slug + '-episode-${i + 1}');
     }
     return episodeBox;
   }
 
   @override
   Future<List<SourceSearchResultsModel>> getSearchResults(String query) async {
-    final _response = await this
-        .request
+    final _response = await request
         .get('/search.html', queryParameters: {'keyword': query});
-    if (_response.statusCode != 200)
-      throw new SourceException(
+    if (_response.statusCode != 200) {
+      throw SourceException(
           error: 'The server returned a 400. Could not get information');
+    }
 
     return parse(_response.data)
         .querySelectorAll('div.last_episodes > ul.items > li')
@@ -58,7 +59,7 @@ class GogoAnime implements SourceBase {
       final String image = e.querySelector('img')!.attributes['src']!;
       return SourceSearchResultsModel(
           title: title,
-          link: this.request.options.baseUrl + link,
+          link: request.options.baseUrl + link,
           image: image);
     }).toList();
   }
@@ -80,7 +81,7 @@ class GogoAnime implements SourceBase {
 
   @override
   void dispose() {
-    this.request.close(force: true);
+    request.close(force: true);
   }
 
   @override

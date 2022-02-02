@@ -1,6 +1,6 @@
 import 'package:fish_redux/fish_redux.dart';
-import 'package:taiyaki/Models/Taiyaki/Settings.dart';
-import 'package:taiyaki/Store/GlobalUserStore/GlobalUserAction.dart';
+import '../../../Models/Taiyaki/Settings.dart';
+import '../../../Store/GlobalUserStore/GlobalUserAction.dart';
 
 //TODO replace with your own action
 enum SettingsAction { action, updateUserModel, updateSetting }

@@ -1,6 +1,6 @@
 import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter/material.dart';
-import 'package:taiyaki/Views/Widgets/TaiyakiSize.dart';
+import '../../../../Widgets/TaiyakiSize.dart';
 
 import 'state.dart';
 
@@ -9,7 +9,7 @@ Widget buildView(
   final _adapter = viewService.buildAdapter();
   final TextStyle title = TextStyle(
       fontWeight: FontWeight.w600, fontSize: TaiyakiSize.height * 0.03);
-  return Container(
+  return SizedBox(
     height: TaiyakiSize.height * 0.28,
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -21,7 +21,7 @@ Widget buildView(
         Expanded(
           child: Scrollbar(
             child: ListView.builder(
-              key: PageStorageKey('follower_activities'),
+              key: const PageStorageKey('follower_activities'),
               scrollDirection: Axis.horizontal,
               itemBuilder: _adapter.itemBuilder,
               itemCount: _adapter.itemCount,

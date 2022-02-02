@@ -1,5 +1,5 @@
 import 'package:fish_redux/fish_redux.dart';
-import 'package:taiyaki/Services/API/Anilist+API.dart';
+import '../../../Services/API/Anilist+API.dart';
 
 import 'action.dart';
 import 'state.dart';
@@ -22,7 +22,7 @@ void _onSearch(Action action, Context<SearchState> ctx) async {
   final _year = ctx.state.year;
   final _search = ctx.state.query;
 
-  AnilistAPI()
+  await AnilistAPI()
       .getSearchResults(_genres, _tags, _search, _year, _season)
       .then((value) => ctx.dispatch(SearchActionCreator.setResults(value)))
       .whenComplete(() => ctx.dispatch(SearchActionCreator.setLoading(false)));

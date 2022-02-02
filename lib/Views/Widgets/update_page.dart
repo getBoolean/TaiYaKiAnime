@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
-import 'package:taiyaki/Models/Taiyaki/Sync.dart';
-import 'package:taiyaki/Models/Taiyaki/Trackers.dart';
-import 'package:taiyaki/Services/API/Anilist+API.dart';
-import 'package:taiyaki/Services/API/MyAnimeList+API.dart';
-import 'package:taiyaki/Services/API/SIMKL+API.dart';
+import '../../Models/Taiyaki/Sync.dart';
+import '../../Models/Taiyaki/Trackers.dart';
+import '../../Services/API/Anilist+API.dart';
+import '../../Services/API/MyAnimeList+API.dart';
+import '../../Services/API/SIMKL+API.dart';
 
 import 'TaiyakiSize.dart';
 
@@ -18,7 +18,7 @@ class UpdatePage extends StatefulWidget {
   final Function(SyncModel?) onUpdateMAL;
   final Function(SyncModel?) onUpdateSimkl;
 
-  UpdatePage(
+  const UpdatePage(
       {Key key = const ValueKey('update_page'),
       required this.id,
       this.tracker,
@@ -48,7 +48,7 @@ class _UpdatePageState extends State<UpdatePage> {
   bool isUpdating = false;
 
   Future<void> _onUpdate(SyncModel syncModel) async {
-    this.setState(() => isUpdating = true);
+    setState(() => isUpdating = true);
     if (widget.tracker == ThirdPartyTrackersEnum.anilist ||
         widget.bulkIds?.anilist != null) {
       final updatedModel = await AnilistAPI()
@@ -68,14 +68,15 @@ class _UpdatePageState extends State<UpdatePage> {
       final updatedModel = await SimklAPI()
           .syncProgress(widget.bulkIds?.simkl ?? widget.id, syncModel);
       widget.onUpdateSimkl(updatedModel);
-    } else
+    } else {
       return;
+    }
     // throw new APIException(message: 'No valid tracker to update progress to');
   }
 
   @override
   Widget build(BuildContext context) {
-    final TextStyle subTitle = TextStyle(
+    const TextStyle subTitle = TextStyle(
       fontWeight: FontWeight.bold,
       fontSize: 21,
     );
@@ -90,7 +91,7 @@ class _UpdatePageState extends State<UpdatePage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text('Status', style: subTitle),
+                const Text('Status', style: subTitle),
                 Text(widget.syncModel.status ?? 'Not in List'),
               ],
             ),
@@ -107,45 +108,45 @@ class _UpdatePageState extends State<UpdatePage> {
                         child: ChoiceChip(
                             selected: currentStatus == 'Watching',
                             onSelected: (value) =>
-                                this.setState(() => currentStatus = 'Watching'),
-                            label: Text('Watching'))),
+                                setState(() => currentStatus = 'Watching'),
+                            label: const Text('Watching'))),
                     Container(
                         margin: const EdgeInsets.symmetric(
                             horizontal: 6.0, vertical: 4.0),
                         child: ChoiceChip(
                             selected: currentStatus == 'Plan to Watch',
-                            onSelected: (value) => this.setState(
+                            onSelected: (value) => setState(
                                 () => currentStatus = 'Plan to Watch'),
-                            label: Text('Plan to Watch'))),
+                            label: const Text('Plan to Watch'))),
                     Container(
                         margin: const EdgeInsets.symmetric(
                             horizontal: 6.0, vertical: 4.0),
                         child: ChoiceChip(
                             selected: currentStatus == 'Completed',
                             onSelected: (value) {
-                              this.setState(() {
+                              setState(() {
                                 currentStatus = 'Completed';
                                 currentProgress =
                                     widget.syncModel.episodes ?? 12;
                               });
                             },
-                            label: Text('Completed'))),
+                            label: const Text('Completed'))),
                     Container(
                         margin: const EdgeInsets.symmetric(
                             horizontal: 6.0, vertical: 4.0),
                         child: ChoiceChip(
                             selected: currentStatus == 'On Hold',
                             onSelected: (value) =>
-                                this.setState(() => currentStatus = 'On Hold'),
-                            label: Text('On Hold'))),
+                                setState(() => currentStatus = 'On Hold'),
+                            label: const Text('On Hold'))),
                     Container(
                         margin: const EdgeInsets.symmetric(
                             horizontal: 6.0, vertical: 4.0),
                         child: ChoiceChip(
                             selected: currentStatus == 'Dropped',
                             onSelected: (value) =>
-                                this.setState(() => currentStatus = 'Dropped'),
-                            label: Text('Dropped'))),
+                                setState(() => currentStatus = 'Dropped'),
+                            label: const Text('Dropped'))),
                   ],
                 ),
               ),
@@ -153,7 +154,7 @@ class _UpdatePageState extends State<UpdatePage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text('Progress', style: subTitle),
+                const Text('Progress', style: subTitle),
                 Text('Episode ${widget.syncModel.progress ?? 0}')
               ],
             ),
@@ -163,28 +164,29 @@ class _UpdatePageState extends State<UpdatePage> {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   MaterialButton(
-                    onPressed: () => this.setState(() {
-                      if (widget.syncModel.episodes == 0)
+                    onPressed: () => setState(() {
+                      if (widget.syncModel.episodes == 0) {
                         currentProgress += 1;
-                      else if ((currentProgress + 1) <=
-                          (widget.syncModel.episodes ?? double.infinity))
+                      } else if ((currentProgress + 1) <=
+                          (widget.syncModel.episodes ?? double.infinity)) {
                         currentProgress += 1;
+                      }
                     }),
                     color: Theme.of(context).colorScheme.secondaryVariant,
-                    shape: CircleBorder(),
-                    child: Icon(Icons.arrow_upward, size: 24),
+                    shape: const CircleBorder(),
+                    child: const Icon(Icons.arrow_upward, size: 24),
                     padding: const EdgeInsets.all(16),
                   ),
                   Text(
                       '$currentProgress / ${widget.syncModel.episodes ?? '??'}',
                       style: subTitle),
                   MaterialButton(
-                    onPressed: () => this.setState(() {
+                    onPressed: () => setState(() {
                       if (currentProgress - 1 >= 0) currentProgress -= 1;
                     }),
                     color: Theme.of(context).colorScheme.secondaryVariant,
-                    shape: CircleBorder(),
-                    child: Icon(Icons.arrow_downward, size: 24),
+                    shape: const CircleBorder(),
+                    child: const Icon(Icons.arrow_downward, size: 24),
                     padding: const EdgeInsets.all(16),
                   )
                 ],
@@ -193,12 +195,12 @@ class _UpdatePageState extends State<UpdatePage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text('Score', style: subTitle),
+                const Text('Score', style: subTitle),
                 Text(widget.syncModel.score.toString()),
               ],
             ),
             SfSlider(
-              onChanged: (value) => this.setState(() => _score = value),
+              onChanged: (value) => setState(() => _score = value),
               value: _score,
               showDivisors: true,
               max: 10.0,
@@ -222,12 +224,12 @@ class _UpdatePageState extends State<UpdatePage> {
                                     progress: currentProgress,
                                     status: currentStatus))
                                 .then((value) =>
-                                    this.setState(() => isUpdating = false))
+                                    setState(() => isUpdating = false))
                                 .whenComplete(
                                     () => Navigator.of(context).pop());
                           },
                     child: Text(isUpdating ? 'Updating...' : 'Update',
-                        style: TextStyle(fontWeight: FontWeight.w600))),
+                        style: const TextStyle(fontWeight: FontWeight.w600))),
               ),
             )
           ],

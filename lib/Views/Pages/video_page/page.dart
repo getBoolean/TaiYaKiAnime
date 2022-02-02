@@ -1,8 +1,8 @@
 import 'package:fish_redux/fish_redux.dart';
-import 'package:taiyaki/Models/SIMKL/models.dart';
-import 'package:taiyaki/Models/Taiyaki/DetailDatabase.dart';
-import 'package:taiyaki/Views/Pages/video_page/components/queue_component/component.dart';
-import 'package:taiyaki/Views/Pages/video_page/components/queue_component/state.dart';
+import '../../../Models/SIMKL/models.dart';
+import '../../../Models/Taiyaki/DetailDatabase.dart';
+import 'components/queue_component/component.dart';
+import 'components/queue_component/state.dart';
 
 import 'effect.dart';
 import 'reducer.dart';

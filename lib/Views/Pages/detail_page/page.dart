@@ -1,19 +1,19 @@
 import 'package:fish_redux/fish_redux.dart';
-import 'package:taiyaki/Views/Pages/detail_page/overview_component/component.dart';
-import 'package:taiyaki/Views/Pages/detail_page/recommendation_component/component.dart';
-import 'package:taiyaki/Views/Pages/detail_page/recommendation_component/state.dart';
-import 'package:taiyaki/Views/Pages/detail_page/stats_component/state.dart';
-import 'package:taiyaki/Views/Pages/detail_page/sync_component/component.dart';
-import 'package:taiyaki/Views/Pages/detail_page/sync_component/state.dart';
-import 'package:taiyaki/Views/Pages/detail_page/watch_component/component.dart';
-import 'package:taiyaki/Views/Pages/detail_page/watch_component/state.dart';
 
 import 'effect.dart';
+import 'overview_component/component.dart';
 import 'overview_component/state.dart';
+import 'recommendation_component/component.dart';
+import 'recommendation_component/state.dart';
 import 'reducer.dart';
 import 'state.dart';
 import 'stats_component/component.dart';
+import 'stats_component/state.dart';
+import 'sync_component/component.dart';
+import 'sync_component/state.dart';
 import 'view.dart';
+import 'watch_component/component.dart';
+import 'watch_component/state.dart';
 
 class DetailPageArguments {
   final int id;

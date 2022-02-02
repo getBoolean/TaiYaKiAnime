@@ -1,13 +1,13 @@
 import 'package:animator/animator.dart';
 import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:taiyaki/Models/Taiyaki/Settings.dart';
-import 'package:taiyaki/Models/Taiyaki/User.dart';
-import 'package:taiyaki/Store/GlobalSettingsStore/GlobalSettingsAction.dart';
-import 'package:taiyaki/Store/GlobalSettingsStore/GlobalSettingsState.dart';
-import 'package:taiyaki/Store/GlobalSettingsStore/GlobalSettingsStore.dart';
-import 'package:taiyaki/Store/GlobalUserStore/GlobalUserState.dart';
-import 'package:taiyaki/Store/GlobalUserStore/GlobalUserStore.dart';
+import '../../../Models/Taiyaki/Settings.dart';
+import '../../../Models/Taiyaki/User.dart';
+import '../../../Store/GlobalSettingsStore/GlobalSettingsAction.dart';
+import '../../../Store/GlobalSettingsStore/GlobalSettingsState.dart';
+import '../../../Store/GlobalSettingsStore/GlobalSettingsStore.dart';
+import '../../../Store/GlobalUserStore/GlobalUserState.dart';
+import '../../../Store/GlobalUserStore/GlobalUserStore.dart';
 
 class OnboardingState
     implements

@@ -1,14 +1,14 @@
 import 'package:fish_redux/fish_redux.dart';
-import 'package:taiyaki/Views/Pages/onboarding_page/pages/onboard_page_1/component.dart';
-import 'package:taiyaki/Views/Pages/onboarding_page/pages/onboard_page_1/state.dart';
-import 'package:taiyaki/Views/Pages/onboarding_page/pages/onboard_page_2/component.dart';
-import 'package:taiyaki/Views/Pages/onboarding_page/pages/onboard_page_2/state.dart';
-import 'package:taiyaki/Views/Pages/onboarding_page/pages/onboard_page_3/component.dart';
-import 'package:taiyaki/Views/Pages/onboarding_page/pages/onboard_page_3/state.dart';
-import 'package:taiyaki/Views/Pages/onboarding_page/pages/onboard_page_4/state.dart';
 
 import 'effect.dart';
+import 'pages/onboard_page_1/component.dart';
+import 'pages/onboard_page_1/state.dart';
+import 'pages/onboard_page_2/component.dart';
+import 'pages/onboard_page_2/state.dart';
+import 'pages/onboard_page_3/component.dart';
+import 'pages/onboard_page_3/state.dart';
 import 'pages/onboard_page_4/component.dart';
+import 'pages/onboard_page_4/state.dart';
 import 'pages/onboard_page_5/component.dart';
 import 'pages/onboard_page_5/state.dart';
 import 'reducer.dart';

@@ -1,9 +1,9 @@
 import 'package:fish_redux/fish_redux.dart';
-import 'package:taiyaki/Views/Pages/discovery_page/components/follower_cards/state.dart';
-import 'package:taiyaki/Views/Pages/discovery_page/components/rows/component.dart';
-import 'package:taiyaki/Views/Pages/discovery_page/components/rows/state.dart';
 
 import 'components/follower_cards/component.dart';
+import 'components/follower_cards/state.dart';
+import 'components/rows/component.dart';
+import 'components/rows/state.dart';
 import 'effect.dart';
 import 'reducer.dart';
 import 'state.dart';

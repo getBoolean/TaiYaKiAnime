@@ -1,14 +1,14 @@
 import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter/material.dart';
-import 'package:taiyaki/Models/Taiyaki/Settings.dart';
-import 'package:taiyaki/Models/Taiyaki/Trackers.dart';
-import 'package:taiyaki/Models/Taiyaki/User.dart';
-import 'package:taiyaki/Store/GlobalSettingsStore/GlobalSettingsAction.dart';
-import 'package:taiyaki/Store/GlobalSettingsStore/GlobalSettingsState.dart';
-import 'package:taiyaki/Store/GlobalSettingsStore/GlobalSettingsStore.dart';
-import 'package:taiyaki/Store/GlobalUserStore/GlobalUserAction.dart';
-import 'package:taiyaki/Store/GlobalUserStore/GlobalUserState.dart';
-import 'package:taiyaki/Store/GlobalUserStore/GlobalUserStore.dart';
+import '../../../Models/Taiyaki/Settings.dart';
+import '../../../Models/Taiyaki/Trackers.dart';
+import '../../../Models/Taiyaki/User.dart';
+import '../../../Store/GlobalSettingsStore/GlobalSettingsAction.dart';
+import '../../../Store/GlobalSettingsStore/GlobalSettingsState.dart';
+import '../../../Store/GlobalSettingsStore/GlobalSettingsStore.dart';
+import '../../../Store/GlobalUserStore/GlobalUserAction.dart';
+import '../../../Store/GlobalUserStore/GlobalUserState.dart';
+import '../../../Store/GlobalUserStore/GlobalUserStore.dart';
 
 class SettingsState
     implements
@@ -16,10 +16,10 @@ class SettingsState
         GlobalSettingsBaseState,
         Cloneable<SettingsState> {
   final List<Tab> tabs = [
-    Tab(text: 'General'),
-    Tab(text: 'Customization'),
-    Tab(text: 'Notifications'),
-    Tab(
+    const Tab(text: 'General'),
+    const Tab(text: 'Customization'),
+    const Tab(text: 'Notifications'),
+    const Tab(
       text: 'Trackers',
     ),
   ];
@@ -41,28 +41,31 @@ class SettingsState
 
   @override
   set anilistUser(UserModel? _anilistUser) {
-    if (_anilistUser != null)
+    if (_anilistUser != null) {
       GlobalUserStore.store.dispatch(GlobalUserActionCreator.onUpdateUser(
           UpdateModel(
               model: _anilistUser, tracker: ThirdPartyTrackersEnum.anilist)));
+    }
   }
 
   @override
   set myanimelistUser(UserModel? _myanimelistUser) {
     print('myanimelist');
-    if (_myanimelistUser != null)
+    if (_myanimelistUser != null) {
       GlobalUserStore.store.dispatch(GlobalUserActionCreator.onUpdateUser(
           UpdateModel(
               model: _myanimelistUser,
               tracker: ThirdPartyTrackersEnum.myanimelist)));
+    }
   }
 
   @override
   set simklUser(UserModel? _simklUser) {
-    if (_simklUser != null)
+    if (_simklUser != null) {
       GlobalUserStore.store.dispatch(GlobalUserActionCreator.onUpdateUser(
           UpdateModel(
               model: _simklUser, tracker: ThirdPartyTrackersEnum.simkl)));
+    }
   }
 
   @override

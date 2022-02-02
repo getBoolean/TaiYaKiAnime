@@ -1,5 +1,5 @@
 import 'package:fish_redux/fish_redux.dart';
-import 'package:taiyaki/Models/Anilist/models.dart';
+import '../../../../../Models/Anilist/models.dart';
 
 class RecommendationCellsState implements Cloneable<RecommendationCellsState> {
   AnilistNode? media;

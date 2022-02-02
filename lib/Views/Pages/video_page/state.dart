@@ -1,9 +1,9 @@
 import 'package:better_player/better_player.dart';
 import 'package:fish_redux/fish_redux.dart';
-import 'package:taiyaki/Models/SIMKL/models.dart';
-import 'package:taiyaki/Models/Taiyaki/DetailDatabase.dart';
-import 'package:taiyaki/Services/Hosts/Base.dart';
-import 'package:taiyaki/Services/Sources/Base.dart';
+import '../../../Models/SIMKL/models.dart';
+import '../../../Models/Taiyaki/DetailDatabase.dart';
+import '../../../Services/Hosts/Base.dart';
+import '../../../Services/Sources/Base.dart';
 
 import 'page.dart';
 

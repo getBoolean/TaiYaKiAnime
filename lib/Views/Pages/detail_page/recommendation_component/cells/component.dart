@@ -1,8 +1,8 @@
 import 'package:fish_redux/fish_redux.dart';
 
+import 'effect.dart';
 import 'state.dart';
 import 'view.dart';
-import 'effect.dart';
 
 class RecommendationCellsComponent extends Component<RecommendationCellsState> {
   RecommendationCellsComponent()

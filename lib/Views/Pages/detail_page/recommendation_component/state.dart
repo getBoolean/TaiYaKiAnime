@@ -1,8 +1,8 @@
 import 'package:fish_redux/fish_redux.dart';
-import 'package:taiyaki/Models/Anilist/models.dart';
-import 'package:taiyaki/Views/Pages/detail_page/recommendation_component/cells/state.dart';
 
+import '../../../../Models/Anilist/models.dart';
 import '../state.dart';
+import 'cells/state.dart';
 
 class RecommendationState extends ImmutableSource
     implements Cloneable<RecommendationState> {

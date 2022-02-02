@@ -1,8 +1,8 @@
 import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter/material.dart';
-import 'package:taiyaki/Utils/strings.dart';
-import 'package:taiyaki/Views/Widgets/TaiyakiSize.dart';
-import 'package:taiyaki/Views/Widgets/taiyaki_image.dart';
+import '../../../../../Utils/strings.dart';
+import '../../../../Widgets/TaiyakiSize.dart';
+import '../../../../Widgets/taiyaki_image.dart';
 
 import '../action.dart';
 import 'state.dart';
@@ -45,10 +45,10 @@ Widget buildView(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text('Episode ${state.episode!.episode}',
-                            style: TextStyle(fontSize: 12)),
+                            style: const TextStyle(fontSize: 12)),
                         Text(
                           state.episode!.title,
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontWeight: FontWeight.w600,
                             fontSize: 15,
                           ),
@@ -66,7 +66,7 @@ Widget buildView(
                             (state.progress! * 100 >= 100)
                                 ? 'Completed'
                                 : '${(state.progress! * 100).toStringAsFixed(2)}% watched',
-                            style: TextStyle(
+                            style: const TextStyle(
                                 fontWeight: FontWeight.w300, fontSize: 12)),
                         LinearProgressIndicator(
                           value: state.progress,

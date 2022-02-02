@@ -5,7 +5,7 @@ class APIException implements Exception {
 
   @override
   String toString() {
-    return this.message.toString();
+    return message.toString();
   }
 }
 

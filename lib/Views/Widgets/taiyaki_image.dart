@@ -8,7 +8,7 @@ class TaiyakiImage extends StatelessWidget {
 
   final BoxFit fit;
 
-  TaiyakiImage({this.url, this.height, this.width, this.fit = BoxFit.cover});
+  const TaiyakiImage({this.url, this.height, this.width, this.fit = BoxFit.cover});
 
   @override
   Widget build(BuildContext context) {

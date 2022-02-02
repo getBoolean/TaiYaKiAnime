@@ -37,14 +37,15 @@ FilterSheetState _onFilterSeason(FilterSheetState state, Action action) {
 FilterSheetState _onFilterGenre(FilterSheetState state, Action action) {
   final FilterSheetState newState = state.clone();
   final String _genre = action.payload;
-  if (_genre == 'All')
+  if (_genre == 'All') {
     newState.enabledGenres = [];
-  else {
-    if (state.enabledGenres.contains(_genre))
+  } else {
+    if (state.enabledGenres.contains(_genre)) {
       newState.enabledGenres =
           state.enabledGenres.where((element) => element != _genre).toList();
-    else
+    } else {
       newState.enabledGenres.add(_genre);
+    }
   }
 
   return newState;
@@ -53,14 +54,15 @@ FilterSheetState _onFilterGenre(FilterSheetState state, Action action) {
 FilterSheetState _onFilterTag(FilterSheetState state, Action action) {
   final FilterSheetState newState = state.clone();
   final String _tag = action.payload;
-  if (_tag == 'All')
+  if (_tag == 'All') {
     newState.enabledTags = [];
-  else {
-    if (state.enabledTags.contains(_tag))
+  } else {
+    if (state.enabledTags.contains(_tag)) {
       newState.enabledTags =
           state.enabledTags.where((element) => element != _tag).toList();
-    else
+    } else {
       newState.enabledTags.add(_tag);
+    }
   }
 
   return newState;

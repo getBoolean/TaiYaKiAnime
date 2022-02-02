@@ -1,6 +1,6 @@
 import 'package:fish_redux/fish_redux.dart';
-import 'package:taiyaki/Models/Taiyaki/Sync.dart';
-import 'package:taiyaki/Models/Taiyaki/User.dart';
+import '../../Models/Taiyaki/Sync.dart';
+import '../../Models/Taiyaki/User.dart';
 
 abstract class GlobalUserBaseState {
   UserModel? anilistUser;

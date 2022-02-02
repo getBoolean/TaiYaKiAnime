@@ -1,13 +1,13 @@
 import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter/material.dart';
-import 'package:taiyaki/Views/Widgets/TaiyakiSize.dart';
+import '../../../../Widgets/TaiyakiSize.dart';
 
 import 'state.dart';
 
 Widget buildView(
     CharactersState state, Dispatch dispatch, ViewService viewService) {
   final ListAdapter _adapter = viewService.buildAdapter();
-  return Container(
+  return SizedBox(
     height: TaiyakiSize.height * 0.44,
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,

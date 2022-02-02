@@ -1,7 +1,7 @@
 import 'package:fish_redux/fish_redux.dart';
-import 'package:taiyaki/Models/Taiyaki/Settings.dart';
-import 'package:taiyaki/Models/Taiyaki/User.dart';
-import 'package:taiyaki/Views/Pages/settings_page/state.dart';
+import '../../../../../Models/Taiyaki/Settings.dart';
+import '../../../../../Models/Taiyaki/User.dart';
+import '../../state.dart';
 
 class SettingsTrackersState implements Cloneable<SettingsTrackersState> {
   UserModel? simklUser;
@@ -24,7 +24,7 @@ class SettingsTrackersConnector
     extends ConnOp<SettingsState, SettingsTrackersState> {
   @override
   SettingsTrackersState get(SettingsState state) {
-    final subState = new SettingsTrackersState().clone();
+    final subState = SettingsTrackersState().clone();
     subState.simklUser = state.simklUser;
     subState.myanimelistUser = state.myanimelistUser;
     subState.anilistUser = state.anilistUser;

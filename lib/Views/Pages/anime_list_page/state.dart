@@ -1,7 +1,7 @@
 import 'package:fish_redux/fish_redux.dart';
-import 'package:taiyaki/Models/Taiyaki/Sync.dart';
-import 'package:taiyaki/Models/Taiyaki/Trackers.dart';
-import 'package:taiyaki/Views/Pages/anime_list_page/components/list_cells/state.dart';
+import '../../../Models/Taiyaki/Sync.dart';
+import '../../../Models/Taiyaki/Trackers.dart';
+import 'components/list_cells/state.dart';
 
 import 'page.dart';
 

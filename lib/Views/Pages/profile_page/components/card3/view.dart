@@ -11,8 +11,8 @@ Widget buildView(Card3State state, Dispatch dispatch, ViewService viewService) {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
+            const Padding(
+              padding: EdgeInsets.all(8.0),
               child: Text('Stats',
                   style: TextStyle(fontWeight: FontWeight.w800, fontSize: 15)),
             ),

@@ -1,14 +1,13 @@
-import 'package:taiyaki/Services/Hosts/StreamTape.dart';
-
 import 'Base.dart';
+import 'StreamTape.dart';
 import 'XstreamCDN.dart';
 
 HostsBase nameToHostsBase(String name) {
   switch (name.toLowerCase().trim()) {
     case 'xstreamcdn':
-      return new XstreamCDN();
+      return XstreamCDN();
     case 'streamtape':
-      return new StreamTape();
+      return StreamTape();
     default:
       throw Exception('This host does not exist');
   }

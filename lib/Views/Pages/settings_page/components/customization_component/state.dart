@@ -1,6 +1,6 @@
 import 'package:fish_redux/fish_redux.dart';
-import 'package:taiyaki/Models/Taiyaki/Settings.dart';
-import 'package:taiyaki/Views/Pages/settings_page/state.dart';
+import '../../../../../Models/Taiyaki/Settings.dart';
+import '../../state.dart';
 
 class CustomizationSettingState
     implements Cloneable<CustomizationSettingState> {

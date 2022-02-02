@@ -22,7 +22,7 @@ class SyncModel {
 
   SyncModel(
       {String? status, this.episodes = 0, required this.progress, this.score})
-      : this.status = _convertToString(status ?? 'Not in List');
+      : status = _convertToString(status ?? 'Not in List');
 
   SyncModel copyWith({
     String? status,
@@ -38,41 +38,43 @@ class SyncModel {
 
   SyncModel toAnilist() {
     return SyncModel(
-      progress: this.progress,
-      status: convertToAnilist(this.status),
+      progress: progress,
+      status: convertToAnilist(status),
       episodes: null,
-      score: this.score,
+      score: score,
     );
   }
 
   static String convertToMAL(String? status) {
-    if (status == 'Watching')
+    if (status == 'Watching') {
       return 'watching';
-    else if (status == 'Plan to Watch')
+    } else if (status == 'Plan to Watch') {
       return 'plan_to_watch';
-    else if (status == 'On Hold')
+    } else if (status == 'On Hold') {
       return 'on_hold';
-    else if (status == 'Completed')
+    } else if (status == 'Completed') {
       return 'completed';
-    else if (status == 'Dropped')
+    } else if (status == 'Dropped') {
       return 'dropped';
-    else
+    } else {
       return status!;
+    }
   }
 
   static String convertToAnilist(String? status) {
-    if (status == 'Watching')
+    if (status == 'Watching') {
       return 'CURRENT';
-    else if (status == 'Plan to Watch')
+    } else if (status == 'Plan to Watch') {
       return 'PLANNING';
-    else if (status == 'On Hold')
+    } else if (status == 'On Hold') {
       return 'PAUSED';
-    else if (status == 'Completed')
+    } else if (status == 'Completed') {
       return 'COMPLETED';
-    else if (status == 'Dropped')
+    } else if (status == 'Dropped') {
       return 'DROPPED';
-    else
+    } else {
       return status!;
+    }
   }
 
   static String _convertToString(String status) {

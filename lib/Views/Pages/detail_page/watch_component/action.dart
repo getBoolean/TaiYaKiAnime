@@ -1,6 +1,6 @@
 import 'package:fish_redux/fish_redux.dart';
-import 'package:taiyaki/Models/SIMKL/models.dart';
-import 'package:taiyaki/Models/Taiyaki/DetailDatabase.dart';
+import '../../../../Models/SIMKL/models.dart';
+import '../../../../Models/Taiyaki/DetailDatabase.dart';
 
 enum WatchAction {
   action,

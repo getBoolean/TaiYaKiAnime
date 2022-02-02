@@ -1,8 +1,8 @@
 import 'package:fish_redux/fish_redux.dart';
-import 'package:taiyaki/Models/Anilist/models.dart';
-import 'package:taiyaki/Models/Taiyaki/DetailDatabase.dart';
-import 'package:taiyaki/Models/Taiyaki/User.dart';
-import 'package:taiyaki/Store/GlobalUserStore/GlobalUserState.dart';
+import '../../../Models/Anilist/models.dart';
+import '../../../Models/Taiyaki/DetailDatabase.dart';
+import '../../../Models/Taiyaki/User.dart';
+import '../../../Store/GlobalUserStore/GlobalUserState.dart';
 
 class DiscoveryState implements GlobalUserBaseState, Cloneable<DiscoveryState> {
   List<AnilistNode>? trendingData;

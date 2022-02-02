@@ -1,6 +1,6 @@
 import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter/material.dart';
-import 'package:taiyaki/Views/Widgets/TaiyakiSize.dart';
+import '../../../../Widgets/TaiyakiSize.dart';
 
 import 'state.dart';
 
@@ -13,10 +13,10 @@ Widget buildView(QueueState state, Dispatch dispatch, ViewService viewService) {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('Playlist',
+              const Text('Playlist',
                   style: TextStyle(fontWeight: FontWeight.w600, fontSize: 18)),
               ListView.builder(
-                physics: NeverScrollableScrollPhysics(),
+                physics: const NeverScrollableScrollPhysics(),
                 itemExtent: TaiyakiSize.height * 0.17,
                 itemBuilder: _adapter.itemBuilder,
                 itemCount: _adapter.itemCount,

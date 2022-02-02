@@ -36,25 +36,25 @@ class UserModel {
       );
 
   Map<String, dynamic> toMap() => {
-        'accessToken': this.accessToken,
-        'refreshToken': this.refreshToken,
-        'expiresIn': this.expiresIn != null ? this.expiresIn.toString() : null,
-        'username': this.username,
-        'background': this.background,
-        'avatar': this.avatar,
-        'id': this.id,
+        'accessToken': accessToken,
+        'refreshToken': refreshToken,
+        'expiresIn': expiresIn != null ? expiresIn.toString() : null,
+        'username': username,
+        'background': background,
+        'avatar': avatar,
+        'id': id,
       };
 
   factory UserModel.fromJson(Map<String, dynamic> json) => UserModel(
         accessToken: json['accessToken'],
         refreshToken:
-            json['refreshToken'] != null ? json['refreshToken'] : null,
+            json['refreshToken'],
         expiresIn: (json['expiresIn'] != null && json['expiresIn'] != 'null')
             ? DateTime.parse(json['expiresIn'])
             : null,
-        username: json['username'] != null ? json['username'] : null,
-        avatar: json['avatar'] != null ? json['avatar'] : null,
-        id: json['id'] != null ? json['id'] : null,
-        background: json['background'] != null ? json['background'] : null,
+        username: json['username'],
+        avatar: json['avatar'],
+        id: json['id'],
+        background: json['background'],
       );
 }

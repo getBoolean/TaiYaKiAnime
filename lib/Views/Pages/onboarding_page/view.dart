@@ -1,7 +1,7 @@
 import 'package:animator/animator.dart';
 import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter/material.dart';
-import 'package:taiyaki/Views/Pages/onboarding_page/action.dart';
+import 'action.dart';
 
 import 'state.dart';
 
@@ -44,10 +44,10 @@ Widget buildView(
                         ),
                       ),
                       const SizedBox(height: 15),
-                      Text('Taiyaki',
+                      const Text('Taiyaki',
                           style: TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 40)),
-                      Text('An anime app', style: TextStyle(fontSize: 16)),
+                      const Text('An anime app', style: TextStyle(fontSize: 16)),
                     ]),
               ),
               Padding(
@@ -64,7 +64,7 @@ Widget buildView(
                       builder: (ctx, state, _) => FractionalTranslation(
                         translation: (state.value as Offset),
                         child: ElevatedButton(
-                            child: Text("Let's get you setup"),
+                            child: const Text("Let's get you setup"),
                             onPressed: () => dispatch(
                                 OnboardingActionCreator.moveToPage(null))),
                       ),

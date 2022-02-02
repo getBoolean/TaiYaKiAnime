@@ -1,9 +1,9 @@
 import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter/material.dart';
-import 'package:taiyaki/Views/Pages/profile_page/action.dart';
-import 'package:taiyaki/Views/Widgets/TaiyakiSize.dart';
-import 'package:taiyaki/Views/Widgets/anim_list_status_cards.dart';
 
+import '../../../../Widgets/TaiyakiSize.dart';
+import '../../../../Widgets/anim_list_status_cards.dart';
+import '../../action.dart';
 import 'state.dart';
 
 Widget buildView(Card2State state, Dispatch dispatch, ViewService viewService) {
@@ -34,7 +34,7 @@ Widget buildView(Card2State state, Dispatch dispatch, ViewService viewService) {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text('Watch List',
+                      const Text('Watch List',
                           style: TextStyle(
                               fontWeight: FontWeight.w800, fontSize: 15)),
                       Text('${state.animeList.length} total items')
@@ -83,7 +83,7 @@ Widget buildView(Card2State state, Dispatch dispatch, ViewService viewService) {
                                       statusName: 'Dropped',
                                       data: _droppedList.toList()),
                               ])
-                        : Center(
+                        : const Center(
                             child: Text('There is no anime list to see here',
                                 style: TextStyle(fontWeight: FontWeight.bold))),
                   ),

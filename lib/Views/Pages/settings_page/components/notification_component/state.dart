@@ -1,5 +1,5 @@
 import 'package:fish_redux/fish_redux.dart';
-import 'package:taiyaki/Views/Pages/settings_page/state.dart';
+import '../../state.dart';
 
 class NotificationSettingsState
     implements Cloneable<NotificationSettingsState> {

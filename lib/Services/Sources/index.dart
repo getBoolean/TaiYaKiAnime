@@ -1,13 +1,12 @@
-import 'package:taiyaki/Services/Sources/Gogoanime.dart';
-
 import 'Base.dart';
+import 'Gogoanime.dart';
 
 final kTaiyakiSources = [GogoAnime()];
 
 SourceBase nameToSourceBase(String name) {
   switch (name) {
     case 'GogoAnime':
-      return new GogoAnime();
+      return GogoAnime();
     default:
       throw Exception('This source does not exist');
   }

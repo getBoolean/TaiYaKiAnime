@@ -2,13 +2,13 @@ import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter/material.dart' hide Action;
 import 'package:hive/hive.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
-import 'package:taiyaki/Models/SIMKL/models.dart';
-import 'package:taiyaki/Models/Taiyaki/DetailDatabase.dart';
-import 'package:taiyaki/Utils/strings.dart';
-import 'package:taiyaki/Views/Pages/detail_page/action.dart';
-import 'package:taiyaki/Views/Pages/video_page/page.dart';
-import 'package:taiyaki/Views/Widgets/source_search_page.dart';
 
+import '../../../../Models/SIMKL/models.dart';
+import '../../../../Models/Taiyaki/DetailDatabase.dart';
+import '../../../../Utils/strings.dart';
+import '../../../Widgets/source_search_page.dart';
+import '../../video_page/page.dart';
+import '../action.dart';
 import 'action.dart';
 import 'state.dart';
 
@@ -35,7 +35,7 @@ void _moveToVideo(Action action, Context<WatchState> ctx) {
 void _onPickedLink(Action action, Context<WatchState> ctx) async {
   final Map<String, String> _link = action.payload;
 
-  DetailDatabaseModel _newDatabase = ctx.state.databaseModel!.copyWith(
+  final DetailDatabaseModel _newDatabase = ctx.state.databaseModel!.copyWith(
       link: _link.keys.first,
       createdAt: DateTime.now(),
       episodeProgress: {0: 0},
@@ -44,7 +44,7 @@ void _onPickedLink(Action action, Context<WatchState> ctx) async {
       sourceName: _link.values.first);
 
   final _box = Hive.box<DetailDatabaseModel>(HIVE_DETAIL_BOX);
-  _box.put(ctx.state.databaseModel!.ids.anilist, _newDatabase).whenComplete(() {
+  await _box.put(ctx.state.databaseModel!.ids.anilist, _newDatabase).whenComplete(() {
     ctx.dispatch(WatchActionCreator.updateDatabase(_newDatabase));
     Navigator.of(ctx.context).pop();
     ctx.dispatch(DetailActionCreator.fetchSimklEpisodes(_link.keys.first));

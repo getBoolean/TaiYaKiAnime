@@ -8,7 +8,7 @@ class PlatformScaffold extends StatelessWidget {
   final String appBarTitle;
   final List<Widget>? actions;
 
-  PlatformScaffold(
+  const PlatformScaffold(
       {required this.child, required this.appBarTitle, this.actions});
 
   @override

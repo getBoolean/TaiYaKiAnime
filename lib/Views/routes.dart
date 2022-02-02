@@ -1,20 +1,20 @@
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:fish_redux/fish_redux.dart';
-import 'package:taiyaki/Store/GlobalUserStore/GlobalUserState.dart';
-import 'package:taiyaki/Store/GlobalUserStore/GlobalUserStore.dart';
-import 'package:taiyaki/Views/Pages/anime_list_page/page.dart';
-import 'package:taiyaki/Views/Pages/detail_page/page.dart';
-import 'package:taiyaki/Views/Pages/discovery_page/page.dart';
-import 'package:taiyaki/Views/Pages/history_page/page.dart';
-import 'package:taiyaki/Views/Pages/search_page/page.dart';
-import 'package:taiyaki/Views/Pages/settings_page/page.dart';
 
+import '../Store/GlobalUserStore/GlobalUserState.dart';
+import '../Store/GlobalUserStore/GlobalUserStore.dart';
+import 'Pages/anime_list_page/page.dart';
+import 'Pages/detail_page/page.dart';
+import 'Pages/discovery_page/page.dart';
 import 'Pages/downloads_page/page.dart';
+import 'Pages/history_page/page.dart';
 import 'Pages/onboarding_page/page.dart';
 import 'Pages/profile_page/page.dart';
+import 'Pages/search_page/page.dart';
+import 'Pages/settings_page/page.dart';
 import 'Pages/video_page/page.dart';
 
-final AbstractRoutes routes = new PageRoutes(
+final AbstractRoutes routes = PageRoutes(
     pages: <String, Page<Object, dynamic>>{
       'anime_list_page': AnimeListPage(),
       'discovery_page': DiscoveryPage(),

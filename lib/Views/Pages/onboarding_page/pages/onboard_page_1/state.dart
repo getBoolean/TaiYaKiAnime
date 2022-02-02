@@ -1,5 +1,5 @@
 import 'package:fish_redux/fish_redux.dart';
-import 'package:taiyaki/Models/Taiyaki/Settings.dart';
+import '../../../../../Models/Taiyaki/Settings.dart';
 
 import '../../state.dart';
 

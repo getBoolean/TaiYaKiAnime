@@ -1,9 +1,9 @@
 import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter/material.dart';
-import 'package:taiyaki/Views/Pages/anime_list_page/action.dart';
-import 'package:taiyaki/Views/Widgets/TaiyakiSize.dart';
-import 'package:taiyaki/Views/Widgets/taiyaki_image.dart';
 
+import '../../../../Widgets/TaiyakiSize.dart';
+import '../../../../Widgets/taiyaki_image.dart';
+import '../../action.dart';
 import 'state.dart';
 
 Widget buildView(
@@ -27,7 +27,7 @@ Widget buildView(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(state.model!.title,
-                            style: TextStyle(
+                            style: const TextStyle(
                                 fontWeight: FontWeight.w600, fontSize: 15),
                             maxLines: 2),
                         Expanded(
@@ -45,7 +45,7 @@ Widget buildView(
                                       state.model!.score != 0.0)
                                     Row(
                                       children: [
-                                        Icon(Icons.star, color: Colors.orange),
+                                        const Icon(Icons.star, color: Colors.orange),
                                         Text(state.model!.score!
                                             .toStringAsFixed(0))
                                       ],

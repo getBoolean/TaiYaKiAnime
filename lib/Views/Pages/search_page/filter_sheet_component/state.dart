@@ -1,5 +1,5 @@
 import 'package:fish_redux/fish_redux.dart';
-import 'package:taiyaki/Views/Pages/search_page/state.dart';
+import '../state.dart';
 
 class FilterSheetState implements Cloneable<FilterSheetState> {
   List<String> enabledGenres = [];

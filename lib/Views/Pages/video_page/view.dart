@@ -1,10 +1,10 @@
 import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter/material.dart';
-import 'package:taiyaki/Views/Pages/video_page/page.dart';
-import 'package:taiyaki/Views/Widgets/TaiyakiSize.dart';
-import 'package:taiyaki/Views/Widgets/taiyaki_player.dart';
 
+import '../../Widgets/TaiyakiSize.dart';
+import '../../Widgets/taiyaki_player.dart';
 import 'action.dart';
+import 'page.dart';
 import 'state.dart';
 
 Widget buildView(VideoState state, Dispatch dispatch, ViewService viewService) {
@@ -28,7 +28,7 @@ Widget buildView(VideoState state, Dispatch dispatch, ViewService viewService) {
                         ? TaiyakiSize.height * 0.3
                         : TaiyakiSize.width,
                     color: Theme.of(viewService.context).colorScheme.surface,
-                    child: Center(
+                    child: const Center(
                       child: CircularProgressIndicator(),
                     ),
                   )
@@ -63,10 +63,10 @@ Widget buildView(VideoState state, Dispatch dispatch, ViewService viewService) {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(state.episode!.title,
-                              style: TextStyle(
+                              style: const TextStyle(
                                   fontWeight: FontWeight.w800, fontSize: 16)),
                           Text('Episode ' + state.episode!.episode.toString(),
-                              style: TextStyle(fontWeight: FontWeight.w600)),
+                              style: const TextStyle(fontWeight: FontWeight.w600)),
                           Padding(
                               padding: const EdgeInsets.only(top: 12),
                               child: GestureDetector(

@@ -1,8 +1,8 @@
 import 'package:fish_redux/fish_redux.dart';
-import 'package:taiyaki/Models/SIMKL/models.dart';
-import 'package:taiyaki/Services/Hosts/Base.dart';
-import 'package:taiyaki/Services/Sources/Base.dart';
-import 'package:taiyaki/Views/Pages/video_page/page.dart';
+import '../../../Models/SIMKL/models.dart';
+import '../../../Services/Hosts/Base.dart';
+import '../../../Services/Sources/Base.dart';
+import 'page.dart';
 
 //TODO replace with your own action
 enum VideoAction {

@@ -1,14 +1,14 @@
 import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter/material.dart';
-import 'package:taiyaki/Views/Pages/onboarding_page/action.dart';
+import '../../action.dart';
 
 import 'action.dart';
 import 'state.dart';
 
 Widget buildView(
     OnboardPage1State state, Dispatch dispatch, ViewService viewService) {
-  final TextStyle _title = TextStyle(fontWeight: FontWeight.w800, fontSize: 26);
-  final TextStyle _subTitle =
+  const TextStyle _title = TextStyle(fontWeight: FontWeight.w800, fontSize: 26);
+  const TextStyle _subTitle =
       TextStyle(fontWeight: FontWeight.w200, fontSize: 14, color: Colors.grey);
 
   final query = MediaQuery.of(viewService.context).size;
@@ -23,7 +23,7 @@ Widget buildView(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Column(
-            children: [
+            children: const [
               Text('Pick a Theme', style: _title),
               Text('You can change this later in Settings', style: _subTitle),
             ],
@@ -50,7 +50,7 @@ Widget buildView(
               child: ElevatedButton(
                   onPressed: () =>
                       dispatch(OnboardingActionCreator.moveToPage(null)),
-                  child: Text('Next')))
+                  child: const Text('Next')))
         ],
       )),
     ),
@@ -62,7 +62,7 @@ class _ThemeCells extends StatelessWidget {
   final String name;
   final VoidCallback onSelected;
 
-  _ThemeCells(
+  const _ThemeCells(
       {required this.themeData, required this.name, required this.onSelected});
 
   @override
@@ -75,7 +75,7 @@ class _ThemeCells extends StatelessWidget {
         margin: const EdgeInsets.symmetric(vertical: 12),
         decoration: BoxDecoration(
             color: themeData.colorScheme.surface,
-            borderRadius: BorderRadius.all(Radius.circular(12.0)),
+            borderRadius: const BorderRadius.all(Radius.circular(12.0)),
             border: Border.all(
                 width: 1, color: themeData.textTheme.bodyText1!.color!)),
         height: query.height * 0.15,

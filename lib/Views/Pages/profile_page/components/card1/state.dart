@@ -1,7 +1,7 @@
 import 'package:fish_redux/fish_redux.dart';
-import 'package:taiyaki/Models/Taiyaki/User.dart';
-import 'package:taiyaki/Utils/misc.dart';
-import 'package:taiyaki/Views/Pages/profile_page/state.dart';
+import '../../../../../Models/Taiyaki/User.dart';
+import '../../../../../Utils/misc.dart';
+import '../../state.dart';
 
 class Card1State implements Cloneable<Card1State> {
   UserModel? user;

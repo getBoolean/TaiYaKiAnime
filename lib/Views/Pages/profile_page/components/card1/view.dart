@@ -1,6 +1,6 @@
 import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter/material.dart';
-import 'package:taiyaki/Views/Widgets/TaiyakiSize.dart';
+import '../../../../Widgets/TaiyakiSize.dart';
 
 import 'state.dart';
 
@@ -18,7 +18,7 @@ Widget buildView(Card1State state, Dispatch dispatch, ViewService viewService) {
                   foregroundImage: state.user!.avatar != null
                       // ignore: unnecessary_cast
                       ? (NetworkImage(state.user!.avatar!) as ImageProvider)
-                      : AssetImage('assets/icon.png'),
+                      : const AssetImage('assets/icon.png'),
                   radius: 50),
             ),
             Transform.translate(
@@ -27,7 +27,7 @@ Widget buildView(Card1State state, Dispatch dispatch, ViewService viewService) {
                 children: [
                   Text(state.user!.username!,
                       style:
-                          TextStyle(fontWeight: FontWeight.w600, fontSize: 17)),
+                          const TextStyle(fontWeight: FontWeight.w600, fontSize: 17)),
                 ],
               ),
             ),

@@ -1,5 +1,5 @@
 import 'package:hive/hive.dart';
-import 'package:taiyaki/Utils/strings.dart';
+import '../../Utils/strings.dart';
 
 part 'models.g.dart';
 
@@ -24,7 +24,7 @@ class SimklUserModel {
   factory SimklUserModel.fromJson(Map<String, dynamic> json) => SimklUserModel(
       name: json['user']['name'],
       id: json['account']['id'],
-      avatar: json['user']['avatar'] != null ? json['user']['avatar'] : null);
+      avatar: json['user']['avatar']);
 }
 
 class SimklIDLookupModel {

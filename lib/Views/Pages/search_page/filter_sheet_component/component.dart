@@ -1,8 +1,8 @@
 import 'package:fish_redux/fish_redux.dart';
 
-import 'view.dart';
 import 'reducer.dart';
 import 'state.dart';
+import 'view.dart';
 
 class FilterSheetComponent extends Component<FilterSheetState> {
   FilterSheetComponent()

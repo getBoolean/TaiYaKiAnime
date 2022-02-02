@@ -1,11 +1,11 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter/material.dart';
-import 'package:taiyaki/Utils/strings.dart';
-import 'package:taiyaki/Views/Pages/video_page/action.dart';
-import 'package:taiyaki/Views/Widgets/TaiyakiSize.dart';
-import 'package:taiyaki/Views/Widgets/taiyaki_image.dart';
 
+import '../../../../../Utils/strings.dart';
+import '../../../../Widgets/TaiyakiSize.dart';
+import '../../../../Widgets/taiyaki_image.dart';
+import '../../action.dart';
 import 'state.dart';
 
 Widget buildView(
@@ -13,7 +13,7 @@ Widget buildView(
   return GestureDetector(
     onTap: () =>
         dispatch(VideoActionCreator.setSimklEpisode(state.simklEpisodeModel!)),
-    child: Container(
+    child: SizedBox(
         width: TaiyakiSize.width * 0.92,
         child: Card(
             child: Row(
@@ -35,10 +35,10 @@ Widget buildView(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text('Episode ${state.simklEpisodeModel!.episode}',
-                                style: TextStyle(
+                                style: const TextStyle(
                                     fontSize: 12, fontWeight: FontWeight.w300)),
                             if (state.isPlaying)
-                              Icon(Icons.play_arrow_rounded,
+                              const Icon(Icons.play_arrow_rounded,
                                   color: Colors.green, size: 15)
                           ],
                         ),

@@ -7,7 +7,7 @@ Widget buildView(
     BadeCellsState state, Dispatch dispatch, ViewService viewService) {
   return Container(
     child: Column(
-      children: [],
+      children: const [],
     ),
   );
 }

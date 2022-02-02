@@ -9,7 +9,7 @@ Widget buildView(
     length: state.tabs.length,
     child: Scaffold(
       appBar: AppBar(
-        title: Text('Settings'),
+        title: const Text('Settings'),
         bottom: TabBar(
           isScrollable: true,
           tabs: state.tabs,

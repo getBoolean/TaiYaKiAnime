@@ -1,7 +1,7 @@
 import 'package:fish_redux/fish_redux.dart';
-import 'package:taiyaki/Models/Anilist/models.dart';
-import 'package:taiyaki/Models/Anilist/typed_models.dart';
-import 'package:taiyaki/Views/Pages/search_page/cells/state.dart';
+import '../../../Models/Anilist/models.dart';
+import '../../../Models/Anilist/typed_models.dart';
+import 'cells/state.dart';
 
 class SearchState extends ImmutableSource implements Cloneable<SearchState> {
   bool isLoading = false;

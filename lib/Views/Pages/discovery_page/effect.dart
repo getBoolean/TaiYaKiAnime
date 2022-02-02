@@ -1,13 +1,13 @@
 import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter/material.dart' hide Action;
 import 'package:hive/hive.dart';
-import 'package:taiyaki/Models/Anilist/typed_models.dart';
-import 'package:taiyaki/Models/Taiyaki/DetailDatabase.dart';
-import 'package:taiyaki/Models/Taiyaki/Misc.dart';
-import 'package:taiyaki/Services/API/Anilist+API.dart';
-import 'package:taiyaki/Store/GlobalUserStore/GlobalUserStore.dart';
-import 'package:taiyaki/Utils/strings.dart';
-import 'package:taiyaki/Views/Pages/detail_page/page.dart';
+import '../../../Models/Anilist/typed_models.dart';
+import '../../../Models/Taiyaki/DetailDatabase.dart';
+import '../../../Models/Taiyaki/Misc.dart';
+import '../../../Services/API/Anilist+API.dart';
+import '../../../Store/GlobalUserStore/GlobalUserStore.dart';
+import '../../../Utils/strings.dart';
+import '../detail_page/page.dart';
 
 import 'action.dart';
 import 'state.dart';
@@ -26,9 +26,10 @@ void _onAction(Action action, Context<DiscoveryState> ctx) {
 }
 
 void _grabAnilistActivity(Action action, Context<DiscoveryState> ctx) async {
-  if (GlobalUserStore.store.getState().anilistUser != null)
-    AnilistAPI().getFollowersActivity().then(
+  if (GlobalUserStore.store.getState().anilistUser != null) {
+    await AnilistAPI().getFollowersActivity().then(
         (value) => ctx.dispatch(DiscoveryActionCreator.updateActivity(value)));
+  }
 }
 
 void _onInit(Action action, Context<DiscoveryState> ctx) async {
@@ -39,27 +40,29 @@ void _onInit(Action action, Context<DiscoveryState> ctx) async {
     if (event.anilistUser != state.anilistUser) {
       ctx.state.anilistUser = event.anilistUser;
     }
-    if (event.myanimelistUser != state.myanimelistUser)
+    if (event.myanimelistUser != state.myanimelistUser) {
       ctx.state.myanimelistUser = event.myanimelistUser;
-    if (event.simklUser != state.simklUser)
+    }
+    if (event.simklUser != state.simklUser) {
       ctx.state.simklUser = event.simklUser;
+    }
     // event.myanimelistUser != state.myanimelistUser ||
     // event.simklUser != state.simklUser) ctx.forceUpdate();
     ctx.forceUpdate();
   });
 
-  AnilistAPI().getPagedData(AnilistPageFilterEnum.trending).then(
+  await AnilistAPI().getPagedData(AnilistPageFilterEnum.trending).then(
       (value) => ctx.dispatch(DiscoveryActionCreator.updateTrending(value)));
 
-  AnilistAPI().getPagedData(AnilistPageFilterEnum.popularity).then(
+  await AnilistAPI().getPagedData(AnilistPageFilterEnum.popularity).then(
       (value) => ctx.dispatch(DiscoveryActionCreator.updatePopular(value)));
 
-  AnilistAPI().getPagedData(AnilistPageFilterEnum.justAdded).then(
+  await AnilistAPI().getPagedData(AnilistPageFilterEnum.justAdded).then(
       (value) => ctx.dispatch(DiscoveryActionCreator.updateJustAdded(value)));
 
   ctx.broadcast(DiscoveryActionCreator.grabAnilistActivity());
 
-  AnilistAPI().getSearchResults(
+  await AnilistAPI().getSearchResults(
       const [],
       const [],
       null,
@@ -71,12 +74,13 @@ void _onInit(Action action, Context<DiscoveryState> ctx) async {
   int year;
   final _seasonCheck = mapSeasonToAnilistNextSeason(
       mapMonthToAnilistSeason(DateTime.now().month));
-  if (_seasonCheck == 'FALL')
+  if (_seasonCheck == 'FALL') {
     year = DateTime.now().year + 1;
-  else
+  } else {
     year = DateTime.now().year;
+  }
 
-  AnilistAPI()
+  await AnilistAPI()
       .getSearchResults(const [], const [], null, year, _seasonCheck).then(
           (value) =>
               ctx.dispatch(DiscoveryActionCreator.updateNextSeason(value)));

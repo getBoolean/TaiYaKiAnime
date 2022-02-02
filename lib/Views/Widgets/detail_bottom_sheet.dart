@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:taiyaki/Models/Taiyaki/DetailDatabase.dart';
-import 'package:taiyaki/Views/Widgets/TaiyakiSize.dart';
+import '../../Models/Taiyaki/DetailDatabase.dart';
+import 'TaiyakiSize.dart';
 
 class DetailBottomSheet extends StatelessWidget {
   final VoidCallback eraseLink;
   final IndividualSettingsModel individualSettingsModel;
 
-  DetailBottomSheet(
+  const DetailBottomSheet(
       {required this.eraseLink, required this.individualSettingsModel});
 
-  final TextStyle _title = TextStyle(fontWeight: FontWeight.w700, fontSize: 15);
+  final TextStyle _title = const TextStyle(fontWeight: FontWeight.w700, fontSize: 15);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: TaiyakiSize.height * 0.25,
       child: ListView(
         children: [

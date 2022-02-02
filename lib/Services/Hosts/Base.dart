@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:taiyaki/Services/Sources/Base.dart';
+import '../Sources/Base.dart';
 
 class HostsAPIRequests {
   Dio requests = Dio()

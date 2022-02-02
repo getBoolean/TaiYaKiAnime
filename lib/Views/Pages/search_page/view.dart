@@ -1,7 +1,7 @@
 import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
-import 'package:taiyaki/Views/Widgets/search_bar.dart';
+import '../../Widgets/search_bar.dart';
 
 import 'action.dart';
 import 'state.dart';
@@ -16,10 +16,10 @@ Widget buildView(
           context: viewService.context,
           builder: (BuildContext context) =>
               viewService.buildComponent('filter_bottom_sheet')),
-      child: Icon(Icons.filter_alt_sharp),
+      child: const Icon(Icons.filter_alt_sharp),
     ),
     appBar: AppBar(
-      title: Text('Search'),
+      title: const Text('Search'),
     ),
     body: ListView(
       children: [
@@ -31,10 +31,10 @@ Widget buildView(
           padding: const EdgeInsets.symmetric(horizontal: 8.0),
           child: ElevatedButton(
               onPressed: () => dispatch(SearchActionCreator.onSearch()),
-              child: Text('Search')),
+              child: const Text('Search')),
         ),
         if (state.isLoading)
-          Center(
+          const Center(
             child: CircularProgressIndicator(),
           )
         else
@@ -42,7 +42,7 @@ Widget buildView(
             shrinkWrap: true,
             itemBuilder: _adapter.itemBuilder,
             itemCount: _adapter.itemCount,
-            physics: NeverScrollableScrollPhysics(),
+            physics: const NeverScrollableScrollPhysics(),
           )
       ],
     ),

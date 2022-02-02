@@ -3,20 +3,20 @@ import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
-import 'package:taiyaki/Models/Anilist/typed_models.dart';
+import '../../../../Models/Anilist/typed_models.dart';
 
 import 'action.dart';
 import 'state.dart';
 
 Widget buildView(
     FilterSheetState state, Dispatch dispatch, ViewService viewService) {
-  final TextStyle _title = TextStyle(fontWeight: FontWeight.w700, fontSize: 21);
+  const TextStyle _title = TextStyle(fontWeight: FontWeight.w700, fontSize: 21);
 
   return Scaffold(
     body: ListView(
       children: [
-        Padding(
-          padding: const EdgeInsets.all(8.0),
+        const Padding(
+          padding: EdgeInsets.all(8.0),
           child: Text(
             'Year',
             style: _title,
@@ -36,8 +36,8 @@ Widget buildView(
             enableTooltip: true,
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.all(8.0),
+        const Padding(
+          padding: EdgeInsets.all(8.0),
           child: Text(
             'Season',
             style: _title,
@@ -60,14 +60,14 @@ Widget buildView(
                 .toList(),
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.all(8.0),
+        const Padding(
+          padding: EdgeInsets.all(8.0),
           child: Text('Genres', style: _title),
         ),
         GridView.count(
           childAspectRatio: 1 / 0.3,
           shrinkWrap: true,
-          physics: NeverScrollableScrollPhysics(),
+          physics: const NeverScrollableScrollPhysics(),
           crossAxisCount: 2,
           children:
               List.generate(AnilistGraphTypes.anilistGenres.length, (index) {
@@ -90,19 +90,19 @@ Widget buildView(
                     child: AutoSizeText(_item,
                         minFontSize: 9,
                         maxLines: 2,
-                        style: TextStyle(fontWeight: FontWeight.w500)),
+                        style: const TextStyle(fontWeight: FontWeight.w500)),
                   ),
                 ));
           }),
         ),
-        Padding(
-          padding: const EdgeInsets.all(8.0),
+        const Padding(
+          padding: EdgeInsets.all(8.0),
           child: Text('Tags', style: _title),
         ),
         GridView.count(
           childAspectRatio: 1 / 0.3,
           shrinkWrap: true,
-          physics: NeverScrollableScrollPhysics(),
+          physics: const NeverScrollableScrollPhysics(),
           crossAxisCount: 2,
           children:
               List.generate(AnilistGraphTypes.anilistTags().length, (index) {
@@ -123,7 +123,7 @@ Widget buildView(
                   onChanged: (bool? value) =>
                       dispatch(FilterSheetActionCreator.onFilterTags(_item)),
                   title: Text(_item,
-                      style: TextStyle(fontWeight: FontWeight.w500)),
+                      style: const TextStyle(fontWeight: FontWeight.w500)),
                 ));
           }),
         )

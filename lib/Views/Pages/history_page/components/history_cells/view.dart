@@ -1,9 +1,9 @@
 import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter/material.dart';
-import 'package:taiyaki/Views/Pages/history_page/components/history_cells/action.dart';
-import 'package:taiyaki/Views/Widgets/TaiyakiSize.dart';
-import 'package:taiyaki/Views/Widgets/taiyaki_image.dart';
 
+import '../../../../Widgets/TaiyakiSize.dart';
+import '../../../../Widgets/taiyaki_image.dart';
+import 'action.dart';
 import 'state.dart';
 
 Widget buildView(
@@ -12,7 +12,7 @@ Widget buildView(
     onTap: () => dispatch(HistoryCellsActionCreator.onAction()),
     child: Card(
       clipBehavior: Clip.antiAlias,
-      child: Container(
+      child: SizedBox(
           height: TaiyakiSize.height * 0.17,
           child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
             TaiyakiImage(
@@ -28,12 +28,12 @@ Widget buildView(
                 children: [
                   Text(
                     state.historyModel!.title,
-                    style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16),
+                    style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 16),
                     maxLines: 2,
                   ),
                   Row(children: [
                     Text(state.historyModel!.sourceName,
-                        style: TextStyle(
+                        style: const TextStyle(
                             fontWeight: FontWeight.w200, fontSize: 13)),
                     // Text(/),
                   ])

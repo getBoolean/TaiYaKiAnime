@@ -129,7 +129,7 @@ class _ProfileListCardsState extends State<ProfileListCards> {
                               radius: 30,
                             ),
                             Text(
-                              widget.userModel.username!,
+                              widget.userModel.username ?? '',
                               maxLines: 1,
                             ),
                             Row(

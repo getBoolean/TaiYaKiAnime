@@ -26,7 +26,7 @@ class Card3Connector extends ConnOp<ProfileState, Card3State> {
           yValueMapper: (y, _) => y.genreCount,
           dataLabelMapper: (z, _) => '${z.genreName}',
           enableTooltip: true,
-          dataLabelSettings: DataLabelSettings(
+          dataLabelSettings: const DataLabelSettings(
               showZeroValue: false,
               isVisible: true,
               labelPosition: ChartDataLabelPosition.outside))

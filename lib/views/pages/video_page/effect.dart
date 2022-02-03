@@ -177,6 +177,7 @@ void _saveHistory(Action action, Context<VideoState> ctx) {
   _box.put(_history.id, _history);
 }
 
+
 void _setUpPlayer(Action action, Context<VideoState> ctx) {
   final BetterPlayerConfiguration _betterPlayerConfiguration =
       BetterPlayerConfiguration(
@@ -186,7 +187,7 @@ void _setUpPlayer(Action action, Context<VideoState> ctx) {
           autoDispose: false,
           controlsConfiguration: BetterPlayerControlsConfiguration(
               playerTheme: BetterPlayerTheme.custom,
-              customControlsBuilder: (BetterPlayerController _) {
+              customControlsBuilder: (BetterPlayerController _, _onPlayerVisibility) {
                 return TaiyakiControls(
                     togglePlaylist: () =>
                         ctx.dispatch(VideoActionCreator.togglePlaylist(true)),

@@ -5,7 +5,6 @@ import 'package:dotenv/dotenv.dart' as dot_env;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 import 'models/simkl/models.dart';

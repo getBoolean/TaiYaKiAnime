@@ -20,42 +20,45 @@ version: 1.0.0+1
 environment:
   sdk: ">=2.12.0 <3.0.0"
 
+dependency_overrides:
+  visibility_detector: 0.2.2
+
 dependencies:
   auto_size_text: ^3.0.0
   background_fetch: ^1.0.3
-  cached_network_image: ^3.0.0
+  cached_network_image: ^3.2.0
   dotenv: ^3.0.0
   flutter:
     sdk: flutter
-  hive: ^2.0.3
-  hive_flutter: ^1.0.0
+  hive: ^2.0.5
+  hive_flutter: ^1.1.0
 
   fish_redux: ^0.3.7
   # fish_redux:
   #   git: https://github.com/leftcoding/fish-redux
   focus_detector: ^2.0.0
-  flutter_local_notifications: ^5.0.0+1
-  flutter_secure_storage: ^4.1.0
+  flutter_local_notifications: ^9.2.0
+  flutter_secure_storage: ^5.0.2
   flutter_web_auth: ^0.4.0
   dio: ^4.0.0
-  google_fonts: ^2.0.0
+  google_fonts: ^2.2.0
   intl: ^0.17.0
   kenburns: ^1.0.5
   modal_bottom_sheet: ^2.0.0
-  syncfusion_flutter_charts: ^19.1.54+1
+  syncfusion_flutter_charts: ^19.4.48
   syncfusion_flutter_sliders: null
-  webview_flutter: ^2.0.2
-  wakelock: ^0.5.2
+  webview_flutter: ^3.0.0
+  wakelock: ^0.5.6
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^1.0.2
+  cupertino_icons: ^1.0.4
   html: ^0.15.0
-  animator: ^3.0.0
-  path_provider: ^2.0.1
-  http: ^0.13.3
-  better_player: ^0.0.68
-  url_launcher: ^6.0.4
+  animator: ^3.1.0
+  path_provider: ^2.0.8
+  http: ^0.13.4
+  better_player: ^0.0.81
+  url_launcher: ^6.0.18
 
 dev_dependencies:
   flutter_test:

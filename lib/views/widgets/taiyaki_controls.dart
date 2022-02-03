@@ -553,7 +553,7 @@ class _TaiyakiControlsState extends BetterPlayerControlsState<TaiyakiControls> {
 
   Widget _buildNextVideoWidget() {
     return StreamBuilder<int?>(
-      stream: _betterPlayerController!.nextVideoTimeStreamController.stream,
+      stream: _betterPlayerController!.nextVideoTimeStream,
       builder: (context, snapshot) {
         final time = snapshot.data;
         if (time != null && time > 0) {

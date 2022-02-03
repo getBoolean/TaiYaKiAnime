@@ -202,7 +202,7 @@ class _UpdatePageState extends State<UpdatePage> {
             SfSlider(
               onChanged: (value) => setState(() => _score = value),
               value: _score,
-              showDivisors: true,
+              showDividers: true,
               max: 10.0,
               min: 0.0,
               showTicks: true,

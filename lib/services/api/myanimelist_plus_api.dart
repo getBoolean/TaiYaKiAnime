@@ -2,8 +2,7 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:dotenv/dotenv.dart' show env;
-import 'package:flutter_secure_storage/flutter_secure_storage.dart'
-    hide Options;
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 import '../../models/myanimelist/models.dart';
 import '../../models/taiyaki/sync.dart';

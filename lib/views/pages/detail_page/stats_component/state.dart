@@ -45,9 +45,9 @@ class StatsConnector extends ConnOp<DetailState, StatsState> {
               model.score.toString(),
           yValueMapper: (model, _) => model.amount,
           pointColorMapper: (model, _) => _anilistColors(model.score),
-          dataLabelSettings: DataLabelSettings(
+          dataLabelSettings: const DataLabelSettings(
               isVisible: true,
-              textStyle: const TextStyle(color: Colors.white, fontSize: 11),
+              textStyle: TextStyle(color: Colors.white, fontSize: 11),
               labelAlignment: ChartDataLabelAlignment.outer))
     ];
 

@@ -6,7 +6,7 @@ const AndroidNotificationDetails _androidNotificationDetails =
     AndroidNotificationDetails(
   '48',
   'taiyaki.android.notification',
-  'Released episodes',
+  channelDescription: 'Released episodes',
   enableLights: true,
   ledColor: Color(0xff8405c3),
   ledOnMs: 2500,
@@ -31,7 +31,7 @@ class NotificationHandler {
     if (styleInformation != null || attachment != null) {
       final _newPlat = NotificationDetails(
         android: AndroidNotificationDetails(
-            '48', 'taiyaki.android.notification', 'Released episodes',
+            '48', 'taiyaki.android.notification', channelDescription: 'Released episodes',
             enableLights: true,
             ledColor: const Color(0xff8405c3),
             ledOnMs: 2500,

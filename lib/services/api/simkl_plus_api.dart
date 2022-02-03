@@ -100,8 +100,13 @@ class SimklAPI with OauthLoginHandler implements BaseTracker {
           'redirect_uri': _redirectUri,
         });
     const _tokenEndpoint = 'https://api.simkl.com/oauth/token';
-    final String _code =
-        Uri.parse(await obtainCode(_authEndpoint)).queryParameters['code']!;
+
+    final _tempCode = await obtainCode(_authEndpoint);
+
+    if (_tempCode == null) {
+      throw APIException(message: 'Could not obtain the code from SIMKL');
+    }
+    final String _code = Uri.parse(_tempCode).queryParameters['code']!;
     if (_code.isNotEmpty) {
       final _response = await Dio().post(_tokenEndpoint, data: {
         'code': _code,

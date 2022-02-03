@@ -132,7 +132,10 @@ class AnilistAPI with OauthLoginHandler implements BaseTracker {
     final _tokenEndpoint =
         Uri(scheme: 'https', host: 'anilist.co', path: '/api/v2/oauth/token');
 
-    final String _codeResponse = await obtainCode(_authEndpoint);
+    final String? _codeResponse = await obtainCode(_authEndpoint);
+    if (_codeResponse == null) {
+      throw APIException(message: 'Could not obtain the code from Anilist');
+    }
     final _code = Uri.parse(_codeResponse).queryParameters['code'];
     if (_code != null) {
       final _authResponse = await Dio().postUri(_tokenEndpoint, data: {

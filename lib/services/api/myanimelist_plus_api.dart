@@ -66,13 +66,16 @@ class _Node {
 }
 
 class MyAnimeListAPI with OauthLoginHandler implements BaseTracker {
-  final clientId = Platform.isIOS ? 'MYANIMELIST_CLIENT_IOS_ID' : 'MYANIMELIST_CLIENT_ANDROID_ID';
+  final clientId = Platform.isIOS
+      ? 'MYANIMELIST_CLIENT_IOS_ID'
+      : 'MYANIMELIST_CLIENT_ANDROID_ID';
   late final Dio _request = Dio(BaseOptions(
       baseUrl: 'https://api.myanimelist.net/v2',
       contentType: Headers.jsonContentType))
     ..interceptors.add(
       QueuedInterceptorsWrapper(
-        onRequest: (RequestOptions options, RequestInterceptorHandler handler) async {
+        onRequest:
+            (RequestOptions options, RequestInterceptorHandler handler) async {
           final _tokens = GlobalUserStore.store.getState().myanimelistUser;
           if (_tokens?.accessToken != null) {
             if (DateTime.now().difference(_tokens!.expiresIn!).inMinutes <= 0) {
@@ -110,8 +113,13 @@ class MyAnimeListAPI with OauthLoginHandler implements BaseTracker {
 
     const String _redirectEndpoint = 'taiyaki://myanimelist/redirect';
 
-    final _code =
-        Uri.parse(await obtainCode(_authEndpoint)).queryParameters['code'];
+    final _tempCode = await obtainCode(_authEndpoint);
+    
+    if (_tempCode == null) {
+      throw APIException(message: 'Could not obtain the code from MyAnimeList');
+    }
+
+    final _code = Uri.parse(_tempCode).queryParameters['code'];
 
     final _tokenResponse = await Dio().postUri(_tokenEndpoint,
         data: {

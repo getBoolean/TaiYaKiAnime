@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter_web_auth/flutter_web_auth.dart';
 
@@ -24,9 +25,14 @@ class OauthLoginHandler {
 
   final FlutterSecureStorage storage = const FlutterSecureStorage();
 
-  Future<String> obtainCode(Uri uri) async {
-    final _result = await FlutterWebAuth.authenticate(
-        url: uri.toString(), callbackUrlScheme: 'taiyaki');
-    return _result;
+  Future<String?> obtainCode(Uri uri) async {
+    try {
+      final _result = await FlutterWebAuth.authenticate(
+          url: uri.toString(), callbackUrlScheme: 'taiyaki');
+      return _result;
+    } on Exception catch (e) {
+      debugPrint(e.toString());
+      return null;
+    }
   }
 }

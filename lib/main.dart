@@ -34,7 +34,6 @@ void main() async {
 
 Future<void> _initApp() async {
   await dotenv.load();
-  final envVariables = dotenv.env;
 
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
 

@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:dotenv/dotenv.dart' show env;
@@ -65,6 +66,7 @@ class _Node {
 }
 
 class MyAnimeListAPI with OauthLoginHandler implements BaseTracker {
+  final clientId = Platform.isIOS ? 'MYANIMELIST_CLIENT_IOS_ID' : 'MYANIMELIST_CLIENT_ANDROID_ID';
   late final Dio _request = Dio(BaseOptions(
       baseUrl: 'https://api.myanimelist.net/v2',
       contentType: Headers.jsonContentType))
@@ -97,7 +99,7 @@ class MyAnimeListAPI with OauthLoginHandler implements BaseTracker {
         path: '/v1/oauth2/authorize',
         queryParameters: {
           'response_type': 'code',
-          'client_id': env['MYANIMELIST_CLIENT_ID'],
+          'client_id': env[clientId],
           'redirect_uri': 'taiyaki://myanimelist/redirect',
           'code_challenge_method': 'plain',
           'code_challenge': challenge
@@ -113,7 +115,7 @@ class MyAnimeListAPI with OauthLoginHandler implements BaseTracker {
 
     final _tokenResponse = await Dio().postUri(_tokenEndpoint,
         data: {
-          'client_id': env['MYANIMELIST_CLIENT_ID'],
+          'client_id': env[clientId],
           'grant_type': 'authorization_code',
           'code': _code,
           'redirect_uri': _redirectEndpoint,
@@ -207,7 +209,7 @@ class MyAnimeListAPI with OauthLoginHandler implements BaseTracker {
     final _tokens = await Dio().postUri(_tokenEndpoint,
         data: {
           'grant_type': 'refresh_token',
-          'client_id': env['MYANIMELIST_CLIENT_ID'],
+          'client_id': env[clientId],
           'refresh_token': refreshToken
         },
         options: Options(

@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
-import 'package:dotenv/dotenv.dart' show env;
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 import '../../models/simkl/models.dart';
 import '../../models/taiyaki/sync.dart';
@@ -59,7 +59,7 @@ class _SimklSyncModel {
 class SimklAPI with OauthLoginHandler implements BaseTracker {
   final Dio _request =
       Dio(BaseOptions(baseUrl: 'https://api.simkl.com', headers: {
-    'simkl-api-key': env['SIMKL_CLIENT_ID'],
+    'simkl-api-key': dotenv.env['SIMKL_CLIENT_ID'],
   }))
         ..interceptors.add(InterceptorsWrapper(onRequest:
             (RequestOptions options, RequestInterceptorHandler handler) {
@@ -96,7 +96,7 @@ class SimklAPI with OauthLoginHandler implements BaseTracker {
         path: '/oauth/authorize',
         queryParameters: {
           'response_type': 'code',
-          'client_id': env['SIMKL_CLIENT_ID'],
+          'client_id': dotenv.env['SIMKL_CLIENT_ID'],
           'redirect_uri': _redirectUri,
         });
     const _tokenEndpoint = 'https://api.simkl.com/oauth/token';
@@ -110,8 +110,8 @@ class SimklAPI with OauthLoginHandler implements BaseTracker {
     if (_code.isNotEmpty) {
       final _response = await Dio().post(_tokenEndpoint, data: {
         'code': _code,
-        'client_id': env['SIMKL_CLIENT_ID'],
-        'client_secret': env['SIMKL_CLIENT_SECRET'],
+        'client_id': dotenv.env['SIMKL_CLIENT_ID'],
+        'client_secret': dotenv.env['SIMKL_CLIENT_SECRET'],
         'redirect_uri': _redirectUri,
         'grant_type': 'authorization_code',
       });

@@ -1,9 +1,9 @@
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:dotenv/dotenv.dart' as dot_env;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
@@ -27,13 +27,15 @@ import 'views/widgets/taiyaki_notification_handler.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  dot_env.load();
   await _initApp();
 
   runApp(const CreateApp());
 }
 
 Future<void> _initApp() async {
+  await dotenv.load();
+  final envVariables = dotenv.env;
+
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
 
   const _storage = FlutterSecureStorage();

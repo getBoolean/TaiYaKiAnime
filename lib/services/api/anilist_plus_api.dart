@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
-import 'package:dotenv/dotenv.dart' show env;
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 import '../../models/anilist/models.dart';
@@ -115,8 +115,8 @@ class AnilistAPI with OauthLoginHandler implements BaseTracker {
   @override
   Future<UpdateModel> login() async {
     const _storage = FlutterSecureStorage();
-    final _clientID = env['ANILIST_CLIENT_ID']!;
-    final _clientSecret = env['ANILIST_CLIENT_SECRET']!;
+    final _clientID = dotenv.env['ANILIST_CLIENT_ID']!;
+    final _clientSecret = dotenv.env['ANILIST_CLIENT_SECRET']!;
     const _redirectEndpoint = 'taiyaki://anilist/redirect';
 
     final _authEndpoint = Uri(

@@ -68,23 +68,24 @@ class MyAnimeListAPI with OauthLoginHandler implements BaseTracker {
   late final Dio _request = Dio(BaseOptions(
       baseUrl: 'https://api.myanimelist.net/v2',
       contentType: Headers.jsonContentType))
-    ..interceptors.add(InterceptorsWrapper(onRequest:
-        (RequestOptions options, RequestInterceptorHandler handler) async {
-      final _tokens = GlobalUserStore.store.getState().myanimelistUser;
-      if (_tokens?.accessToken != null) {
-        if (DateTime.now().difference(_tokens!.expiresIn!).inMinutes <= 0) {
-          _request.interceptors.requestLock.lock();
-          final _newToken = await refreshTokens(_tokens.refreshToken!);
-          options.headers.addAll({'Authorization': 'Bearer ' + _newToken});
-          _request.interceptors.requestLock.unlock();
-        } else {
-          options.headers
-              .addAll({'Authorization': 'Bearer ' + _tokens.accessToken});
-        }
-      }
+    ..interceptors.add(
+      QueuedInterceptorsWrapper(
+        onRequest: (RequestOptions options, RequestInterceptorHandler handler) async {
+          final _tokens = GlobalUserStore.store.getState().myanimelistUser;
+          if (_tokens?.accessToken != null) {
+            if (DateTime.now().difference(_tokens!.expiresIn!).inMinutes <= 0) {
+              final _newToken = await refreshTokens(_tokens.refreshToken!);
+              options.headers.addAll({'Authorization': 'Bearer ' + _newToken});
+            } else {
+              options.headers
+                  .addAll({'Authorization': 'Bearer ' + _tokens.accessToken});
+            }
+          }
 
-      return handler.next(options);
-    }));
+          return handler.next(options);
+        },
+      ),
+    );
 
   @override
   Future<UpdateModel> login() async {

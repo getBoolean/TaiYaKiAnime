@@ -1,4 +1,4 @@
-package com.izanamiNightz.taiyaki_anime
+package com.izanamiNightz.taiyaki
 
 import io.flutter.embedding.android.FlutterActivity
 
